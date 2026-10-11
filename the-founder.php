@@ -83,6 +83,31 @@ require_once __DIR__ . '/includes/modern-header.php';
                     </p>
                 </div>
 
+                <!-- Executive Statement & Message from the Director -->
+                <div style="background: var(--bg-light-alt); border-left: 4px solid var(--brand-red); padding: 26px 28px; border-radius: var(--radius-sm); margin-bottom: 26px;">
+                    <div style="font-size: 0.86rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--brand-red); margin-bottom: 8px;">
+                        Executive Message &bull; FESCON Oman
+                    </div>
+                    <p style="font-size: 1.02rem; color: #334155; line-height: 1.8; margin: 0 0 14px;">
+                        "Welcome to FESCON Oman. We are committed to delivering engineering excellence through innovative, reliable, and sustainable solutions across infrastructure, energy, industrial, building projects and Oil and Gas field. Our success is built on professionalism, quality, safety, and long-term partnerships."
+                    </p>
+                    <p style="font-size: 1.02rem; color: #334155; line-height: 1.8; margin: 0 0 18px;">
+                        "With a highly skilled team and a client-focused approach, we strive to exceed expectations by delivering every project with precision, integrity, and technical expertise—contributing to Oman’s continued growth and development."
+                    </p>
+                    
+                    <div style="padding-top: 16px; border-top: 1px dashed var(--border-light);">
+                        <div style="font-size: 0.86rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--brand-red); margin-bottom: 8px;">
+                            <i class="fas fa-quote-left" style="margin-right: 6px;"></i> Message from the Director
+                        </div>
+                        <p style="font-size: 0.96rem; color: #475569; line-height: 1.75; margin: 0 0 10px;">
+                            "At FESCON Oman, we believe that great engineering creates lasting value. Our mission is to provide dependable engineering and construction services that support the nation’s progress while maintaining the highest standards of quality, safety, and environmental responsibility."
+                        </p>
+                        <p style="font-size: 0.96rem; color: #475569; line-height: 1.75; margin: 0;">
+                            "Together with our clients, partners, and dedicated professionals, we are building sustainable infrastructure and delivering solutions that shape a stronger future for the Sultanate of Oman."
+                        </p>
+                    </div>
+                </div>
+
                 <!-- Global Presence & Diversified Sectors -->
                 <div style="background: var(--bg-light-alt); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 20px 24px; margin-bottom: 26px;">
                     <div style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--brand-red); margin-bottom: 10px;">
@@ -103,7 +128,7 @@ require_once __DIR__ . '/includes/modern-header.php';
                         </span>
                     </div>
                     <div style="font-size: 0.88rem; color: #64748b; font-weight: 600; line-height: 1.6; padding-top: 10px; border-top: 1px dashed var(--border-light);">
-                        <i class="fas fa-layer-group text-red" style="margin-right: 6px;"></i> Engineering &bull; Construction &bull; Manufacturing &bull; Agriculture &bull; Foods &bull; Investment &bull; Business Development
+                        <i class="fas fa-layer-group text-red" style="margin-right: 6px;"></i> Engineering &bull; Construction &bull; Manufacturing &bull; Agriculture &bull; Foods &bull; Investment &bull; Business Development &bull; Oil &amp; Gas
                     </div>
                 </div>
 
