@@ -1,0 +1,440 @@
+/* ==========================================================================
+   Fescon (Pvt.) Ltd - Refined Typography & Modern Button Design
+   Custom Red Hover Scheme:
+   - Navigation links hover & active state: Vibrant Red
+   - Underline indicator: Vibrant Red
+   - Submenu hover: Clean Red accent
+   - All buttons hover: Modern Elevated Red with smooth glow
+   - Card 4 accent & focus highlights: Cohesive Red theme
+   ========================================================================== */
+
+:root {
+    --primary-color: #111111;
+    --primary-hover: #1f1f1f;
+    --brand-red: #c62828;
+    --brand-red-hover: #b71c1c;
+    --brand-red-bright: #d32f2f;
+    --brand-red-light: #fef2f2;
+    --brand-red-glow: rgba(198, 40, 40, 0.32);
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-heading: 'Cardo', Georgia, serif;
+    --btn-radius: 6px;
+    --card-radius: 6px;
+    --transition-smooth: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   1. NAVIGATION MENU & RED HOVER / ACTIVE STATES
+   ========================================================================== */
+
+/* Sub-arrow Chevron Icon */
+.hfe-nav-menu .sub-arrow i,
+.hfe-nav-menu__submenu-arrow .sub-arrow i {
+    display: inline-block !important;
+    width: 6px !important;
+    height: 6px !important;
+    border-right: 1.8px solid currentColor !important;
+    border-bottom: 1.8px solid currentColor !important;
+    transform: rotate(45deg) !important;
+    margin-left: 7px !important;
+    margin-bottom: 3px !important;
+    vertical-align: middle !important;
+    transition: transform 0.25s ease, border-color 0.2s ease !important;
+    font-family: inherit !important;
+}
+
+.hfe-nav-menu .sub-arrow i:before,
+.hfe-nav-menu__submenu-arrow .sub-arrow i:before {
+    display: none !important;
+    content: "" !important;
+}
+
+/* Rotate chevron on hover */
+.hfe-nav-menu li:hover > .hfe-has-submenu-container .sub-arrow i,
+.hfe-nav-menu li:hover > a .sub-arrow i {
+    transform: rotate(-135deg) !important;
+    margin-bottom: -1px !important;
+}
+
+/* Nav links typography */
+.hfe-nav-menu a.hfe-menu-item {
+    font-family: var(--font-sans) !important;
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.02em !important;
+    color: #1a1a1a !important;
+    padding: 10px 14px !important;
+    transition: color 0.22s ease !important;
+}
+
+/* RED Nav Link Hover */
+.hfe-nav-menu a.hfe-menu-item:hover,
+.hfe-nav-menu li:hover > a.hfe-menu-item,
+.hfe-nav-menu li:hover > .hfe-has-submenu-container > a.hfe-menu-item {
+    color: var(--brand-red-bright) !important;
+}
+
+/* RED Active Navigation Item */
+.hfe-nav-menu .menu-item.current-menu-item > a.hfe-menu-item,
+.hfe-nav-menu .menu-item.current_page_item > a.hfe-menu-item,
+.hfe-nav-menu .menu-item.current-menu-ancestor > .hfe-has-submenu-container > a.hfe-menu-item {
+    color: var(--brand-red-bright) !important;
+    font-weight: 600 !important;
+}
+
+/* RED Underline Indicator */
+.hfe-nav-menu-layout:not(.hfe-pointer__framed) .menu-item.parent a.hfe-menu-item:after,
+.hfe-pointer__underline.hfe-animation__slide .menu-item.parent.current-menu-item a.hfe-menu-item:after,
+.hfe-nav-menu-layout:not(.hfe-pointer__framed) .menu-item.parent.current-menu-item a.hfe-menu-item:after {
+    background-color: var(--brand-red-bright) !important;
+    height: 2.5px !important;
+    border-radius: 2px !important;
+}
+
+/* Dropdown Submenu Container */
+.hfe-nav-menu ul.sub-menu {
+    border-radius: 8px !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0,0,0,0.04) !important;
+    padding: 8px 0 !important;
+    background: #ffffff !important;
+}
+
+.hfe-nav-menu ul.sub-menu a.hfe-sub-menu-item {
+    font-family: var(--font-sans) !important;
+    font-size: 13.5px !important;
+    font-weight: 500 !important;
+    color: #333333 !important;
+    padding: 9px 20px !important;
+    transition: all 0.2s ease !important;
+    border-bottom: none !important;
+}
+
+/* RED Submenu Hover */
+.hfe-nav-menu ul.sub-menu a.hfe-sub-menu-item:hover,
+.hfe-nav-menu ul.sub-menu .menu-item.current-menu-item a.hfe-sub-menu-item {
+    background-color: var(--brand-red-light) !important;
+    color: var(--brand-red-bright) !important;
+    padding-left: 24px !important;
+}
+
+/* General Link Hover */
+a:hover {
+    color: var(--brand-red-bright) !important;
+}
+
+/* ==========================================================================
+   2. VALUE CARDS (Crisp White Text on Dark, Red Accent on Mission)
+   ========================================================================== */
+
+/* Overall Value Cards row */
+.elementor-element-2795cad8 {
+    margin-top: -30px !important;
+}
+
+/* 3 Dark Cards: Professionalism (480add58), Quality (bdc9309), Timely Completion (0ced846) */
+.elementor-element-480add58 > .elementor-element-populated,
+.elementor-element-bdc9309 > .elementor-element-populated,
+.elementor-element-0ced846 > .elementor-element-populated {
+    background-color: #2b2b2d !important;
+    border-radius: var(--card-radius) 0 0 var(--card-radius);
+    padding: 2.5em 1.8em 2.5em 2em !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25) !important;
+    transition: var(--transition-smooth) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.elementor-element-bdc9309 > .elementor-element-populated {
+    border-radius: 0;
+}
+
+.elementor-element-0ced846 > .elementor-element-populated {
+    border-radius: 0;
+    background-color: #343437 !important;
+}
+
+/* Hover lift on dark cards */
+.elementor-element-480add58:hover > .elementor-element-populated,
+.elementor-element-bdc9309:hover > .elementor-element-populated,
+.elementor-element-0ced846:hover > .elementor-element-populated {
+    background-color: #1f1f21 !important;
+    transform: translateY(-4px) !important;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* Card Titles (White) */
+.elementor-element-24f508e .elementor-heading-title,
+.elementor-element-e2c5a9c .elementor-heading-title,
+.elementor-element-20400df .elementor-heading-title {
+    color: #ffffff !important;
+    font-family: var(--font-sans) !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.01em !important;
+    margin-bottom: 12px !important;
+    line-height: 1.25 !important;
+}
+
+/* Card Body Text (Crisp Readable White) */
+.elementor-element-4a1a014,
+.elementor-element-4a1a014 p,
+.elementor-element-ea6deb6,
+.elementor-element-ea6deb6 p,
+.elementor-element-b5a6393,
+.elementor-element-b5a6393 p {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-family: var(--font-sans) !important;
+    font-size: 13.5px !important;
+    line-height: 1.7 !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.01em !important;
+    margin: 0 !important;
+    text-align: left !important;
+}
+
+/* 4th Card: Our Mission (5aff0287) - Red Accent */
+.elementor-element-5aff0287 > .elementor-element-populated {
+    background-color: #ffffff !important;
+    border-radius: 0 var(--card-radius) var(--card-radius) 0;
+    padding: 2.5em 2em 2.5em 2em !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18) !important;
+    transition: var(--transition-smooth) !important;
+    border-left: 3.5px solid var(--brand-red-bright) !important;
+}
+
+.elementor-element-5aff0287:hover > .elementor-element-populated {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22) !important;
+}
+
+/* Our Mission Title (Vibrant Red) */
+.elementor-element-7f9be537 .elementor-heading-title {
+    color: var(--brand-red-bright) !important;
+    font-family: var(--font-sans) !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.01em !important;
+    margin-bottom: 12px !important;
+    line-height: 1.25 !important;
+}
+
+/* Our Mission Body Text */
+.elementor-element-ba47f8d,
+.elementor-element-ba47f8d p {
+    color: #4a4a4a !important;
+    font-family: var(--font-sans) !important;
+    font-size: 13.5px !important;
+    line-height: 1.7 !important;
+    font-weight: 400 !important;
+    margin: 0 !important;
+    text-align: left !important;
+}
+
+/* ==========================================================================
+   3. BUTTONS WITH RED HOVER STATE
+   ========================================================================== */
+
+/* Base button styling */
+.elementor-button,
+.wp-element-button,
+.elementor-button-link,
+button.elementor-button {
+    position: relative;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: var(--primary-color) !important;
+    color: #ffffff !important;
+    font-family: var(--font-sans) !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.02em !important;
+    padding: 12px 28px !important;
+    border-radius: var(--btn-radius) !important;
+    border: none !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16) !important;
+    transition: var(--transition-smooth) !important;
+}
+
+/* Button hover shine sweep */
+.elementor-button::after,
+.wp-element-button::after,
+.elementor-button-link::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
+    pointer-events: none;
+}
+
+/* RED Button Hover */
+.elementor-button:hover,
+.wp-element-button:hover,
+.elementor-button-link:hover,
+button.elementor-button:hover {
+    background-color: var(--brand-red-bright) !important;
+    color: #ffffff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px var(--brand-red-glow) !important;
+}
+
+.elementor-button:hover::after,
+.wp-element-button:hover::after,
+.elementor-button-link:hover::after {
+    left: 140%;
+}
+
+/* Button Active Pressed State */
+.elementor-button:active,
+.wp-element-button:active,
+.elementor-button-link:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Header Contact CTA Button Hover */
+.elementor-element-29fb816 .elementor-button {
+    background-color: var(--primary-color) !important;
+    padding: 10px 22px !important;
+    font-size: 13.5px !important;
+    border-radius: var(--btn-radius) !important;
+}
+
+.elementor-element-29fb816 .elementor-button:hover {
+    background-color: var(--brand-red-bright) !important;
+    box-shadow: 0 6px 18px var(--brand-red-glow) !important;
+}
+
+/* Hero "Our Services" Button */
+.elementor-element-194e787d .elementor-button {
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.6) !important;
+    backdrop-filter: blur(8px) !important;
+    color: #ffffff !important;
+    padding: 13px 32px !important;
+    font-size: 14.5px !important;
+}
+
+.elementor-element-194e787d .elementor-button:hover {
+    background-color: var(--brand-red-bright) !important;
+    color: #ffffff !important;
+    border-color: var(--brand-red-bright) !important;
+    box-shadow: 0 8px 24px var(--brand-red-glow) !important;
+}
+
+/* Form Submit Buttons */
+input[type="submit"],
+.wpcf7-submit,
+#stickyelements-submit-form {
+    background-color: var(--primary-color) !important;
+    color: #ffffff !important;
+    font-family: var(--font-sans) !important;
+    font-size: 14.5px !important;
+    font-weight: 600 !important;
+    padding: 13px 32px !important;
+    border-radius: var(--btn-radius) !important;
+    border: none !important;
+    cursor: pointer !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18) !important;
+    transition: var(--transition-smooth) !important;
+}
+
+/* RED Form Submit Button Hover */
+input[type="submit"]:hover,
+.wpcf7-submit:hover,
+#stickyelements-submit-form:hover {
+    background-color: var(--brand-red-bright) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px var(--brand-red-glow) !important;
+}
+
+/* ==========================================================================
+   4. FORM INPUTS & FOCUS HIGHLIGHTS
+   ========================================================================== */
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+textarea,
+select {
+    border: 1.5px solid rgba(0, 0, 0, 0.16) !important;
+    border-radius: var(--btn-radius) !important;
+    padding: 12px 16px !important;
+    font-family: var(--font-sans) !important;
+    font-size: 14.5px !important;
+    color: #111111 !important;
+    background-color: #ffffff !important;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none !important;
+    border-color: var(--brand-red-bright) !important;
+    box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.15) !important;
+}
+
+/* ==========================================================================
+   5. FLOATING ELEMENTS & SCROLL TO TOP
+   ========================================================================== */
+
+.hfe-scroll-to-top-wrap {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 46px;
+    height: 46px;
+    background: #111111;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 999;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+    transition: var(--transition-smooth);
+}
+
+/* RED Scroll to top hover */
+.hfe-scroll-to-top-wrap:hover {
+    background: var(--brand-red-bright) !important;
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 10px 24px var(--brand-red-glow) !important;
+}
+
+/* ==========================================================================
+   6. CLICKABLE LOGO SLIDER STYLES
+   ========================================================================== */
+.logo-slider .track a.logo-slide-link {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 18px !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    transition: transform 0.3s ease !important;
+}
+
+.logo-slider .track a.logo-slide-link img {
+    width: 220px !important;
+    height: 120px !important;
+    object-fit: contain !important;
+    transition: transform 0.3s ease, filter 0.3s ease !important;
+}
+
+.logo-slider .track a.logo-slide-link:hover img {
+    transform: scale(1.12) !important;
+    filter: drop-shadow(0 4px 16px rgba(211, 47, 47, 0.4)) !important;
+}

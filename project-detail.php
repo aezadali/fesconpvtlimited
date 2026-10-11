@@ -1,0 +1,495 @@
+<?php
+/**
+ * Detailed Project View - Fescon (Pvt.) Ltd
+ * Displays full engineering scope, client association, specifications, and related projects.
+ */
+require_once __DIR__ . '/includes/config.php';
+require_once __DIR__ . '/includes/db.php';
+
+$project_id = intval($_GET['id'] ?? 0);
+$project_slug = trim($_GET['slug'] ?? $_GET['project'] ?? '');
+
+$project = null;
+if ($project_id > 0) {
+    $project = get_project_by_id($project_id);
+} elseif (!empty($project_slug)) {
+    $project = get_project_by_slug($project_slug);
+}
+
+// Fallback to first project if not found
+if (!$project) {
+    $all = get_projects(['limit' => 1]);
+    $project = !empty($all) ? $all[0] : null;
+}
+
+if (!$project) {
+    header("Location: " . $base_url . "/projects/");
+    exit;
+}
+
+$page_title = htmlspecialchars($project['title']) . " | Project Details - Fescon (Pvt.) Ltd";
+$current_page = 'projects';
+
+// Fetch other projects in same service category
+$related_projects = get_projects([
+    'service_id' => $project['service_id'],
+    'limit' => 3
+]);
+// Exclude current project from related
+$related_projects = array_filter($related_projects, function($p) use ($project) {
+    return $p['id'] != $project['id'];
+});
+
+require_once __DIR__ . '/includes/header.php';
+?>
+
+<style>
+/* Project Detail Styles */
+.project-detail-hero {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    color: #0f172a;
+    padding: 135px 20px 55px;
+    position: relative;
+    border-bottom: 1px solid var(--border-light, #e2e8f0);
+}
+
+.project-detail-hero-container {
+    max-width: 1240px;
+    margin: 0 auto;
+}
+
+.breadcrumb-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    color: #64748b;
+    margin-bottom: 18px;
+}
+
+.breadcrumb-nav a {
+    color: #475569;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.breadcrumb-nav a:hover {
+    color: var(--brand-red, #d32f2f);
+}
+
+.breadcrumb-nav span {
+    color: #94a3b8;
+}
+
+.project-badges-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.badge-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 14px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.badge-service {
+    background: rgba(211, 47, 47, 0.12);
+    color: #c62828;
+    border: 1px solid rgba(211, 47, 47, 0.3);
+}
+
+.badge-status {
+    background: #16a34a;
+    color: #ffffff;
+}
+
+.project-detail-title {
+    font-family: var(--font-heading, 'Cardo', serif);
+    font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+    color: #0f172a;
+    margin: 0 0 16px;
+    line-height: 1.18;
+}
+
+.project-quick-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    font-size: 14.5px;
+    color: #475569;
+}
+
+.project-quick-meta span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.project-quick-meta i {
+    color: var(--brand-red, #d32f2f);
+}
+
+/* Main Content Layout */
+.project-detail-main {
+    max-width: 1240px;
+    margin: 50px auto 90px;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+}
+
+.project-featured-image-box {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+    margin-bottom: 35px;
+    background: #000;
+}
+
+.project-featured-image-box img {
+    width: 100%;
+    max-height: 520px;
+    object-fit: cover;
+    display: block;
+}
+
+.project-content-block {
+    background: #ffffff;
+    padding: 35px;
+    border-radius: 8px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.04);
+    border: 1px solid #eaeaea;
+    margin-bottom: 35px;
+}
+
+.project-content-block h2 {
+    font-family: var(--font-heading, 'Cardo', serif);
+    font-size: 1.85rem;
+    color: #111111;
+    margin: 0 0 16px;
+    position: relative;
+    padding-bottom: 12px;
+}
+
+.project-content-block h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: var(--brand-red, #d32f2f);
+    border-radius: 2px;
+}
+
+.project-content-block p {
+    font-size: 15.5px;
+    line-height: 1.75;
+    color: #3d3d3d;
+    margin-bottom: 18px;
+}
+
+/* Sidebar Specifications Card */
+.specs-sidebar-card {
+    background: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #e5e5e5;
+    padding: 30px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+    position: sticky;
+    top: 30px;
+}
+
+.specs-sidebar-card h3 {
+    font-family: var(--font-heading, 'Cardo', serif);
+    font-size: 1.5rem;
+    color: #111111;
+    margin: 0 0 20px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 12px;
+}
+
+.specs-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 25px;
+}
+
+.specs-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 12px 0;
+    border-bottom: 1px solid #f4f4f4;
+    font-size: 14px;
+}
+
+.specs-list li strong {
+    color: #222222;
+    min-width: 100px;
+}
+
+.specs-list li span {
+    color: #555555;
+    text-align: right;
+}
+
+.client-feature-box {
+    background: #fcfcfc;
+    border: 1px solid #e8e8e8;
+    border-radius: 6px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 24px;
+}
+
+.client-feature-box img {
+    height: 48px;
+    max-width: 90px;
+    object-fit: contain;
+}
+
+.client-feature-box h4 {
+    font-size: 14px;
+    margin: 0 0 4px;
+    color: #111;
+}
+
+.client-feature-box a {
+    font-size: 12.5px;
+    color: var(--brand-red, #d32f2f);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.client-feature-box a:hover {
+    text-decoration: underline;
+}
+
+.inquiry-sidebar-cta {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #0f172a;
+    border-radius: 8px;
+    padding: 28px;
+    text-align: center;
+}
+
+.inquiry-sidebar-cta h4 {
+    color: #0f172a;
+    font-size: 18px;
+    margin: 0 0 10px;
+}
+
+.inquiry-sidebar-cta p {
+    font-size: 13.5px;
+    color: #64748b;
+    margin-bottom: 20px;
+    line-height: 1.55;
+}
+
+/* Related Projects */
+.related-projects-section {
+    max-width: 1240px;
+    margin: 0 auto 80px;
+    padding: 0 20px;
+}
+
+.related-projects-section h2 {
+    font-family: var(--font-heading, 'Cardo', serif);
+    font-size: 2rem;
+    color: #111111;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+@media (max-width: 991px) {
+    .project-detail-main {
+        grid-template-columns: 1fr;
+    }
+    .specs-sidebar-card {
+        position: static;
+    }
+}
+</style>
+
+<!-- Hero Section -->
+<div class="project-detail-hero">
+    <div class="project-detail-hero-container">
+        <nav class="breadcrumb-nav">
+            <a href="<?php echo $base_url; ?>/">Home</a>
+            <span>/</span>
+            <a href="<?php echo $base_url; ?>/projects/">Projects</a>
+            <span>/</span>
+            <?php if (!empty($project['service_name'])): ?>
+                <a href="<?php echo $base_url; ?>/service-detail.php?service=<?php echo urlencode($project['service_slug']); ?>">
+                    <?php echo htmlspecialchars($project['service_name']); ?>
+                </a>
+                <span>/</span>
+            <?php endif; ?>
+            <span style="color:#0f172a;"><?php echo htmlspecialchars($project['title']); ?></span>
+        </nav>
+
+        <div class="project-badges-row">
+            <?php if (!empty($project['service_name'])): ?>
+                <span class="badge-tag badge-service">
+                    <i class="<?php echo htmlspecialchars($project['service_icon'] ?: 'fas fa-bolt'); ?>"></i>
+                    <?php echo htmlspecialchars($project['service_name']); ?>
+                </span>
+            <?php endif; ?>
+            <span class="badge-tag badge-status">
+                <i class="fas fa-check-circle"></i>
+                <?php echo htmlspecialchars($project['status'] ?: 'Completed'); ?>
+            </span>
+        </div>
+
+        <h1 class="project-detail-title"><?php echo htmlspecialchars($project['title']); ?></h1>
+
+        <div class="project-quick-meta">
+            <?php if (!empty($project['client_name'])): ?>
+                <span>
+                    <i class="fas fa-handshake"></i>
+                    Client: <strong><?php echo htmlspecialchars($project['client_name']); ?></strong>
+                </span>
+            <?php endif; ?>
+            <?php if (!empty($project['location'])): ?>
+                <span>
+                    <i class="fas fa-map-marker-alt"></i>
+                    Location: <strong><?php echo htmlspecialchars($project['location']); ?></strong>
+                </span>
+            <?php endif; ?>
+            <?php if (!empty($project['completion_year'])): ?>
+                <span>
+                    <i class="far fa-calendar-alt"></i>
+                    Completed: <strong><?php echo htmlspecialchars($project['completion_year']); ?></strong>
+                </span>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
+
+<!-- Main Content Grid -->
+<div class="project-detail-main">
+    <div class="project-left-col">
+        <div class="project-featured-image-box">
+            <img src="<?php echo asset_url($project['image_url']); ?>" alt="<?php echo htmlspecialchars($project['title']); ?>">
+        </div>
+
+        <div class="project-content-block">
+            <h2>Project Overview</h2>
+            <p><?php echo nl2br(htmlspecialchars($project['description'] ?: $project['summary'])); ?></p>
+        </div>
+
+        <div class="project-content-block">
+            <h2>Engineering Scope &amp; Deliverables</h2>
+            <p>Fescon (Pvt.) Ltd deployed qualified multidisciplinary engineering teams to ensure rigorous execution adhering to Pakistan Engineering Council (PEC), IEEE, and IEC technical standards:</p>
+            <ul style="padding-left: 20px; line-height: 1.8; color: #444; font-size: 15px;">
+                <li>Comprehensive site surveying, geotechnical load validation, and technical documentation.</li>
+                <li>Turnkey procurement and quality assurance of certified high-voltage and civil construction materials.</li>
+                <li>Erection, installation, testing, and pre-commissioning under stringent Quality and HSE protocols.</li>
+                <li>Final testing, protection relay coordination, calibration, and seamless grid synchronization.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="project-sidebar-col">
+        <div class="specs-sidebar-card">
+            <h3>Project Specifications</h3>
+            
+            <?php if (!empty($project['client_name'])): ?>
+                <div class="client-feature-box">
+                    <?php if (!empty($project['client_logo'])): ?>
+                        <img src="<?php echo asset_url($project['client_logo']); ?>" alt="">
+                    <?php endif; ?>
+                    <div>
+                        <h4><?php echo htmlspecialchars($project['client_name']); ?></h4>
+                        <a href="<?php echo $base_url; ?>/client-projects.php?client=<?php echo urlencode($project['client_slug']); ?>">
+                            View All Projects for This Client &rarr;
+                        </a>
+                    </div>
+                </div>
+            <?php endif; ?>
+
+            <ul class="specs-list">
+                <li>
+                    <strong>Category:</strong>
+                    <span><?php echo htmlspecialchars($project['service_name'] ?: 'Engineering Solutions'); ?></span>
+                </li>
+                <li>
+                    <strong>Client/Authority:</strong>
+                    <span><?php echo htmlspecialchars($project['client_name'] ?: 'Private Sector'); ?></span>
+                </li>
+                <li>
+                    <strong>Location:</strong>
+                    <span><?php echo htmlspecialchars($project['location'] ?: 'Pakistan'); ?></span>
+                </li>
+                <li>
+                    <strong>Year:</strong>
+                    <span><?php echo htmlspecialchars($project['completion_year'] ?: 'Recent'); ?></span>
+                </li>
+                <li>
+                    <strong>Execution Status:</strong>
+                    <span style="color: #1e7e34; font-weight: 600;"><?php echo htmlspecialchars($project['status'] ?: 'Completed'); ?></span>
+                </li>
+                <li>
+                    <strong>Quality Standard:</strong>
+                    <span>ISO 9001, ISO 14001, ISO 45001</span>
+                </li>
+            </ul>
+
+            <div class="inquiry-sidebar-cta">
+                <h4>Require Similar Expertise?</h4>
+                <p>Discuss your electrical, transmission, EPC, or MEP project requirements with our engineering leadership.</p>
+                <a href="<?php echo $base_url; ?>/contact-us/" class="elementor-button" style="width: 100%; font-size: 13.5px; padding: 12px 20px;">
+                    Request Project Proposal
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Related Projects in Same Service -->
+<?php if (!empty($related_projects)): ?>
+<div class="related-projects-section">
+    <h2>More Projects in <?php echo htmlspecialchars($project['service_name'] ?: 'This Category'); ?></h2>
+    <div class="projects-grid" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px;">
+        <?php foreach ($related_projects as $r): ?>
+            <div class="project-card" style="background:#fff; border-radius:8px; overflow:hidden; border:1px solid #eaeaea; box-shadow:0 4px 15px rgba(0,0,0,0.05); display:flex; flex-direction:column;">
+                <div style="height: 200px; overflow:hidden; position:relative;">
+                    <a href="<?php echo $base_url; ?>/project-detail.php?project=<?php echo urlencode($r['slug']); ?>">
+                        <img src="<?php echo asset_url($r['image_url']); ?>" alt="" style="width:100%; height:100%; object-fit:cover;">
+                    </a>
+                </div>
+                <div style="padding: 20px; flex:1; display:flex; flex-direction:column;">
+                    <h4 style="margin:0 0 10px; font-size:16.5px;">
+                        <a href="<?php echo $base_url; ?>/project-detail.php?project=<?php echo urlencode($r['slug']); ?>" style="color:#111; text-decoration:none;">
+                            <?php echo htmlspecialchars($r['title']); ?>
+                        </a>
+                    </h4>
+                    <p style="font-size:13px; color:#666; margin:0 0 15px; flex:1;">
+                        <?php echo htmlspecialchars(substr(strip_tags($r['summary'] ?: $r['description']), 0, 100) . '...'); ?>
+                    </p>
+                    <a href="<?php echo $base_url; ?>/project-detail.php?project=<?php echo urlencode($r['slug']); ?>" style="font-size:12.5px; font-weight:600; color:var(--brand-red, #d32f2f); text-decoration:none;">
+                        Read Full Details &rarr;
+                    </a>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>
+<?php endif; ?>
+
+<?php require_once __DIR__ . '/includes/footer.php'; ?>
