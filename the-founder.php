@@ -68,20 +68,8 @@ require_once __DIR__ . '/includes/modern-header.php';
                     <i class="fas fa-quote-left"></i> Executive Profile &amp; Bio
                 </div>
                 <h2 style="font-size: clamp(1.8rem, 2.8vw, 2.4rem); font-weight: 800; color: #0f172a; line-height: 1.25; margin: 0 0 24px;">
-                    Engr. Ehsan Ullah Laang &bull; <span class="highlight">Entrepreneur &amp; CEO</span>
+                    Engr. Ehsan Ullah &bull; <span class="highlight">Entrepreneur &amp; CEO</span>
                 </h2>
-                
-                <div style="font-size: 1.05rem; color: #334155; line-height: 1.85; margin-bottom: 24px;">
-                    <p style="margin-bottom: 16px;">
-                        <strong>Engr. Ehsan Ullah Laang</strong> is an engineer, entrepreneur and business leader with <strong>15+ years of experience</strong> in engineering, construction, manufacturing, agriculture, foods, furniture and business development. He holds an <strong>MSc in Electrical Engineering (Power)</strong>.
-                    </p>
-                    <p style="margin-bottom: 16px;">
-                        As Founder and CEO, he leads a diversified business portfolio across <strong>Oman, Türkiye, Pakistan and Qatar</strong>, with active interests in engineering, construction, manufacturing, foods &amp; beverage, agriculture, real estate and trading.
-                    </p>
-                    <p style="margin-bottom: 20px;">
-                        His strategic focus is on building professionally managed businesses, developing international partnerships and creating sustainable long-term economic growth.
-                    </p>
-                </div>
 
                 <!-- Executive Statement & FESCON Oman Vision -->
                 <div style="background: var(--bg-light-alt); border-left: 4px solid var(--brand-red); padding: 26px 28px; border-radius: var(--radius-sm); margin-bottom: 26px;">
