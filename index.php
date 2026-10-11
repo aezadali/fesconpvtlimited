@@ -122,42 +122,66 @@ require_once __DIR__ . '/includes/modern-header.php';
         <div class="about-grid">
             <div class="about-visual-column" data-reveal>
                 <div class="about-image-frame">
-                    <img src="<?php echo $base_url; ?>/assets/images/ceo.jpg" alt="Engr. Ehsan Ullah - Founder &amp; CEO, Fescon (Pvt.) Ltd" loading="lazy" style="object-position: center top;">
+                    <img src="<?php echo $base_url; ?>/assets/images/ceo.jpg" alt="Engr. Ehsan Ullah - Entrepreneur &amp; CEO" loading="lazy" style="object-position: center top;">
                 </div>
                 <div class="about-experience-badge">
-                    <div class="years">30+</div>
-                    <div class="text">Years of Engineering Mastery</div>
+                    <div class="years">15+</div>
+                    <div class="text">Years of Executive Leadership</div>
                 </div>
             </div>
 
             <div class="about-content-column" data-reveal data-reveal-delay="200">
                 <span class="section-tag"><i class="fas fa-quote-left"></i> Executive Leadership</span>
-                <h2 class="section-title" style="margin-bottom: 24px;">
+                <h2 class="section-title" style="margin-bottom: 20px;">
                     CEO <span class="highlight">Message</span>
                 </h2>
                 
-                <div class="ceo-signature-intro" style="display: flex; align-items: center; gap: 14px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border-light);">
+                <div class="ceo-signature-intro" style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border-light);">
                     <div style="width: 48px; height: 48px; border-radius: 50%; background: rgba(198,40,40,0.12); color: var(--brand-red); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0;">
                         <i class="fas fa-user-tie"></i>
                     </div>
                     <div>
-                        <div style="font-size: 1.3rem; font-weight: 800; color: #0f172a; font-family: 'Cinzel', serif;">Engr. Ehsan Ullah</div>
-                        <div style="font-size: 0.88rem; color: var(--brand-red); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;">Founder &amp; Chief Executive Officer</div>
+                        <div style="font-size: 1.3rem; font-weight: 800; color: #0f172a; font-family: 'Cinzel', serif; letter-spacing: 0.02em;">ENGR. EHSAN ULLAH</div>
+                        <div style="font-size: 0.88rem; color: var(--brand-red); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;">Entrepreneur / CEO</div>
                     </div>
                 </div>
 
-                <div class="ceo-message-quote" style="background: var(--bg-light-alt); border-left: 4px solid var(--brand-red); padding: 26px 28px; border-radius: var(--radius-sm); margin-bottom: 32px;">
-                    <p style="font-size: 1.05rem; color: #334155; line-height: 1.85; margin: 0 0 16px; font-style: italic;">
-                        "Welcome to FESCON! Our journey is driven by a team of dedicated Engineers specializing in Electrical, Civil, Mechanical, Information Technology, and Environmental fields. At FESCON, we are committed to delivering innovative and sustainable solutions that meet the challenges of today and shape a better tomorrow."
+                <div class="ceo-message-quote" style="background: var(--bg-light-alt); border-left: 4px solid var(--brand-red); padding: 24px 26px; border-radius: var(--radius-sm); margin-bottom: 20px;">
+                    <p style="font-size: 1.02rem; color: #334155; line-height: 1.8; margin: 0 0 14px;">
+                        Engr. Ehsan Ullah Laang is an engineer, entrepreneur and business leader with 15+ years of experience in engineering, construction, manufacturing, agriculture, foods, furniture and business development. He holds MSc in Electrical Engineering (Power).
                     </p>
-                    <p style="font-size: 1rem; color: #475569; line-height: 1.8; margin: 0;">
-                        "With a focus on excellence, collaboration, and environmental responsibility, we strive to create enduring value for our clients, partners, and communities. Together, we will continue to push boundaries and achieve new milestones."
+                    <p style="font-size: 1.02rem; color: #334155; line-height: 1.8; margin: 0 0 14px;">
+                        As Founder and CEO, he leads a diversified business portfolio across Oman, Türkiye, Pakistan and Qatar, with interests in engineering, construction, manufacturing, foods &amp; beverage, agriculture, real estate and trading.
                     </p>
+                    <p style="font-size: 0.98rem; color: #475569; line-height: 1.75; margin: 0;">
+                        His focus is on building professionally managed businesses, developing international partnerships and creating sustainable long-term growth.
+                    </p>
+                </div>
+
+                <!-- Global Footprint & Diversified Sectors -->
+                <div style="margin-bottom: 26px;">
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px;">
+                        <span style="background: #ffffff; border: 1px solid var(--border-light); padding: 5px 14px; border-radius: 20px; font-size: 0.88rem; font-weight: 700; color: #0f172a; box-shadow: var(--shadow-sm); display: inline-flex; align-items: center; gap: 6px;">
+                            <span>🇴🇲</span> Oman
+                        </span>
+                        <span style="background: #ffffff; border: 1px solid var(--border-light); padding: 5px 14px; border-radius: 20px; font-size: 0.88rem; font-weight: 700; color: #0f172a; box-shadow: var(--shadow-sm); display: inline-flex; align-items: center; gap: 6px;">
+                            <span>🇹🇷</span> Türkiye
+                        </span>
+                        <span style="background: #ffffff; border: 1px solid var(--border-light); padding: 5px 14px; border-radius: 20px; font-size: 0.88rem; font-weight: 700; color: #0f172a; box-shadow: var(--shadow-sm); display: inline-flex; align-items: center; gap: 6px;">
+                            <span>🇵🇰</span> Pakistan
+                        </span>
+                        <span style="background: #ffffff; border: 1px solid var(--border-light); padding: 5px 14px; border-radius: 20px; font-size: 0.88rem; font-weight: 700; color: #0f172a; box-shadow: var(--shadow-sm); display: inline-flex; align-items: center; gap: 6px;">
+                            <span>🇶🇦</span> Qatar
+                        </span>
+                    </div>
+                    <div style="font-size: 0.86rem; color: #64748b; font-weight: 600; line-height: 1.6; padding-top: 10px; border-top: 1px dashed var(--border-light);">
+                        <i class="fas fa-layer-group text-red" style="margin-right: 6px;"></i> Engineering &bull; Construction &bull; Manufacturing &bull; Agriculture &bull; Foods &bull; Investment &bull; Business Development
+                    </div>
                 </div>
 
                 <div style="display:flex; gap:16px; align-items:center; flex-wrap:wrap;">
                     <a href="<?php echo $base_url; ?>/the-founder.php" class="btn btn-primary">
-                        <i class="fas fa-user-tie"></i> Read Full CEO Profile
+                        <i class="fas fa-user-tie"></i> View Bio
                     </a>
                     <a href="<?php echo $base_url; ?>/contact-us.php" class="btn btn-outline-dark">
                         <i class="fas fa-paper-plane"></i> Contact CEO Office
