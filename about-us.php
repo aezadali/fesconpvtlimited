@@ -150,27 +150,6 @@ require_once __DIR__ . '/includes/modern-header.php';
                     </p>
                 </div>
 
-                <!-- Global Footprint & Diversified Sectors -->
-                <div style="margin-bottom: 26px;">
-                    <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px;">
-                        <span style="background: #ffffff; border: 1px solid var(--border-light); padding: 5px 14px; border-radius: 20px; font-size: 0.88rem; font-weight: 700; color: #0f172a; box-shadow: var(--shadow-sm); display: inline-flex; align-items: center; gap: 6px;">
-                            <span>🇴🇲</span> Oman
-                        </span>
-                        <span style="background: #ffffff; border: 1px solid var(--border-light); padding: 5px 14px; border-radius: 20px; font-size: 0.88rem; font-weight: 700; color: #0f172a; box-shadow: var(--shadow-sm); display: inline-flex; align-items: center; gap: 6px;">
-                            <span>🇹🇷</span> Türkiye
-                        </span>
-                        <span style="background: #ffffff; border: 1px solid var(--border-light); padding: 5px 14px; border-radius: 20px; font-size: 0.88rem; font-weight: 700; color: #0f172a; box-shadow: var(--shadow-sm); display: inline-flex; align-items: center; gap: 6px;">
-                            <span>🇵🇰</span> Pakistan
-                        </span>
-                        <span style="background: #ffffff; border: 1px solid var(--border-light); padding: 5px 14px; border-radius: 20px; font-size: 0.88rem; font-weight: 700; color: #0f172a; box-shadow: var(--shadow-sm); display: inline-flex; align-items: center; gap: 6px;">
-                            <span>🇶🇦</span> Qatar
-                        </span>
-                    </div>
-                    <div style="font-size: 0.86rem; color: #64748b; font-weight: 600; line-height: 1.6; padding-top: 10px; border-top: 1px dashed var(--border-light);">
-                        <i class="fas fa-layer-group text-red" style="margin-right: 6px;"></i> Engineering &bull; Construction &bull; Manufacturing &bull; Agriculture &bull; Foods &bull; Investment &bull; Business Development &bull; Oil &amp; Gas
-                    </div>
-                </div>
-
                 <div style="display:flex; gap:16px; align-items:center; flex-wrap:wrap;">
                     <a href="<?php echo $base_url; ?>/the-founder.php" class="btn btn-primary">
                         <i class="fas fa-user-tie"></i> View Bio
