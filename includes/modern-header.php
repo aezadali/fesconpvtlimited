@@ -80,7 +80,7 @@ function is_nav_active($pages, $current) {
                             <a href="<?php echo $base_url; ?>/" class="nav-link">Home</a>
                         </li>
 
-                        <li class="nav-item has-dropdown <?php echo is_nav_active(['about-us', 'our-story', 'our-values', 'management-team', 'the-founder', 'certifications', 'collaborations', 'blogs'], $current_page); ?>">
+                        <li class="nav-item has-dropdown <?php echo is_nav_active(['about-us', 'our-story', 'our-values', 'management-team', 'the-founder', 'certifications', 'collaborations', 'blogs', 'gallery', 'awards'], $current_page); ?>">
                             <a href="<?php echo $base_url; ?>/about-us/" class="nav-link">
                                 About <i class="fas fa-chevron-down arrow-icon"></i>
                             </a>
@@ -91,6 +91,8 @@ function is_nav_active($pages, $current) {
                                 <li><a href="<?php echo $base_url; ?>/the-founder/" class="dropdown-link"><i class="fas fa-user-tie"></i> The Founder</a></li>
                                 <li><a href="<?php echo $base_url; ?>/certifications/" class="dropdown-link"><i class="fas fa-award"></i> Certifications</a></li>
                                 <li><a href="<?php echo $base_url; ?>/collaborations/" class="dropdown-link"><i class="fas fa-handshake"></i> Collaborations</a></li>
+                                <li><a href="<?php echo $base_url; ?>/gallery/" class="dropdown-link"><i class="fas fa-images"></i> Gallery &amp; Events</a></li>
+                                <li><a href="<?php echo $base_url; ?>/awards/" class="dropdown-link"><i class="fas fa-trophy"></i> Awards &amp; Certificates</a></li>
                                 <li><a href="<?php echo $base_url; ?>/blogs/" class="dropdown-link"><i class="fas fa-newspaper"></i> Engineering Insights</a></li>
                             </ul>
                         </li>
