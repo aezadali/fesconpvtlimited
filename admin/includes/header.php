@@ -73,6 +73,18 @@ $unread_count = $db->query("SELECT COUNT(*) FROM inquiries WHERE is_read = 0")->
                 <span>Team &amp; Employees</span>
             </a>
         </li>
+        <li class="<?php echo ($active_tab ?? '') === 'gallery' ? 'active' : ''; ?>">
+            <a href="<?php echo $base_url; ?>/admin/gallery.php">
+                <i class="fas fa-images"></i>
+                <span>Gallery &amp; Events</span>
+            </a>
+        </li>
+        <li class="<?php echo ($active_tab ?? '') === 'awards' ? 'active' : ''; ?>">
+            <a href="<?php echo $base_url; ?>/admin/awards.php">
+                <i class="fas fa-trophy"></i>
+                <span>Awards &amp; Certificates</span>
+            </a>
+        </li>
 
         <li class="sidebar-menu-title">Communication</li>
         <li class="<?php echo ($active_tab ?? '') === 'inquiries' ? 'active' : ''; ?>">

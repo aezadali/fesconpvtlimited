@@ -9,49 +9,8 @@ require_once __DIR__ . '/includes/db.php';
 $page_title = 'Awards & Appreciation Certificates | Fescon (Pvt.) Ltd';
 $current_page = 'awards';
 
-// Awards & Appreciation Certificates Data
-$awards = [
-    [
-        'title' => 'Pakistan Engineering Council (PEC) License',
-        'category' => 'Statutory Registration',
-        'year' => 'Active',
-        'issuer' => 'Pakistan Engineering Council',
-        'image' => 'assets/images/cer.png',
-        'description' => 'Premier statutory category C-A (No-Limit) license authorizing turnkey execution of unlimited value electrical, civil, mechanical, and power infrastructure works across Pakistan.'
-    ],
-    [
-        'title' => 'ISO 9001:2015 — Quality Management System',
-        'category' => 'International Certification',
-        'year' => 'Certified',
-        'issuer' => 'International Organization for Standardization',
-        'image' => 'assets/images/img-1.png',
-        'description' => 'Certified compliance for end-to-end engineering, procurement, construction management, and rigorous quality assurance across all project disciplines.'
-    ],
-    [
-        'title' => 'ISO 14001:2015 — Environmental Management',
-        'category' => 'Environmental Standards',
-        'year' => 'Certified',
-        'issuer' => 'International Organization for Standardization',
-        'image' => 'assets/images/img-2.png',
-        'description' => 'International certification recognizing systematic environmental management, carbon footprint mitigation, and eco-friendly site procedures on all active projects.'
-    ],
-    [
-        'title' => 'ISO 45001:2018 — Occupational Health & Safety',
-        'category' => 'Workplace Safety',
-        'year' => 'Certified',
-        'issuer' => 'International Organization for Standardization',
-        'image' => 'assets/images/img-3.png',
-        'description' => 'Gold-standard occupational safety framework safeguarding high-voltage electrical field technicians and construction personnel through comprehensive HSE protocols.'
-    ],
-    [
-        'title' => 'Power Utility Enlistments & Pre-Qualifications',
-        'category' => 'National Enlistment',
-        'year' => 'Active',
-        'issuer' => 'NTDC / WAPDA / Distribution Companies',
-        'image' => 'assets/images/img-4.png',
-        'description' => 'Approved and pre-qualified EPC contractor for NTDC, WAPDA, IESCO, FESCO, GEPCO, LESCO, K-Electric, and other power utility organizations across Pakistan.'
-    ],
-];
+// Fetch active awards dynamically from DB
+$awards = get_all_awards(true);
 
 // Summary statistics
 $total_awards = count($awards);

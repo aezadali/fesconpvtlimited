@@ -120,6 +120,194 @@ function init_database($pdo) {
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )");
 
+    // 7. Gallery Events table (Picture Gallery & Events)
+    $pdo->exec("CREATE TABLE IF NOT EXISTS gallery_events (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT NOT NULL,
+        category TEXT DEFAULT 'EPC Projects',
+        event_date TEXT,
+        location TEXT,
+        description TEXT,
+        cover_image TEXT,
+        images TEXT,
+        sort_order INTEGER DEFAULT 0,
+        is_active INTEGER DEFAULT 1,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )");
+
+    // 8. Awards & Certificates table
+    $pdo->exec("CREATE TABLE IF NOT EXISTS awards (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT NOT NULL,
+        category TEXT DEFAULT 'Statutory Registration',
+        year TEXT DEFAULT 'Active',
+        issuer TEXT,
+        image_url TEXT,
+        description TEXT,
+        sort_order INTEGER DEFAULT 0,
+        is_active INTEGER DEFAULT 1,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )");
+
+    // Seed default Gallery Events if empty
+    $checkEvents = $pdo->query("SELECT COUNT(*) FROM gallery_events")->fetchColumn();
+    if ($checkEvents == 0) {
+        $defaultEvents = [
+            [
+                'title' => 'Grid Station Construction & Commissioning',
+                'category' => 'EPC Projects',
+                'event_date' => '2025',
+                'location' => 'Nationwide Projects',
+                'description' => 'High-voltage 132kV and 220kV grid station construction including transformer installation, bay wiring, and pre-commissioning testing across multiple national sites.',
+                'cover_image' => 'assets/images/DJI_0319-scaled.jpg',
+                'images' => json_encode([
+                    'assets/images/DJI_0319-scaled.jpg',
+                    'assets/images/DJI_0323-scaled.jpg',
+                    'assets/images/DJI_0371-scaled.jpg',
+                    'assets/images/DJI_0378-scaled.jpg'
+                ]),
+                'sort_order' => 1
+            ],
+            [
+                'title' => 'Transmission Line Stringing & Tower Erection',
+                'category' => 'Transmission',
+                'event_date' => '2025',
+                'location' => 'Field Operations',
+                'description' => 'Overhead transmission line stringing, lattice tower erection, and conductor sagging operations for high-voltage power distribution networks.',
+                'cover_image' => 'assets/images/DJI_0371-1-scaled.jpg',
+                'images' => json_encode([
+                    'assets/images/DJI_0371-1-scaled.jpg',
+                    'assets/images/DJI_0400-scaled.jpg',
+                    'assets/images/IMG_4737-scaled.jpg',
+                    'assets/images/IMG_4746-scaled.jpg'
+                ]),
+                'sort_order' => 2
+            ],
+            [
+                'title' => 'Site Survey & Engineering Assessment',
+                'category' => 'Planning',
+                'event_date' => '2025',
+                'location' => 'Project Sites',
+                'description' => 'On-ground engineering surveys, topographical mapping, geotechnical assessments, and preliminary design reviews for upcoming infrastructure projects.',
+                'cover_image' => 'assets/images/WhatsApp-Image-2025-02-27-at-4.18.58-AM.jpeg',
+                'images' => json_encode([
+                    'assets/images/WhatsApp-Image-2025-02-27-at-4.18.58-AM.jpeg',
+                    'assets/images/WhatsApp-Image-2025-02-27-at-4.19.31-AM.jpeg',
+                    'assets/images/WhatsApp-Image-2025-02-27-at-4.20.56-AM.jpeg',
+                    'assets/images/WhatsApp-Image-2025-02-27-at-4.22.56-AM.jpeg'
+                ]),
+                'sort_order' => 3
+            ],
+            [
+                'title' => 'Civil Works & Foundation Construction',
+                'category' => 'Civil Works',
+                'event_date' => '2025',
+                'location' => 'Construction Sites',
+                'description' => 'Heavy civil infrastructure including transformer pad casting, control room construction, boundary walls, cable trenching, and reinforced concrete foundations.',
+                'cover_image' => 'assets/images/WhatsApp-Image-2025-01-23-at-2.20.16-AM.jpeg',
+                'images' => json_encode([
+                    'assets/images/WhatsApp-Image-2025-01-23-at-2.20.16-AM.jpeg',
+                    'assets/images/WhatsApp-Image-2025-01-23-at-2.20.16-AM-1.jpeg',
+                    'assets/images/WhatsApp-Image-2025-01-23-at-2.20.16-AM-2.jpeg',
+                    'assets/images/WhatsApp-Image-2025-01-23-at-2.20.16-AM-3.jpeg'
+                ]),
+                'sort_order' => 4
+            ],
+            [
+                'title' => 'Substation Equipment Installation',
+                'category' => 'Electrical',
+                'event_date' => '2025',
+                'location' => 'Grid Stations',
+                'description' => 'Installation and erection of power transformers, circuit breakers, current transformers, potential transformers, isolators, and bus-bar systems at grid substations.',
+                'cover_image' => 'assets/images/WhatsApp-Image-2025-01-23-at-2.20.16-AM-4.jpeg',
+                'images' => json_encode([
+                    'assets/images/WhatsApp-Image-2025-01-23-at-2.20.16-AM-4.jpeg',
+                    'assets/images/WhatsApp-Image-2025-01-23-at-2.20.16-AM-6.jpeg',
+                    'assets/images/WhatsApp-Image-2025-01-23-at-2.20.16-AM-8.jpeg',
+                    'assets/images/WhatsApp-Image-2025-01-23-at-2.20.16-AM-9.jpeg'
+                ]),
+                'sort_order' => 5
+            ],
+            [
+                'title' => 'Team Field Operations & Safety Practices',
+                'category' => 'HSE',
+                'event_date' => '2025',
+                'location' => 'Active Sites',
+                'description' => 'Engineering crews implementing strict HSE protocols, wearing certified PPE, and performing daily toolbox safety talks before commencing high-voltage field operations.',
+                'cover_image' => 'assets/images/WhatsApp-Image-2025-01-23-at-2.20.16-AM-11.jpeg',
+                'images' => json_encode([
+                    'assets/images/WhatsApp-Image-2025-01-23-at-2.20.16-AM-11.jpeg',
+                    'assets/images/WhatsApp-Image-2025-01-23-at-2.20.16-AM-14.jpeg',
+                    'assets/images/WhatsApp-Image-2025-01-23-at-2.20.16-AM-15.jpeg',
+                    'assets/images/WhatsApp-Image-2025-01-23-at-2.20.16-AM-16.jpeg'
+                ]),
+                'sort_order' => 6
+            ]
+        ];
+
+        $insEvent = $pdo->prepare("INSERT INTO gallery_events (title, category, event_date, location, description, cover_image, images, sort_order) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        foreach ($defaultEvents as $de) {
+            $insEvent->execute([$de['title'], $de['category'], $de['event_date'], $de['location'], $de['description'], $de['cover_image'], $de['images'], $de['sort_order']]);
+        }
+    }
+
+    // Seed default Awards if empty
+    $checkAwards = $pdo->query("SELECT COUNT(*) FROM awards")->fetchColumn();
+    if ($checkAwards == 0) {
+        $defaultAwards = [
+            [
+                'title' => 'Pakistan Engineering Council (PEC) License',
+                'category' => 'Statutory Registration',
+                'year' => 'Active',
+                'issuer' => 'Pakistan Engineering Council',
+                'image_url' => 'assets/images/cer.png',
+                'description' => 'Premier statutory category C-A (No-Limit) license authorizing turnkey execution of unlimited value electrical, civil, mechanical, and power infrastructure works across Pakistan.',
+                'sort_order' => 1
+            ],
+            [
+                'title' => 'ISO 9001:2015 — Quality Management System',
+                'category' => 'International Certification',
+                'year' => 'Certified',
+                'issuer' => 'International Organization for Standardization',
+                'image_url' => 'assets/images/img-1.png',
+                'description' => 'Certified compliance for end-to-end engineering, procurement, construction management, and rigorous quality assurance across all project disciplines.',
+                'sort_order' => 2
+            ],
+            [
+                'title' => 'ISO 14001:2015 — Environmental Management',
+                'category' => 'Environmental Standards',
+                'year' => 'Certified',
+                'issuer' => 'International Organization for Standardization',
+                'image_url' => 'assets/images/img-2.png',
+                'description' => 'International certification recognizing systematic environmental management, carbon footprint mitigation, and eco-friendly site procedures on all active projects.',
+                'sort_order' => 3
+            ],
+            [
+                'title' => 'ISO 45001:2018 — Occupational Health & Safety',
+                'category' => 'Workplace Safety',
+                'year' => 'Certified',
+                'issuer' => 'International Organization for Standardization',
+                'image_url' => 'assets/images/img-3.png',
+                'description' => 'Gold-standard occupational safety framework safeguarding high-voltage electrical field technicians and construction personnel through comprehensive HSE protocols.',
+                'sort_order' => 4
+            ],
+            [
+                'title' => 'Power Utility Enlistments & Pre-Qualifications',
+                'category' => 'National Enlistment',
+                'year' => 'Active',
+                'issuer' => 'NTDC / WAPDA / Distribution Companies',
+                'image_url' => 'assets/images/img-4.png',
+                'description' => 'Approved and pre-qualified EPC contractor for NTDC, WAPDA, IESCO, FESCO, GEPCO, LESCO, K-Electric, and other power utility organizations across Pakistan.',
+                'sort_order' => 5
+            ]
+        ];
+
+        $insAward = $pdo->prepare("INSERT INTO awards (title, category, year, issuer, image_url, description, sort_order) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        foreach ($defaultAwards as $da) {
+            $insAward->execute([$da['title'], $da['category'], $da['year'], $da['issuer'], $da['image_url'], $da['description'], $da['sort_order']]);
+        }
+    }
+
     // Seed default admin user (admin / admin123)
     $checkUser = $pdo->query("SELECT COUNT(*) FROM users")->fetchColumn();
     if ($checkUser == 0) {
@@ -668,5 +856,71 @@ function get_team_member_by_id($id) {
 function get_team_departments() {
     $db = get_db();
     return $db->query("SELECT DISTINCT department FROM team_members WHERE department IS NOT NULL AND department != '' ORDER BY department ASC")->fetchAll(PDO::FETCH_COLUMN);
+}
+
+// -------------------------------------------------------------
+// Gallery Events Helpers
+// -------------------------------------------------------------
+
+function get_all_gallery_events($activeOnly = true, $category = null) {
+    $db = get_db();
+    $sql = "SELECT * FROM gallery_events WHERE 1=1 ";
+    $params = [];
+    if ($activeOnly) {
+        $sql .= "AND is_active = 1 ";
+    }
+    if (!empty($category)) {
+        $sql .= "AND category = ? ";
+        $params[] = $category;
+    }
+    $sql .= "ORDER BY sort_order ASC, id ASC";
+    $stmt = $db->prepare($sql);
+    $stmt->execute($params);
+    return $stmt->fetchAll();
+}
+
+function get_gallery_event_by_id($id) {
+    $db = get_db();
+    $stmt = $db->prepare("SELECT * FROM gallery_events WHERE id = ? LIMIT 1");
+    $stmt->execute([$id]);
+    return $stmt->fetch() ?: null;
+}
+
+function get_gallery_categories() {
+    $db = get_db();
+    return $db->query("SELECT DISTINCT category FROM gallery_events WHERE category IS NOT NULL AND category != '' ORDER BY category ASC")->fetchAll(PDO::FETCH_COLUMN);
+}
+
+// -------------------------------------------------------------
+// Awards & Certificates Helpers
+// -------------------------------------------------------------
+
+function get_all_awards($activeOnly = true, $category = null) {
+    $db = get_db();
+    $sql = "SELECT * FROM awards WHERE 1=1 ";
+    $params = [];
+    if ($activeOnly) {
+        $sql .= "AND is_active = 1 ";
+    }
+    if (!empty($category)) {
+        $sql .= "AND category = ? ";
+        $params[] = $category;
+    }
+    $sql .= "ORDER BY sort_order ASC, id ASC";
+    $stmt = $db->prepare($sql);
+    $stmt->execute($params);
+    return $stmt->fetchAll();
+}
+
+function get_award_by_id($id) {
+    $db = get_db();
+    $stmt = $db->prepare("SELECT * FROM awards WHERE id = ? LIMIT 1");
+    $stmt->execute([$id]);
+    return $stmt->fetch() ?: null;
+}
+
+function get_award_categories() {
+    $db = get_db();
+    return $db->query("SELECT DISTINCT category FROM awards WHERE category IS NOT NULL AND category != '' ORDER BY category ASC")->fetchAll(PDO::FETCH_COLUMN);
 }
 ?>

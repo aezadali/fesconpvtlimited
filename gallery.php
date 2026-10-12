@@ -9,93 +9,32 @@ require_once __DIR__ . '/includes/db.php';
 $page_title = 'Picture Gallery & Events | Fescon (Pvt.) Ltd';
 $current_page = 'gallery';
 
-// Events & Photo Collections
-$events = [
-    [
-        'title' => 'Grid Station Construction & Commissioning',
-        'date' => '2025',
-        'location' => 'Nationwide Projects',
-        'description' => 'High-voltage 132kV and 220kV grid station construction including transformer installation, bay wiring, and pre-commissioning testing across multiple national sites.',
-        'category' => 'EPC Projects',
-        'images' => [
-            'assets/images/DJI_0319-scaled.jpg',
-            'assets/images/DJI_0323-scaled.jpg',
-            'assets/images/DJI_0371-scaled.jpg',
-            'assets/images/DJI_0378-scaled.jpg',
-        ]
-    ],
-    [
-        'title' => 'Transmission Line Stringing & Tower Erection',
-        'date' => '2025',
-        'location' => 'Field Operations',
-        'description' => 'Overhead transmission line stringing, lattice tower erection, and conductor sagging operations for high-voltage power distribution networks.',
-        'category' => 'Transmission',
-        'images' => [
-            'assets/images/DJI_0371-1-scaled.jpg',
-            'assets/images/DJI_0400-scaled.jpg',
-            'assets/images/IMG_4737-scaled.jpg',
-            'assets/images/IMG_4746-scaled.jpg',
-        ]
-    ],
-    [
-        'title' => 'Site Survey & Engineering Assessment',
-        'date' => '2025',
-        'location' => 'Project Sites',
-        'description' => 'On-ground engineering surveys, topographical mapping, geotechnical assessments, and preliminary design reviews for upcoming infrastructure projects.',
-        'category' => 'Planning',
-        'images' => [
-            'assets/images/WhatsApp-Image-2025-02-27-at-4.18.58-AM.jpeg',
-            'assets/images/WhatsApp-Image-2025-02-27-at-4.19.31-AM.jpeg',
-            'assets/images/WhatsApp-Image-2025-02-27-at-4.20.56-AM.jpeg',
-            'assets/images/WhatsApp-Image-2025-02-27-at-4.22.56-AM.jpeg',
-        ]
-    ],
-    [
-        'title' => 'Civil Works & Foundation Construction',
-        'date' => '2025',
-        'location' => 'Construction Sites',
-        'description' => 'Heavy civil infrastructure including transformer pad casting, control room construction, boundary walls, cable trenching, and reinforced concrete foundations.',
-        'category' => 'Civil Works',
-        'images' => [
-            'assets/images/WhatsApp-Image-2025-01-23-at-2.20.16-AM.jpeg',
-            'assets/images/WhatsApp-Image-2025-01-23-at-2.20.16-AM-1.jpeg',
-            'assets/images/WhatsApp-Image-2025-01-23-at-2.20.16-AM-2.jpeg',
-            'assets/images/WhatsApp-Image-2025-01-23-at-2.20.16-AM-3.jpeg',
-        ]
-    ],
-    [
-        'title' => 'Substation Equipment Installation',
-        'date' => '2025',
-        'location' => 'Grid Stations',
-        'description' => 'Installation and erection of power transformers, circuit breakers, current transformers, potential transformers, isolators, and bus-bar systems at grid substations.',
-        'category' => 'Electrical',
-        'images' => [
-            'assets/images/WhatsApp-Image-2025-01-23-at-2.20.16-AM-4.jpeg',
-            'assets/images/WhatsApp-Image-2025-01-23-at-2.20.16-AM-6.jpeg',
-            'assets/images/WhatsApp-Image-2025-01-23-at-2.20.16-AM-8.jpeg',
-            'assets/images/WhatsApp-Image-2025-01-23-at-2.20.16-AM-9.jpeg',
-        ]
-    ],
-    [
-        'title' => 'Team Field Operations & Safety Practices',
-        'date' => '2025',
-        'location' => 'Active Sites',
-        'description' => 'Engineering crews implementing strict HSE protocols, wearing certified PPE, and performing daily toolbox safety talks before commencing high-voltage field operations.',
-        'category' => 'HSE',
-        'images' => [
-            'assets/images/WhatsApp-Image-2025-01-23-at-2.20.16-AM-11.jpeg',
-            'assets/images/WhatsApp-Image-2025-01-23-at-2.20.16-AM-14.jpeg',
-            'assets/images/WhatsApp-Image-2025-01-23-at-2.20.16-AM-15.jpeg',
-            'assets/images/WhatsApp-Image-2025-01-23-at-2.20.16-AM-16.jpeg',
-        ]
-    ],
-];
+// Fetch active events dynamically from DB
+$db_events = get_all_gallery_events(true);
 
-// Flatten all images for the full gallery view
+$events = [];
 $all_photos = [];
-foreach ($events as $evt) {
-    foreach ($evt['images'] as $img) {
-        $all_photos[] = ['image' => $img, 'event' => $evt['title'], 'category' => $evt['category']];
+
+foreach ($db_events as $row) {
+    $imgs = !empty($row['images']) ? json_decode($row['images'], true) : [];
+    if (!is_array($imgs)) $imgs = [];
+    if (empty($imgs) && !empty($row['cover_image'])) {
+        $imgs[] = $row['cover_image'];
+    }
+
+    $evt_data = [
+        'id' => $row['id'],
+        'title' => $row['title'],
+        'date' => $row['event_date'],
+        'location' => $row['location'],
+        'description' => $row['description'],
+        'category' => $row['category'],
+        'images' => $imgs
+    ];
+    $events[] = $evt_data;
+
+    foreach ($imgs as $img) {
+        $all_photos[] = ['image' => $img, 'event' => $row['title'], 'category' => $row['category']];
     }
 }
 

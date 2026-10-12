@@ -15,6 +15,8 @@ $total_services = $db->query("SELECT COUNT(*) FROM services")->fetchColumn();
 $total_clients = $db->query("SELECT COUNT(*) FROM clients")->fetchColumn();
 $total_inquiries = $db->query("SELECT COUNT(*) FROM inquiries")->fetchColumn();
 $total_team = $db->query("SELECT COUNT(*) FROM team_members")->fetchColumn();
+$total_gallery = $db->query("SELECT COUNT(*) FROM gallery_events")->fetchColumn();
+$total_awards = $db->query("SELECT COUNT(*) FROM awards")->fetchColumn();
 
 // Recent Projects
 $recent_projects = get_projects(['limit' => 5]);
@@ -66,14 +68,27 @@ $recent_inquiries = $db->query("SELECT * FROM inquiries ORDER BY id DESC LIMIT 5
 
     <div class="kpi-card">
         <div class="kpi-info">
-            <h4>Team &amp; Staff</h4>
-            <div class="kpi-number"><?php echo $total_team; ?></div>
+            <h4>Gallery Events</h4>
+            <div class="kpi-number"><?php echo $total_gallery; ?></div>
             <div style="font-size: 12px; color: #64748b; margin-top: 4px;">
-                Active Employees
+                Documented Events
+            </div>
+        </div>
+        <div class="kpi-icon amber">
+            <i class="fas fa-images"></i>
+        </div>
+    </div>
+
+    <div class="kpi-card">
+        <div class="kpi-info">
+            <h4>Awards &amp; ISO</h4>
+            <div class="kpi-number"><?php echo $total_awards; ?></div>
+            <div style="font-size: 12px; color: #16a34a; margin-top: 4px; font-weight: 600;">
+                <i class="fas fa-certificate"></i> Verified Credentials
             </div>
         </div>
         <div class="kpi-icon red">
-            <i class="fas fa-users"></i>
+            <i class="fas fa-trophy"></i>
         </div>
     </div>
 
@@ -85,7 +100,7 @@ $recent_inquiries = $db->query("SELECT * FROM inquiries ORDER BY id DESC LIMIT 5
                 <?php echo $unread_count; ?> Unread Messages
             </div>
         </div>
-        <div class="kpi-icon amber">
+        <div class="kpi-icon blue">
             <i class="fas fa-envelope-open-text"></i>
         </div>
     </div>
@@ -96,20 +111,20 @@ $recent_inquiries = $db->query("SELECT * FROM inquiries ORDER BY id DESC LIMIT 5
     <div class="admin-card-body" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px;">
         <div>
             <h3 style="font-size: 19px; font-weight: 700; color: #fff; margin-bottom: 6px;">Manage Portfolio &amp; Website Content</h3>
-            <p style="color: #94a3b8; font-size: 14px; margin: 0;">Add new projects, update service engineering scope, customize partner logos, or manage company staff.</p>
+            <p style="color: #94a3b8; font-size: 14px; margin: 0;">Add new projects, gallery events, awards, service scopes, or customize client partner logos.</p>
         </div>
         <div style="display: flex; flex-wrap: wrap; gap: 10px;">
             <a href="<?php echo $base_url; ?>/admin/project-form.php" class="btn-admin btn-admin-primary">
                 <i class="fas fa-plus"></i> Add Project
             </a>
+            <a href="<?php echo $base_url; ?>/admin/gallery-form.php" class="btn-admin btn-admin-secondary">
+                <i class="fas fa-camera"></i> Add Event Photo
+            </a>
+            <a href="<?php echo $base_url; ?>/admin/award-form.php" class="btn-admin btn-admin-secondary">
+                <i class="fas fa-award"></i> Add Award
+            </a>
             <a href="<?php echo $base_url; ?>/admin/team-form.php" class="btn-admin btn-admin-secondary">
-                <i class="fas fa-user-plus"></i> Add Team Member
-            </a>
-            <a href="<?php echo $base_url; ?>/admin/client-form.php" class="btn-admin btn-admin-secondary">
-                <i class="fas fa-plus"></i> Add Partner Logo
-            </a>
-            <a href="<?php echo $base_url; ?>/admin/service-form.php" class="btn-admin btn-admin-secondary">
-                <i class="fas fa-plus"></i> Add Service
+                <i class="fas fa-user-plus"></i> Add Team
             </a>
         </div>
     </div>
