@@ -24,7 +24,7 @@ if ($scriptDir === '/' || $scriptDir === '\\') {
     $parts = explode('/', trim($scriptDir, '/'));
     $knownPages = [
         'about-us', 'our-story', 'our-values', 'management-team', 'the-founder',
-        'certifications', 'collaborations', 'blogs', 'services', 'planning-and-designing',
+        'certifications', 'collaborations', 'blogs', 'gallery', 'awards', 'services', 'planning-and-designing',
         'epc-projects', 'energy-transmission-distribution', 'operation-maintenance',
         'mep-solutions', 'civil-works', 'projects', 'hse-policy', 'welfare-policy',
         'csr-policy', 'team', 'contact-us', 'careers', 'client-projects',
