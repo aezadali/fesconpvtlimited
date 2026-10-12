@@ -1,731 +1,354 @@
 <?php
+/**
+ * Blogs & Engineering Insights - Fescon (Pvt.) Ltd
+ * Modern Corporate Design Theme with Editorial Grid & Article Viewer
+ */
 require_once __DIR__ . '/includes/config.php';
+require_once __DIR__ . '/includes/db.php';
+
+$page_title = 'Blogs & Engineering Insights | Fescon (Pvt.) Ltd';
 $current_page = 'blogs';
+
+// Curated Engineering Insights & Technical Articles
+$articles = [
+    [
+        'id' => 1,
+        'slug' => 'building-the-future-quality-construction-work',
+        'title' => 'Building the Future: The Importance of Quality Construction Work',
+        'category' => 'Engineering Excellence',
+        'category_badge' => 'Infrastructure',
+        'date' => 'October 10, 2026',
+        'read_time' => '5 min read',
+        'author' => 'FESCON Technical Board',
+        'author_role' => 'Engineering Division',
+        'image' => 'assets/images/shutterstock_1712804041.jpg.webp',
+        'summary' => 'Quality construction work is the cornerstone of durable modern infrastructure. Discover why precision engineering, certified materials, and technological adoption define successful megaprojects.',
+        'sections' => [
+            [
+                'title' => 'The Backbone of Modern Infrastructure',
+                'icon' => 'fas fa-city',
+                'content' => 'The construction industry is the backbone of modern infrastructure, shaping cities, communities, and businesses. Whether it is residential buildings, commercial spaces, or large-scale civil infrastructure projects, quality construction work is vital for structural safety, environmental resilience, and multi-decade functionality.'
+            ],
+            [
+                'title' => 'The Role of Skilled Professionals',
+                'icon' => 'fas fa-user-cog',
+                'content' => 'The cornerstone of successful construction lies in experienced and multidisciplinary teams. Fescon mobilizes chartered civil, electrical, and mechanical engineers alongside certified safety officers and technicians. Each discipline collaborates seamlessly to ensure that milestones are executed on schedule, within budgeted tolerances, and in rigorous compliance with statutory building codes and client specifications.'
+            ],
+            [
+                'title' => 'The Imperative of High-Grade Certified Materials',
+                'icon' => 'fas fa-cubes',
+                'content' => 'Substandard materials compromise structural integrity, leading to premature deterioration, escalating maintenance liabilities, and catastrophic risks. Investing in tested, traceable high-performance materials—from high-strength reinforced steel to sulfate-resistant concrete mixes—ensures buildings and industrial foundations endure extreme climatic stressors for generations.'
+            ],
+            [
+                'title' => 'Impact of Modern Analytical & Computational Tools',
+                'icon' => 'fas fa-laptop-code',
+                'content' => 'Engineering technology continues to transform modern project workflows. The adoption of computer-aided drafting (AutoCAD, Civil 3D), Oracle Primavera project scheduling, and high-precision laser surveying instruments has elevated accuracy while compressing cycle times. Real-time data integration minimizes site discrepancies, optimizes resource allocation, and delivers superior operational transparency.'
+            ],
+            [
+                'title' => 'Sustainable Construction & Environmental Stewardship',
+                'icon' => 'fas fa-leaf',
+                'content' => 'Sustainability is an indispensable metric in modern construction. Incorporating energy-efficient designs, low-carbon concrete formulations, and sustainable waste reduction techniques reduces environmental footprints. Green construction practices safeguard the surrounding ecology while significantly lowering long-term lifecycle utility costs for asset owners.'
+            ],
+            [
+                'title' => 'Uncompromising Health, Safety & Environmental (HSE) Compliance',
+                'icon' => 'fas fa-shield-alt',
+                'content' => 'At Fescon, safety is an absolute core value. Adhering to certified ISO 45001 occupational health and safety benchmarks prevents accidents and fosters high-trust work environments. Daily toolbox talks, mandatory certified PPE protocols, hazard identification matrices, and regular site audits guarantee zero-harm field execution across all active project sites.'
+            ]
+        ],
+        'tags' => ['Civil Works', 'Infrastructure', 'Quality Engineering', 'HSE Compliance', 'Technology']
+    ],
+    [
+        'id' => 2,
+        'slug' => 'advancements-in-high-voltage-substation-engineering',
+        'title' => 'Advancements in High-Voltage Substation Engineering (132kV - 500kV)',
+        'category' => 'Power Transmission',
+        'category_badge' => 'Grid Networks',
+        'date' => 'October 04, 2026',
+        'read_time' => '6 min read',
+        'author' => 'High-Voltage EPC Team',
+        'author_role' => 'Power Division',
+        'image' => 'assets/images/transformer.webp',
+        'summary' => 'Modernizing national grid stations with SF6 gas-insulated switchgear, digital protection relays, and smart monitoring systems for continuous grid reliability.',
+        'sections' => [
+            [
+                'title' => 'Transitioning to High-Performance Power Grids',
+                'icon' => 'fas fa-bolt',
+                'content' => 'Modern energy demands necessitate high-availability transmission backbones. Grid stations operating at 132kV, 220kV, and 500kV form the critical nodes that transport base-load power across national grids. Upgrading legacy air-insulated equipment to compact, highly reliable switchgear has proven decisive in reducing outage frequencies and containment footprints.'
+            ],
+            [
+                'title' => 'Gas-Insulated Switchgear (GIS) vs. AIS Systems',
+                'icon' => 'fas fa-industry',
+                'content' => 'In urban and space-constrained industrial zones, GIS technology offers up to an 80% reduction in land footprint compared to conventional AIS installations. Enclosed SF6 gas compartments protect energized conductors against dust, airborne salinity, and atmospheric pollution, drastically minimizing maintenance overheads.'
+            ],
+            [
+                'title' => 'Digital Protection Relays & Substation Automation',
+                'icon' => 'fas fa-microchip',
+                'content' => 'The deployment of IEC 61850 protocol-enabled protection relays (SEL, ABB, Siemens) enables instantaneous fault isolation within milliseconds. Advanced numerical relays provide real-time waveform capture, remote disturbance monitoring, and synchronized phasor measurements for grid stability analysts.'
+            ]
+        ],
+        'tags' => ['Substations', 'Power Transformers', 'IEC 61850', 'GIS', 'Grid Stability']
+    ],
+    [
+        'id' => 3,
+        'slug' => 'energy-efficiency-mep-integration-commercial-buildings',
+        'title' => 'Integrated MEP Engineering for High-Performance Industrial Facilities',
+        'category' => 'MEP Systems',
+        'category_badge' => 'Building Systems',
+        'date' => 'September 28, 2026',
+        'read_time' => '4 min read',
+        'author' => 'MEP Systems Department',
+        'author_role' => 'Mechanical & Electrical',
+        'image' => 'assets/images/IMG_4615-scaled.jpg',
+        'summary' => 'How harmonized mechanical HVAC, fire suppression, low-voltage distribution, and intelligent building automation drive industrial energy efficiency.',
+        'sections' => [
+            [
+                'title' => 'Harmonizing Mechanical, Electrical & Plumbing Systems',
+                'icon' => 'fas fa-cogs',
+                'content' => 'Complex industrial and commercial facilities rely on tightly integrated mechanical, electrical, and plumbing engineering. When MEP design is coordinated early through Building Information Modeling (BIM), clashing utilities, thermal bridge inefficiencies, and costly retrofit modifications are eliminated prior to groundbreaking.'
+            ],
+            [
+                'title' => 'Optimizing HVAC Thermal Efficiency',
+                'icon' => 'fas fa-fan',
+                'content' => 'HVAC systems represent the largest single energy consumer in commercial complexes. By leveraging variable refrigerant flow (VRF) units, demand-controlled ventilation (DCV), and high-efficiency chillers, building operators achieve up to 35% reductions in lifecycle energy consumption.'
+            ],
+            [
+                'title' => 'Life Safety & NFPA Compliant Fire Suppression',
+                'icon' => 'fas fa-fire-extinguisher',
+                'content' => 'Industrial facilities require NFPA-standard fire detection and suppression networks. Automated addressable smoke detection paired with diesel backup fire pumps and zoned pre-action sprinkler systems guarantees occupant safety and safeguards multimillion-dollar industrial equipment.'
+            ]
+        ],
+        'tags' => ['MEP', 'HVAC', 'Building Automation', 'Energy Efficiency', 'NFPA']
+    ]
+];
+
+// Active article selection (supports ?article=slug or defaults to first)
+$selected_slug = $_GET['article'] ?? null;
+$active_article = null;
+if ($selected_slug) {
+    foreach ($articles as $a) {
+        if ($a['slug'] === $selected_slug) {
+            $active_article = $a;
+            break;
+        }
+    }
+}
+
+require_once __DIR__ . '/includes/modern-header.php';
 ?>
-<!DOCTYPE html>
-<html lang="en-US">
-<head>
-	<meta charset="UTF-8">
-			<title>Blogs &#8211; Fescon</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-			<style>								
-					form#stickyelements-form input::-moz-placeholder{
-						color: #4F4F4F;
-					} 
-					form#stickyelements-form input::-ms-input-placeholder{
-						color: #4F4F4F					} 
-					form#stickyelements-form input::-webkit-input-placeholder{
-						color: #4F4F4F					}
-					form#stickyelements-form input::placeholder{
-						color: #4F4F4F					}
-					form#stickyelements-form textarea::placeholder {
-						color: #4F4F4F					}
-					form#stickyelements-form textarea::-moz-placeholder {
-						color: #4F4F4F					}					
-			</style>	
-			<meta name='robots' content='max-image-preview:large' />
-<title>Blogs &#8211; Fescon</title>
-<link rel='dns-prefetch' href='//fonts.googleapis.com' />
-<link rel="alternate" type="application/rss+xml" title="Fescon &raquo; Feed" href="<?php echo $base_url; ?>/feed/" />
-<link rel="alternate" type="application/rss+xml" title="Fescon &raquo; Comments Feed" href="https://fescon.com.pk/comments/feed/" />
-<script>
-window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.0.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.0.3\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/fescon.com.pk\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.6.9"}};
-/*! This file is auto-generated */
-!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!n(e,"\ud83d\udc26\u200d\u2b1b","\ud83d\udc26\u200b\u2b1b")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
-</script>
 
-<link rel='stylesheet' id='fluentform-elementor-widget-css' href='<?php echo $base_url; ?>/assets/css/fluent-forms-elementor-widget.css' media='all' />
-<link rel='stylesheet' id='hfe-widgets-style-css' href='<?php echo $base_url; ?>/assets/css/frontend.css' media='all' />
-<style id='wp-emoji-styles-inline-css'>
-
-	img.wp-smiley, img.emoji {
-		display: inline !important;
-		border: none !important;
-		box-shadow: none !important;
-		height: 1em !important;
-		width: 1em !important;
-		margin: 0 0.07em !important;
-		vertical-align: -0.1em !important;
-		background: none !important;
-		padding: 0 !important;
-	}
-</style>
-<style id='wp-block-library-inline-css'>
-:root{--wp-admin-theme-color:#007cba;--wp-admin-theme-color--rgb:0,124,186;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-10--rgb:0,107,161;--wp-admin-theme-color-darker-20:#005a87;--wp-admin-theme-color-darker-20--rgb:0,90,135;--wp-admin-border-width-focus:2px;--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color)}@media (min-resolution:192dpi){:root{--wp-admin-border-width-focus:1.5px}}.wp-element-button{cursor:pointer}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}:root .has-very-light-gray-background-color{background-color:#eee}:root .has-very-dark-gray-background-color{background-color:#313131}:root .has-very-light-gray-color{color:#eee}:root .has-very-dark-gray-color{color:#313131}:root .has-vivid-green-cyan-to-vivid-cyan-blue-gradient-background{background:linear-gradient(135deg,#00d084,#0693e3)}:root .has-purple-crush-gradient-background{background:linear-gradient(135deg,#34e2e4,#4721fb 50%,#ab1dfe)}:root .has-hazy-dawn-gradient-background{background:linear-gradient(135deg,#faaca8,#dad0ec)}:root .has-subdued-olive-gradient-background{background:linear-gradient(135deg,#fafae1,#67a671)}:root .has-atomic-cream-gradient-background{background:linear-gradient(135deg,#fdd79a,#004a59)}:root .has-nightshade-gradient-background{background:linear-gradient(135deg,#330968,#31cdcf)}:root .has-midnight-gradient-background{background:linear-gradient(135deg,#020381,#2874fc)}.has-regular-font-size{font-size:1em}.has-larger-font-size{font-size:2.625em}.has-normal-font-size{font-size:var(--wp--preset--font-size--normal)}.has-huge-font-size{font-size:var(--wp--preset--font-size--huge)}.has-text-align-center{text-align:center}.has-text-align-left{text-align:left}.has-text-align-right{text-align:right}#end-resizable-editor-section{display:none}.aligncenter{clear:both}.items-justified-left{justify-content:flex-start}.items-justified-center{justify-content:center}.items-justified-right{justify-content:flex-end}.items-justified-space-between{justify-content:space-between}.screen-reader-text{border:0;clip:rect(1px,1px,1px,1px);clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;word-wrap:normal!important}.screen-reader-text:focus{background-color:#ddd;clip:auto!important;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}html :where(.has-border-color){border-style:solid}html :where([style*=border-top-color]){border-top-style:solid}html :where([style*=border-right-color]){border-right-style:solid}html :where([style*=border-bottom-color]){border-bottom-style:solid}html :where([style*=border-left-color]){border-left-style:solid}html :where([style*=border-width]){border-style:solid}html :where([style*=border-top-width]){border-top-style:solid}html :where([style*=border-right-width]){border-right-style:solid}html :where([style*=border-bottom-width]){border-bottom-style:solid}html :where([style*=border-left-width]){border-left-style:solid}html :where(img[class*=wp-image-]){height:auto;max-width:100%}:where(figure){margin:0 0 1em}html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:var(--wp-admin--admin-bar--height,0px)}@media screen and (max-width:600px){html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:0px}}
-</style>
-<style id='global-styles-inline-css'>
-:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--base: #f9f9f9;--wp--preset--color--base-2: #ffffff;--wp--preset--color--contrast: #111111;--wp--preset--color--contrast-2: #636363;--wp--preset--color--contrast-3: #A4A4A4;--wp--preset--color--accent: #cfcabe;--wp--preset--color--accent-2: #c2a990;--wp--preset--color--accent-3: #d8613c;--wp--preset--color--accent-4: #b1c5a4;--wp--preset--color--accent-5: #b5bdbc;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--gradient--gradient-1: linear-gradient(to bottom, #cfcabe 0%, #F9F9F9 100%);--wp--preset--gradient--gradient-2: linear-gradient(to bottom, #C2A990 0%, #F9F9F9 100%);--wp--preset--gradient--gradient-3: linear-gradient(to bottom, #D8613C 0%, #F9F9F9 100%);--wp--preset--gradient--gradient-4: linear-gradient(to bottom, #B1C5A4 0%, #F9F9F9 100%);--wp--preset--gradient--gradient-5: linear-gradient(to bottom, #B5BDBC 0%, #F9F9F9 100%);--wp--preset--gradient--gradient-6: linear-gradient(to bottom, #A4A4A4 0%, #F9F9F9 100%);--wp--preset--gradient--gradient-7: linear-gradient(to bottom, #cfcabe 50%, #F9F9F9 50%);--wp--preset--gradient--gradient-8: linear-gradient(to bottom, #C2A990 50%, #F9F9F9 50%);--wp--preset--gradient--gradient-9: linear-gradient(to bottom, #D8613C 50%, #F9F9F9 50%);--wp--preset--gradient--gradient-10: linear-gradient(to bottom, #B1C5A4 50%, #F9F9F9 50%);--wp--preset--gradient--gradient-11: linear-gradient(to bottom, #B5BDBC 50%, #F9F9F9 50%);--wp--preset--gradient--gradient-12: linear-gradient(to bottom, #A4A4A4 50%, #F9F9F9 50%);--wp--preset--font-size--small: 0.9rem;--wp--preset--font-size--medium: 1.05rem;--wp--preset--font-size--large: clamp(1.39rem, 1.39rem + ((1vw - 0.2rem) * 0.767), 1.85rem);--wp--preset--font-size--x-large: clamp(1.85rem, 1.85rem + ((1vw - 0.2rem) * 1.083), 2.5rem);--wp--preset--font-size--xx-large: clamp(2.5rem, 2.5rem + ((1vw - 0.2rem) * 1.283), 3.27rem);--wp--preset--font-family--body: "Inter", sans-serif;--wp--preset--font-family--heading: Cardo;--wp--preset--font-family--system-sans-serif: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;--wp--preset--font-family--system-serif: Iowan Old Style, Apple Garamond, Baskerville, Times New Roman, Droid Serif, Times, Source Serif Pro, serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;--wp--preset--spacing--20: min(1.5rem, 2vw);--wp--preset--spacing--30: min(2.5rem, 3vw);--wp--preset--spacing--40: min(4rem, 5vw);--wp--preset--spacing--50: min(6.5rem, 8vw);--wp--preset--spacing--60: min(10.5rem, 13vw);--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--spacing--10: 1rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:root { --wp--style--global--content-size: 620px;--wp--style--global--wide-size: 1280px; }:where(body) { margin: 0; }.wp-site-blocks { padding-top: var(--wp--style--root--padding-top); padding-bottom: var(--wp--style--root--padding-bottom); }.has-global-padding { padding-right: var(--wp--style--root--padding-right); padding-left: var(--wp--style--root--padding-left); }.has-global-padding > .alignfull { margin-right: calc(var(--wp--style--root--padding-right) * -1); margin-left: calc(var(--wp--style--root--padding-left) * -1); }.has-global-padding :where(:not(.alignfull.is-layout-flow) > .has-global-padding:not(.wp-block-block, .alignfull)) { padding-right: 0; padding-left: 0; }.has-global-padding :where(:not(.alignfull.is-layout-flow) > .has-global-padding:not(.wp-block-block, .alignfull)) > .alignfull { margin-left: 0; margin-right: 0; }.wp-site-blocks > .alignleft { float: left; margin-right: 2em; }.wp-site-blocks > .alignright { float: right; margin-left: 2em; }.wp-site-blocks > .aligncenter { justify-content: center; margin-left: auto; margin-right: auto; }:where(.wp-site-blocks) > * { margin-block-start: 1.2rem; margin-block-end: 0; }:where(.wp-site-blocks) > :first-child { margin-block-start: 0; }:where(.wp-site-blocks) > :last-child { margin-block-end: 0; }:root { --wp--style--block-gap: 1.2rem; }:root :where(.is-layout-flow) > :first-child{margin-block-start: 0;}:root :where(.is-layout-flow) > :last-child{margin-block-end: 0;}:root :where(.is-layout-flow) > *{margin-block-start: 1.2rem;margin-block-end: 0;}:root :where(.is-layout-constrained) > :first-child{margin-block-start: 0;}:root :where(.is-layout-constrained) > :last-child{margin-block-end: 0;}:root :where(.is-layout-constrained) > *{margin-block-start: 1.2rem;margin-block-end: 0;}:root :where(.is-layout-flex){gap: 1.2rem;}:root :where(.is-layout-grid){gap: 1.2rem;}.is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}.is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}.is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}.is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}.is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{background-color: var(--wp--preset--color--base);color: var(--wp--preset--color--contrast);font-family: var(--wp--preset--font-family--body);font-size: var(--wp--preset--font-size--medium);font-style: normal;font-weight: 400;line-height: 1.55;--wp--style--root--padding-top: 0px;--wp--style--root--padding-right: var(--wp--preset--spacing--50);--wp--style--root--padding-bottom: 0px;--wp--style--root--padding-left: var(--wp--preset--spacing--50);}a:where(:not(.wp-element-button)){color: var(--wp--preset--color--contrast);text-decoration: underline;}:root :where(a:where(:not(.wp-element-button)):hover){text-decoration: none;}h1, h2, h3, h4, h5, h6{color: var(--wp--preset--color--contrast);font-family: var(--wp--preset--font-family--heading);font-weight: 400;line-height: 1.2;}h1{font-size: var(--wp--preset--font-size--xx-large);line-height: 1.15;}h2{font-size: var(--wp--preset--font-size--x-large);}h3{font-size: var(--wp--preset--font-size--large);}h4{font-size: clamp(1.1rem, 1.1rem + ((1vw - 0.2rem) * 0.767), 1.5rem);}h5{font-size: var(--wp--preset--font-size--medium);}h6{font-size: var(--wp--preset--font-size--small);}:root :where(.wp-element-button, .wp-block-button__link){background-color: var(--wp--preset--color--contrast);border-radius: .33rem;border-color: var(--wp--preset--color--contrast);border-width: 0;color: var(--wp--preset--color--base);font-family: inherit;font-size: var(--wp--preset--font-size--small);font-style: normal;font-weight: 500;line-height: inherit;padding-top: 0.6rem;padding-right: 1rem;padding-bottom: 0.6rem;padding-left: 1rem;text-decoration: none;}:root :where(.wp-element-button:hover, .wp-block-button__link:hover){background-color: var(--wp--preset--color--contrast-2);border-color: var(--wp--preset--color--contrast-2);color: var(--wp--preset--color--base);}:root :where(.wp-element-button:focus, .wp-block-button__link:focus){background-color: var(--wp--preset--color--contrast-2);border-color: var(--wp--preset--color--contrast-2);color: var(--wp--preset--color--base);outline-color: var(--wp--preset--color--contrast);outline-offset: 2px;}:root :where(.wp-element-button:active, .wp-block-button__link:active){background-color: var(--wp--preset--color--contrast);color: var(--wp--preset--color--base);}:root :where(.wp-element-caption, .wp-block-audio figcaption, .wp-block-embed figcaption, .wp-block-gallery figcaption, .wp-block-image figcaption, .wp-block-table figcaption, .wp-block-video figcaption){color: var(--wp--preset--color--contrast-2);font-family: var(--wp--preset--font-family--body);font-size: 0.8rem;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-base-color{color: var(--wp--preset--color--base) !important;}.has-base-2-color{color: var(--wp--preset--color--base-2) !important;}.has-contrast-color{color: var(--wp--preset--color--contrast) !important;}.has-contrast-2-color{color: var(--wp--preset--color--contrast-2) !important;}.has-contrast-3-color{color: var(--wp--preset--color--contrast-3) !important;}.has-accent-color{color: var(--wp--preset--color--accent) !important;}.has-accent-2-color{color: var(--wp--preset--color--accent-2) !important;}.has-accent-3-color{color: var(--wp--preset--color--accent-3) !important;}.has-accent-4-color{color: var(--wp--preset--color--accent-4) !important;}.has-accent-5-color{color: var(--wp--preset--color--accent-5) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-base-background-color{background-color: var(--wp--preset--color--base) !important;}.has-base-2-background-color{background-color: var(--wp--preset--color--base-2) !important;}.has-contrast-background-color{background-color: var(--wp--preset--color--contrast) !important;}.has-contrast-2-background-color{background-color: var(--wp--preset--color--contrast-2) !important;}.has-contrast-3-background-color{background-color: var(--wp--preset--color--contrast-3) !important;}.has-accent-background-color{background-color: var(--wp--preset--color--accent) !important;}.has-accent-2-background-color{background-color: var(--wp--preset--color--accent-2) !important;}.has-accent-3-background-color{background-color: var(--wp--preset--color--accent-3) !important;}.has-accent-4-background-color{background-color: var(--wp--preset--color--accent-4) !important;}.has-accent-5-background-color{background-color: var(--wp--preset--color--accent-5) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-base-border-color{border-color: var(--wp--preset--color--base) !important;}.has-base-2-border-color{border-color: var(--wp--preset--color--base-2) !important;}.has-contrast-border-color{border-color: var(--wp--preset--color--contrast) !important;}.has-contrast-2-border-color{border-color: var(--wp--preset--color--contrast-2) !important;}.has-contrast-3-border-color{border-color: var(--wp--preset--color--contrast-3) !important;}.has-accent-border-color{border-color: var(--wp--preset--color--accent) !important;}.has-accent-2-border-color{border-color: var(--wp--preset--color--accent-2) !important;}.has-accent-3-border-color{border-color: var(--wp--preset--color--accent-3) !important;}.has-accent-4-border-color{border-color: var(--wp--preset--color--accent-4) !important;}.has-accent-5-border-color{border-color: var(--wp--preset--color--accent-5) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-gradient-1-gradient-background{background: var(--wp--preset--gradient--gradient-1) !important;}.has-gradient-2-gradient-background{background: var(--wp--preset--gradient--gradient-2) !important;}.has-gradient-3-gradient-background{background: var(--wp--preset--gradient--gradient-3) !important;}.has-gradient-4-gradient-background{background: var(--wp--preset--gradient--gradient-4) !important;}.has-gradient-5-gradient-background{background: var(--wp--preset--gradient--gradient-5) !important;}.has-gradient-6-gradient-background{background: var(--wp--preset--gradient--gradient-6) !important;}.has-gradient-7-gradient-background{background: var(--wp--preset--gradient--gradient-7) !important;}.has-gradient-8-gradient-background{background: var(--wp--preset--gradient--gradient-8) !important;}.has-gradient-9-gradient-background{background: var(--wp--preset--gradient--gradient-9) !important;}.has-gradient-10-gradient-background{background: var(--wp--preset--gradient--gradient-10) !important;}.has-gradient-11-gradient-background{background: var(--wp--preset--gradient--gradient-11) !important;}.has-gradient-12-gradient-background{background: var(--wp--preset--gradient--gradient-12) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}.has-xx-large-font-size{font-size: var(--wp--preset--font-size--xx-large) !important;}.has-body-font-family{font-family: var(--wp--preset--font-family--body) !important;}.has-heading-font-family{font-family: var(--wp--preset--font-family--heading) !important;}.has-system-sans-serif-font-family{font-family: var(--wp--preset--font-family--system-sans-serif) !important;}.has-system-serif-font-family{font-family: var(--wp--preset--font-family--system-serif) !important;}
-:where(.wp-site-blocks *:focus){outline-width:2px;outline-style:solid}:root :where(.wp-block-calendar.wp-block-calendar table:where(:not(.has-text-color)) th){background-color:var(--wp--preset--color--contrast-2);color:var(--wp--preset--color--base);border-color:var(--wp--preset--color--contrast-2)}:root :where(.wp-block-calendar table:where(:not(.has-text-color)) td){border-color:var(--wp--preset--color--contrast-2)}:root :where(.wp-block-categories){list-style-type:none;}:root :where(.wp-block-categories li){margin-bottom: 0.5rem;}:root :where(.wp-block-post-comments-form textarea, .wp-block-post-comments-form input){border-radius:.33rem}:root :where(.wp-block-loginout input){border-radius:.33rem;padding:calc(0.667em + 2px);border:1px solid #949494;}:root :where(.wp-block-post-terms .wp-block-post-terms__prefix){color: var(--wp--preset--color--contrast-2);}:root :where(.wp-block-query-title span){font-style: italic;}:root :where(.wp-block-quote :where(p)){margin-block-start:0;margin-block-end:calc(var(--wp--preset--spacing--10) + 0.5rem);}:root :where(.wp-block-quote :where(:last-child)){margin-block-end:0;}:root :where(.wp-block-quote.has-text-align-right.is-style-plain, .rtl .is-style-plain.wp-block-quote:not(.has-text-align-center):not(.has-text-align-left)){border-width: 0 2px 0 0;padding-left:calc(var(--wp--preset--spacing--20) + 0.5rem);padding-right:calc(var(--wp--preset--spacing--20) + 0.5rem);}:root :where(.wp-block-quote.has-text-align-left.is-style-plain, body:not(.rtl) .is-style-plain.wp-block-quote:not(.has-text-align-center):not(.has-text-align-right)){border-width: 0 0 0 2px;padding-left:calc(var(--wp--preset--spacing--20) + 0.5rem);padding-right:calc(var(--wp--preset--spacing--20) + 0.5rem)}:root :where(.wp-block-search .wp-block-search__input){border-radius:.33rem}:root :where(.wp-block-separator){}:root :where(.wp-block-separator:not(.is-style-wide):not(.is-style-dots):not(.alignwide):not(.alignfull)){width: var(--wp--preset--spacing--60)}
-</style>
-<style id='wp-block-template-skip-link-inline-css'>
-
-		.skip-link.screen-reader-text {
-			border: 0;
-			clip: rect(1px,1px,1px,1px);
-			clip-path: inset(50%);
-			height: 1px;
-			margin: -1px;
-			overflow: hidden;
-			padding: 0;
-			position: absolute !important;
-			width: 1px;
-			word-wrap: normal !important;
-		}
-
-		.skip-link.screen-reader-text:focus {
-			background-color: #eee;
-			clip: auto !important;
-			clip-path: none;
-			color: #444;
-			display: block;
-			font-size: 1em;
-			height: auto;
-			left: 5px;
-			line-height: normal;
-			padding: 15px 23px 14px;
-			text-decoration: none;
-			top: 5px;
-			width: auto;
-			z-index: 100000;
-		}
-</style>
-<link rel='stylesheet' id='contact-form-7-css' href='<?php echo $base_url; ?>/assets/css/styles.css' media='all' />
-<link rel='stylesheet' id='hfe-style-css' href='<?php echo $base_url; ?>/assets/css/header-footer-elementor.css' media='all' />
-<link rel='stylesheet' id='elementor-frontend-css' href='<?php echo $base_url; ?>/assets/css/frontend.min.css' media='all' />
-<link rel='stylesheet' id='elementor-post-8-css' href='<?php echo $base_url; ?>/assets/css/post-8.css' media='all' />
-<link rel='stylesheet' id='wpforms-modern-full-css' href='<?php echo $base_url; ?>/assets/css/wpforms-full.min.css' media='all' />
-<style id='wpforms-modern-full-inline-css'>
-:root {
-				--wpforms-field-border-radius: 3px;
---wpforms-field-border-style: solid;
---wpforms-field-border-size: 1px;
---wpforms-field-background-color: #ffffff;
---wpforms-field-border-color: rgba( 0, 0, 0, 0.25 );
---wpforms-field-border-color-spare: rgba( 0, 0, 0, 0.25 );
---wpforms-field-text-color: rgba( 0, 0, 0, 0.7 );
---wpforms-field-menu-color: #ffffff;
---wpforms-label-color: rgba( 0, 0, 0, 0.85 );
---wpforms-label-sublabel-color: rgba( 0, 0, 0, 0.55 );
---wpforms-label-error-color: #d63637;
---wpforms-button-border-radius: 3px;
---wpforms-button-border-style: none;
---wpforms-button-border-size: 1px;
---wpforms-button-background-color: #066aab;
---wpforms-button-border-color: #066aab;
---wpforms-button-text-color: #ffffff;
---wpforms-page-break-color: #066aab;
---wpforms-background-image: none;
---wpforms-background-position: center center;
---wpforms-background-repeat: no-repeat;
---wpforms-background-size: cover;
---wpforms-background-width: 100px;
---wpforms-background-height: 100px;
---wpforms-background-color: rgba( 0, 0, 0, 0 );
---wpforms-background-url: none;
---wpforms-container-padding: 0px;
---wpforms-container-border-style: none;
---wpforms-container-border-width: 1px;
---wpforms-container-border-color: #000000;
---wpforms-container-border-radius: 3px;
---wpforms-field-size-input-height: 43px;
---wpforms-field-size-input-spacing: 15px;
---wpforms-field-size-font-size: 16px;
---wpforms-field-size-line-height: 19px;
---wpforms-field-size-padding-h: 14px;
---wpforms-field-size-checkbox-size: 16px;
---wpforms-field-size-sublabel-spacing: 5px;
---wpforms-field-size-icon-size: 1;
---wpforms-label-size-font-size: 16px;
---wpforms-label-size-line-height: 19px;
---wpforms-label-size-sublabel-font-size: 14px;
---wpforms-label-size-sublabel-line-height: 17px;
---wpforms-button-size-font-size: 17px;
---wpforms-button-size-height: 41px;
---wpforms-button-size-padding-h: 15px;
---wpforms-button-size-margin-top: 10px;
---wpforms-container-shadow-size-box-shadow: none;
-			}
-</style>
-<link rel='stylesheet' id='e-animation-shrink-css' href='<?php echo $base_url; ?>/assets/css/e-animation-shrink.min.css' media='all' />
-<link rel='stylesheet' id='widget-heading-css' href='<?php echo $base_url; ?>/assets/css/widget-heading.min.css' media='all' />
-<link rel='stylesheet' id='widget-divider-css' href='<?php echo $base_url; ?>/assets/css/widget-divider.min.css' media='all' />
-<link rel='stylesheet' id='swiper-css' href='<?php echo $base_url; ?>/assets/css/swiper.min.css' media='all' />
-<link rel='stylesheet' id='e-swiper-css' href='<?php echo $base_url; ?>/assets/css/e-swiper.min.css' media='all' />
-<link rel='stylesheet' id='widget-icon-list-css' href='<?php echo $base_url; ?>/assets/css/widget-icon-list.min.css' media='all' />
-<link rel='stylesheet' id='e-animation-float-css' href='<?php echo $base_url; ?>/assets/css/e-animation-float.min.css' media='all' />
-<link rel='stylesheet' id='widget-social-icons-css' href='<?php echo $base_url; ?>/assets/css/widget-social-icons.min.css' media='all' />
-<link rel='stylesheet' id='e-apple-webkit-css' href='<?php echo $base_url; ?>/assets/css/apple-webkit.min.css' media='all' />
-<link rel='stylesheet' id='widget-pp-link-effects-css' href='<?php echo $base_url; ?>/assets/css/widget-link-effects.min.css' media='all' />
-<link rel='stylesheet' id='elementor-post-728-css' href='<?php echo $base_url; ?>/assets/css/post-728.css' media='all' />
-<link rel='stylesheet' id='hfe-elementor-icons-css' href='<?php echo $base_url; ?>/assets/css/elementor-icons.min.css' media='all' />
-<link rel='stylesheet' id='hfe-icons-list-css' href='<?php echo $base_url; ?>/assets/css/widget-icon-list.min.css?ver=3.24.3' media='all' />
-<link rel='stylesheet' id='hfe-social-icons-css' href='<?php echo $base_url; ?>/assets/css/widget-social-icons.min.css?ver=3.24.0' media='all' />
-<link rel='stylesheet' id='hfe-social-share-icons-brands-css' href='<?php echo $base_url; ?>/assets/css/brands.css' media='all' />
-<link rel='stylesheet' id='hfe-social-share-icons-fontawesome-css' href='<?php echo $base_url; ?>/assets/css/fontawesome.css' media='all' />
-<link rel='stylesheet' id='hfe-nav-menu-icons-css' href='<?php echo $base_url; ?>/assets/css/solid.css' media='all' />
-<link rel='stylesheet' id='mystickyelements-google-fonts-css' href='https://fonts.googleapis.com/css?family=Poppins%3A400%2C500%2C600%2C700&#038;ver=6.6.9' media='all' />
-<link rel='stylesheet' id='font-awesome-css-css' href='<?php echo $base_url; ?>/assets/css/font-awesome.min.css' media='all' />
-<link rel='stylesheet' id='mystickyelements-front-css-css' href='<?php echo $base_url; ?>/assets/css/mystickyelements-front.min.css' media='all' />
-<link rel='stylesheet' id='intl-tel-input-css' href='<?php echo $base_url; ?>/assets/css/intlTelInput.css' media='all' />
-<link rel='stylesheet' id='elementor-gf-local-aldrich-css' href='<?php echo $base_url; ?>/assets/css/aldrich.css' media='all' />
-<link rel='stylesheet' id='elementor-gf-local-robotoslab-css' href='<?php echo $base_url; ?>/assets/css/robotoslab.css' media='all' />
-<link rel='stylesheet' id='elementor-gf-local-ruda-css' href='<?php echo $base_url; ?>/assets/css/ruda.css' media='all' />
-<link rel='stylesheet' id='elementor-gf-local-roboto-css' href='<?php echo $base_url; ?>/assets/css/roboto.css' media='all' />
-<script id="jquery-core-js-extra">
-var pp = {"ajax_url":"<?php echo $base_url; ?>/contact-handler.php"};
-</script>
-<script src="<?php echo $base_url; ?>/assets/js/jquery.min.js" id="jquery-core-js"></script>
-<script src="<?php echo $base_url; ?>/assets/js/jquery-migrate.min.js" id="jquery-migrate-js"></script>
-<script id="jquery-js-after">
-!function($){"use strict";$(document).ready(function(){$(this).scrollTop()>100&&$(".hfe-scroll-to-top-wrap").removeClass("hfe-scroll-to-top-hide"),$(window).scroll(function(){$(this).scrollTop()<100?$(".hfe-scroll-to-top-wrap").fadeOut(300):$(".hfe-scroll-to-top-wrap").fadeIn(300)}),$(".hfe-scroll-to-top-wrap").on("click",function(){$("html, body").animate({scrollTop:0},300);return!1})})}(jQuery);
-!function($){'use strict';$(document).ready(function(){var bar=$('.hfe-reading-progress-bar');if(!bar.length)return;$(window).on('scroll',function(){var s=$(window).scrollTop(),d=$(document).height()-$(window).height(),p=d? s/d*100:0;bar.css('width',p+'%')});});}(jQuery);
-</script>
-<link rel="https://api.w.org/" href="<?php echo $base_url; ?>/contact-handler.php?api=" /><link rel="alternate" title="JSON" type="application/json" href="<?php echo $base_url; ?>/contact-handler.php?api=wp/v2/pages/728" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://fescon.com.pk/xmlrpc.php?rsd" />
-<meta name="generator" content="WordPress 6.6.9" />
-<link rel="canonical" href="<?php echo $base_url; ?>/blogs/" />
-<link rel='shortlink' href='https://fescon.com.pk/?p=728' />
-<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="<?php echo $base_url; ?>/contact-handler.php?api=oembed/1.0/embed?url=https%3A%2F%2Ffescon.com.pk%2Fblogs%2F" />
-<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="<?php echo $base_url; ?>/contact-handler.php?api=oembed/1.0/embed?url=https%3A%2F%2Ffescon.com.pk%2Fblogs%2F&#038;format=xml" />
-<meta name="generator" content="Elementor 4.1.1; features: e_font_icon_svg, additional_custom_breakpoints; settings: css_print_method-external, google_font-enabled, font_display-swap">
-			<style>
-				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload),
-				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload) * {
-					background-image: none !important;
-				}
-				@media screen and (max-height: 1024px) {
-					.e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload),
-					.e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload) * {
-						background-image: none !important;
-					}
-				}
-				@media screen and (max-height: 640px) {
-					.e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload),
-					.e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload) * {
-						background-image: none !important;
-					}
-				}
-			</style>
-			<style id='wp-fonts-local'>
-@font-face{font-family:Inter;font-style:normal;font-weight:300 900;font-display:fallback;src:url('https://fescon.com.pk/wp-content/themes/twentytwentyfour/assets/fonts/inter/Inter-VariableFont_slnt,wght.woff2') format('woff2');font-stretch:normal;}
-@font-face{font-family:Cardo;font-style:normal;font-weight:400;font-display:fallback;src:url('https://fescon.com.pk/wp-content/themes/twentytwentyfour/assets/fonts/cardo/cardo_normal_400.woff2') format('woff2');}
-@font-face{font-family:Cardo;font-style:italic;font-weight:400;font-display:fallback;src:url('https://fescon.com.pk/wp-content/themes/twentytwentyfour/assets/fonts/cardo/cardo_italic_400.woff2') format('woff2');}
-@font-face{font-family:Cardo;font-style:normal;font-weight:700;font-display:fallback;src:url('https://fescon.com.pk/wp-content/themes/twentytwentyfour/assets/fonts/cardo/cardo_normal_700.woff2') format('woff2');}
-</style>
-<link rel="icon" href="<?php echo $base_url; ?>/assets/images/cropped-con-32x32.png" sizes="32x32" />
-<link rel="icon" href="<?php echo $base_url; ?>/assets/images/cropped-con-192x192.png" sizes="192x192" />
-<link rel="apple-touch-icon" href="<?php echo $base_url; ?>/assets/images/cropped-con-180x180.png" />
-<meta name="msapplication-TileImage" content="<?php echo $base_url; ?>/assets/images/cropped-con-270x270.png" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<link rel="stylesheet" id="fescon-core-style-css" href="<?php echo $base_url; ?>/assets/css/style.css" media="all" />
-<link rel="stylesheet" id="fescon-animations-css" href="<?php echo $base_url; ?>/assets/css/animations.css" media="all" />
-</head>
-<body class="page-template page-template-elementor_canvas page page-id-728 wp-embed-responsive ehf-template-twentytwentyfour ehf-stylesheet-twentytwentyfour elementor-default elementor-template-canvas elementor-kit-8 elementor-page elementor-page-728">
-			<div data-elementor-type="wp-page" data-elementor-id="728" class="elementor elementor-728">
-						<section class="elementor-section elementor-top-section elementor-element elementor-element-f3337b5 elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="f3337b5" data-element_type="section" data-e-type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-						<div class="elementor-container elementor-column-gap-default">
-					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-a283170" data-id="a283170" data-element_type="column" data-e-type="column">
-			<div class="elementor-widget-wrap elementor-element-populated">
-						<section class="elementor-section elementor-inner-section elementor-element elementor-element-27729ae elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="27729ae" data-element_type="section" data-e-type="section">
-						<div class="elementor-container elementor-column-gap-default">
-					<div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-b047f26" data-id="b047f26" data-element_type="column" data-e-type="column">
-			<div class="elementor-widget-wrap elementor-element-populated">
-						<div class="elementor-element elementor-element-bf10725 elementor-widget-mobile__width-initial elementor-widget elementor-widget-site-logo" data-id="bf10725" data-element_type="widget" data-e-type="widget" data-settings="{&quot;align&quot;:&quot;left&quot;,&quot;width&quot;:{&quot;unit&quot;:&quot;%&quot;,&quot;size&quot;:81,&quot;sizes&quot;:[]},&quot;align_mobile&quot;:&quot;center&quot;,&quot;width_mobile&quot;:{&quot;unit&quot;:&quot;%&quot;,&quot;size&quot;:69,&quot;sizes&quot;:[]},&quot;width_tablet&quot;:{&quot;unit&quot;:&quot;%&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;space&quot;:{&quot;unit&quot;:&quot;%&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;space_tablet&quot;:{&quot;unit&quot;:&quot;%&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;space_mobile&quot;:{&quot;unit&quot;:&quot;%&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;image_border_radius&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;image_border_radius_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;image_border_radius_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;caption_padding&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;caption_padding_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;caption_padding_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;caption_space&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:0,&quot;sizes&quot;:[]},&quot;caption_space_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;caption_space_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]}}" data-widget_type="site-logo.default">
-				<div class="elementor-widget-container">
-							<div class="hfe-site-logo">
-													<a data-elementor-open-lightbox=""  class='elementor-clickable' href="<?php echo $base_url; ?>/">
-							<div class="hfe-site-logo-set">           
-				<div class="hfe-site-logo-container">
-									<img decoding="async" class="hfe-site-logo-img elementor-animation-"  src="<?php echo $base_url; ?>/assets/images/logo.png" alt="logo"/>
-				</div>
-			</div>
-							</a>
-						</div>  
-							</div>
-				</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-1fb18a2" data-id="1fb18a2" data-element_type="column" data-e-type="column">
-			<div class="elementor-widget-wrap elementor-element-populated">
-						<div class="elementor-element elementor-element-b95c0c3 elementor-widget__width-initial hfe-nav-menu__align-left hfe-submenu-icon-arrow hfe-submenu-animation-none hfe-link-redirect-child hfe-nav-menu__breakpoint-tablet elementor-widget elementor-widget-navigation-menu" data-id="b95c0c3" data-element_type="widget" data-e-type="widget" data-settings="{&quot;padding_vertical_menu_item&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:8,&quot;sizes&quot;:[]},&quot;menu_space_between&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:14,&quot;sizes&quot;:[]},&quot;menu_row_space&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:0,&quot;sizes&quot;:[]},&quot;toggle_size_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:23,&quot;sizes&quot;:[]},&quot;padding_horizontal_menu_item&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:15,&quot;sizes&quot;:[]},&quot;padding_horizontal_menu_item_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_horizontal_menu_item_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_vertical_menu_item_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_vertical_menu_item_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;menu_space_between_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;menu_space_between_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;menu_row_space_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;menu_row_space_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;dropdown_border_radius&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;dropdown_border_radius_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;dropdown_border_radius_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;width_dropdown_item&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;220&quot;,&quot;sizes&quot;:[]},&quot;width_dropdown_item_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;width_dropdown_item_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_horizontal_dropdown_item&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_horizontal_dropdown_item_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_horizontal_dropdown_item_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_vertical_dropdown_item&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:15,&quot;sizes&quot;:[]},&quot;padding_vertical_dropdown_item_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_vertical_dropdown_item_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;distance_from_menu&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;distance_from_menu_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;distance_from_menu_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_size&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_size_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_width&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_width_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_width_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_radius&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_radius_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_radius_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]}}" data-widget_type="navigation-menu.default">
-				<div class="elementor-widget-container">
-								<?php include __DIR__ . '/includes/nav.php'; ?>
-							</div>
-				</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-541defe elementor-hidden-mobile elementor-hidden-tablet" data-id="541defe" data-element_type="column" data-e-type="column">
-			<div class="elementor-widget-wrap elementor-element-populated">
-						<div class="elementor-element elementor-element-853daed elementor-mobile-align-center elementor-widget elementor-widget-button" data-id="853daed" data-element_type="widget" data-e-type="widget" data-widget_type="button.default">
-				<div class="elementor-widget-container">
-									<div class="elementor-button-wrapper">
-					<a class="elementor-button elementor-button-link elementor-size-sm elementor-animation-shrink" href="<?php echo $base_url; ?>/contact-us/">
-						<span class="elementor-button-content-wrapper">
-						<span class="elementor-button-icon">
-				<svg aria-hidden="true" class="e-font-icon-svg e-fas-phone-alt" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M497.39 361.8l-112-48a24 24 0 0 0-28 6.9l-49.6 60.6A370.66 370.66 0 0 1 130.6 204.11l60.6-49.6a23.94 23.94 0 0 0 6.9-28l-48-112A24.16 24.16 0 0 0 122.6.61l-104 24A24 24 0 0 0 0 48c0 256.5 207.9 464 464 464a24 24 0 0 0 23.4-18.6l24-104a24.29 24.29 0 0 0-14.01-27.6z"></path></svg>			</span>
-									<span class="elementor-button-text">Contact Us</span>
-					</span>
-					</a>
-				</div>
-								</div>
-				</div>
-					</div>
-		</div>
-					</div>
-		</section>
-					</div>
-		</div>
-					</div>
-		</section>
-				<section class="elementor-section elementor-top-section elementor-element elementor-element-8c7fb46 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="8c7fb46" data-element_type="section" data-e-type="section" data-settings="{&quot;background_background&quot;:&quot;slideshow&quot;,&quot;background_slideshow_gallery&quot;:[{&quot;id&quot;:72,&quot;url&quot;:&quot;https:\/\/fescon.com.pk\/wp-content\/uploads\/2024\/12\/IMG_4737-scaled.jpg&quot;},{&quot;id&quot;:372,&quot;url&quot;:&quot;https:\/\/fescon.com.pk\/wp-content\/uploads\/2024\/12\/DJI_0359-scaled.jpg&quot;},{&quot;id&quot;:373,&quot;url&quot;:&quot;https:\/\/fescon.com.pk\/wp-content\/uploads\/2024\/12\/DJI_0400-scaled.jpg&quot;},{&quot;id&quot;:426,&quot;url&quot;:&quot;https:\/\/fescon.com.pk\/wp-content\/uploads\/2024\/12\/IMG_4615-scaled.jpg&quot;}],&quot;background_slideshow_loop&quot;:&quot;yes&quot;,&quot;background_slideshow_slide_duration&quot;:5000,&quot;background_slideshow_slide_transition&quot;:&quot;fade&quot;,&quot;background_slideshow_transition_duration&quot;:500}">
-							<div class="elementor-background-overlay"></div>
-							<div class="elementor-container elementor-column-gap-wide">
-					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-7de4256" data-id="7de4256" data-element_type="column" data-e-type="column">
-			<div class="elementor-widget-wrap elementor-element-populated">
-						<section class="elementor-section elementor-inner-section elementor-element elementor-element-f985381 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="f985381" data-element_type="section" data-e-type="section">
-						<div class="elementor-container elementor-column-gap-default">
-					<div class="elementor-column elementor-col-66 elementor-inner-column elementor-element elementor-element-515027a" data-id="515027a" data-element_type="column" data-e-type="column">
-			<div class="elementor-widget-wrap elementor-element-populated">
-						<div class="elementor-element elementor-element-2e26970 elementor-widget elementor-widget-heading" data-id="2e26970" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-					<h1 class="elementor-heading-title elementor-size-default">We Build more than infrastructure<br> We shape cities for tomorrow</h1>				</div>
-				</div>
-				<div class="elementor-element elementor-element-66f5bc3 elementor-widget-divider--view-line elementor-widget elementor-widget-divider" data-id="66f5bc3" data-element_type="widget" data-e-type="widget" data-widget_type="divider.default">
-				<div class="elementor-widget-container">
-							<div class="elementor-divider">
-			<span class="elementor-divider-separator">
-						</span>
-		</div>
-						</div>
-				</div>
-				<div class="elementor-element elementor-element-016e049 elementor-widget elementor-widget-text-editor" data-id="016e049" data-element_type="widget" data-e-type="widget" data-widget_type="text-editor.default">
-				<div class="elementor-widget-container">
-									<p>Fescon is a visionary initiative, founded by dynamic team of qualified Engineers specializing in Electrical, Civil, Mechanical, Information Technology and Environmental Engineering.</p>								</div>
-				</div>
-				<div class="elementor-element elementor-element-58e3e87 elementor-align-left elementor-mobile-align-left elementor-widget elementor-widget-button" data-id="58e3e87" data-element_type="widget" data-e-type="widget" data-widget_type="button.default">
-				<div class="elementor-widget-container">
-									<div class="elementor-button-wrapper">
-					<a class="elementor-button elementor-button-link elementor-size-sm elementor-animation-shrink" href="<?php echo $base_url; ?>/services/">
-						<span class="elementor-button-content-wrapper">
-									<span class="elementor-button-text">Our Services</span>
-					</span>
-					</a>
-				</div>
-								</div>
-				</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-0dd49aa" data-id="0dd49aa" data-element_type="column" data-e-type="column">
-			<div class="elementor-widget-wrap">
-							</div>
-		</div>
-					</div>
-		</section>
-					</div>
-		</div>
-					</div>
-		</section>
-		<div class="elementor-element elementor-element-32e8bb6 e-flex e-con-boxed e-con e-parent" data-id="32e8bb6" data-element_type="container" data-e-type="container">
-					<div class="e-con-inner">
-				<div class="elementor-element elementor-element-90d16e1 elementor-widget elementor-widget-text-editor" data-id="90d16e1" data-element_type="widget" data-e-type="widget" data-widget_type="text-editor.default">
-				<div class="elementor-widget-container">
-									<p><strong>Building the Future: The Importance of Quality Construction Work</strong></p><p>The construction industry is the backbone of modern infrastructure, shaping cities, communities, and businesses. Whether it&#8217;s residential buildings, commercial spaces, or large-scale infrastructure projects, quality construction work is essential for safety, durability, and long-term functionality.</p><p><strong>The Role of Skilled Professionals</strong></p><p>The role of experienced and skilled professional is providing solutions for successful construction projects that involved skilled professionals, including architects, engineers, contractors, and laborers. Each plays a crucial role in ensuring that projects are completed on time, within budget, and in compliance with safety regulations.</p><p><strong>The Importance of Using High-Quality Materials</strong></p><p>Quality materials are essential for constructing durable and resilient structures. Using substandard materials can lead to structural weaknesses, costly repairs, and safety hazards. Investing in top-tier materials ensures that buildings can withstand environmental conditions and serve their purpose for years to come.</p><p><strong>The Impact of Modern Technology on Construction</strong></p><p>Advancements in technology have revolutionized the construction industry. The Use of analytical approach and Computational tools (AUTOCAD, Oracle, surveying instruments) in the Construction Projects have enhanced efficiency, reduced costs, and improved project management. Incorporating modern technology allows for greater precision and faster project completion.</p><p><strong>Sustainable Construction Practices</strong></p><p>Sustainability is becoming a key focus in construction. Eco-friendly materials, energy-efficient designs, and sustainable building techniques are helping reduce environmental impact. Green construction practices not only benefit the planet but also lower long-term operational costs for property owners.</p><p><strong>Ensuring Safety and Compliance</strong></p><p>Safety is a top priority in construction. Adhering to occupational health and safety regulations prevents accidents and ensures a secure working environment. Regular training, proper protective gear, and adherence to safety protocols help maintain a productive and accident-free job site.</p><p> </p>								</div>
-				</div>
-					</div>
-				</div>
-				<section class="elementor-section elementor-top-section elementor-element elementor-element-158ec1f elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="158ec1f" data-element_type="section" data-e-type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-							<div class="elementor-background-overlay"></div>
-							<div class="elementor-container elementor-column-gap-default">
-					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-00832a4" data-id="00832a4" data-element_type="column" data-e-type="column">
-			<div class="elementor-widget-wrap elementor-element-populated">
-						<section class="elementor-section elementor-inner-section elementor-element elementor-element-733f9cc elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="733f9cc" data-element_type="section" data-e-type="section">
-						<div class="elementor-container elementor-column-gap-default">
-					<div class="elementor-column elementor-col-25 elementor-inner-column elementor-element elementor-element-9fea71d" data-id="9fea71d" data-element_type="column" data-e-type="column">
-			<div class="elementor-widget-wrap elementor-element-populated">
-						<div class="elementor-element elementor-element-d578407 elementor-widget elementor-widget-site-logo" data-id="d578407" data-element_type="widget" data-e-type="widget" data-settings="{&quot;align&quot;:&quot;left&quot;,&quot;align_mobile&quot;:&quot;center&quot;,&quot;width&quot;:{&quot;unit&quot;:&quot;%&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;width_tablet&quot;:{&quot;unit&quot;:&quot;%&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;width_mobile&quot;:{&quot;unit&quot;:&quot;%&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;space&quot;:{&quot;unit&quot;:&quot;%&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;space_tablet&quot;:{&quot;unit&quot;:&quot;%&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;space_mobile&quot;:{&quot;unit&quot;:&quot;%&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;image_border_radius&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;image_border_radius_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;image_border_radius_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;caption_padding&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;caption_padding_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;caption_padding_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;caption_space&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:0,&quot;sizes&quot;:[]},&quot;caption_space_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;caption_space_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]}}" data-widget_type="site-logo.default">
-				<div class="elementor-widget-container">
-							<div class="hfe-site-logo">
-													<a data-elementor-open-lightbox=""  class='elementor-clickable' href="<?php echo $base_url; ?>/">
-							<div class="hfe-site-logo-set">           
-				<div class="hfe-site-logo-container">
-									<img decoding="async" class="hfe-site-logo-img elementor-animation-"  src="<?php echo $base_url; ?>/assets/images/logo-300x106.png" alt="logo"/>
-				</div>
-			</div>
-							</a>
-						</div>  
-							</div>
-				</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-25 elementor-inner-column elementor-element elementor-element-0ed48c8" data-id="0ed48c8" data-element_type="column" data-e-type="column">
-			<div class="elementor-widget-wrap elementor-element-populated">
-						<div class="elementor-element elementor-element-f89ef84 elementor-widget elementor-widget-heading" data-id="f89ef84" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-					<h4 class="elementor-heading-title elementor-size-default">Information Contact</h4>				</div>
-				</div>
-				<div class="elementor-element elementor-element-ba4e249 elementor-mobile-align-center elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="ba4e249" data-element_type="widget" data-e-type="widget" data-widget_type="icon-list.default">
-				<div class="elementor-widget-container">
-							<ul class="elementor-icon-list-items">
-							<li class="elementor-icon-list-item">
-											<span class="elementor-icon-list-icon">
-							<svg aria-hidden="true" class="e-font-icon-svg e-fas-map-marker" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0z"></path></svg>						</span>
-										<span class="elementor-icon-list-text">Lahore, Pakistan</span>
-									</li>
-								<li class="elementor-icon-list-item">
-											<span class="elementor-icon-list-icon">
-							<svg aria-hidden="true" class="e-font-icon-svg e-far-envelope" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"></path></svg>						</span>
-										<span class="elementor-icon-list-text">info@fescon.com.pk</span>
-									</li>
-								<li class="elementor-icon-list-item">
-											<span class="elementor-icon-list-icon">
-							<svg aria-hidden="true" class="e-font-icon-svg e-fas-phone-alt" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M497.39 361.8l-112-48a24 24 0 0 0-28 6.9l-49.6 60.6A370.66 370.66 0 0 1 130.6 204.11l60.6-49.6a23.94 23.94 0 0 0 6.9-28l-48-112A24.16 24.16 0 0 0 122.6.61l-104 24A24 24 0 0 0 0 48c0 256.5 207.9 464 464 464a24 24 0 0 0 23.4-18.6l24-104a24.29 24.29 0 0 0-14.01-27.6z"></path></svg>						</span>
-										<span class="elementor-icon-list-text">+92 304 111 2766</span>
-									</li>
-						</ul>
-						</div>
-				</div>
-				<div class="elementor-element elementor-element-c5efad0 elementor-shape-square e-grid-align-left e-grid-align-mobile-center elementor-grid-0 elementor-widget elementor-widget-social-icons" data-id="c5efad0" data-element_type="widget" data-e-type="widget" data-widget_type="social-icons.default">
-				<div class="elementor-widget-container">
-							<div class="elementor-social-icons-wrapper elementor-grid" role="list">
-							<span class="elementor-grid-item" role="listitem">
-					<a class="elementor-icon elementor-social-icon elementor-social-icon-facebook elementor-animation-float elementor-repeater-item-7089d43" target="_blank">
-						<span class="elementor-screen-only">Facebook</span>
-						<svg aria-hidden="true" class="e-font-icon-svg e-fab-facebook" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"></path></svg>					</a>
-				</span>
-							<span class="elementor-grid-item" role="listitem">
-					<a class="elementor-icon elementor-social-icon elementor-social-icon-linkedin elementor-animation-float elementor-repeater-item-496e8b5" target="_blank">
-						<span class="elementor-screen-only">Linkedin</span>
-						<svg aria-hidden="true" class="e-font-icon-svg e-fab-linkedin" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path></svg>					</a>
-				</span>
-							<span class="elementor-grid-item" role="listitem">
-					<a class="elementor-icon elementor-social-icon elementor-social-icon-instagram elementor-animation-float elementor-repeater-item-da6581c" target="_blank">
-						<span class="elementor-screen-only">Instagram</span>
-						<svg aria-hidden="true" class="e-font-icon-svg e-fab-instagram" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path></svg>					</a>
-				</span>
-					</div>
-						</div>
-				</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-25 elementor-inner-column elementor-element elementor-element-83f6e5f" data-id="83f6e5f" data-element_type="column" data-e-type="column">
-			<div class="elementor-widget-wrap elementor-element-populated">
-						<div class="elementor-element elementor-element-2b1602d elementor-widget elementor-widget-heading" data-id="2b1602d" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-					<h4 class="elementor-heading-title elementor-size-default">Main Menu</h4>				</div>
-				</div>
-				<div class="elementor-element elementor-element-6b235f8 elementor-widget elementor-widget-pa-link-effects" data-id="6b235f8" data-element_type="widget" data-e-type="widget" data-widget_type="pa-link-effects.default">
-				<div class="elementor-widget-container">
-							<div class="pp-link-container">
-			<a href="<?php echo $base_url; ?>/" class="pp-link pp-link-effect-2" >
-				<span >
-					Home				</span>
-							</a>
-		</div>
-						</div>
-				</div>
-				<div class="elementor-element elementor-element-44c2440 elementor-widget elementor-widget-pa-link-effects" data-id="44c2440" data-element_type="widget" data-e-type="widget" data-widget_type="pa-link-effects.default">
-				<div class="elementor-widget-container">
-							<div class="pp-link-container">
-			<a href="<?php echo $base_url; ?>/about-us/" class="pp-link pp-link-effect-2" >
-				<span >
-					About Us				</span>
-							</a>
-		</div>
-						</div>
-				</div>
-				<div class="elementor-element elementor-element-66a48a9 elementor-widget elementor-widget-pa-link-effects" data-id="66a48a9" data-element_type="widget" data-e-type="widget" data-widget_type="pa-link-effects.default">
-				<div class="elementor-widget-container">
-							<div class="pp-link-container">
-			<a href="<?php echo $base_url; ?>/services/" class="pp-link pp-link-effect-2" >
-				<span >
-					Services				</span>
-							</a>
-		</div>
-						</div>
-				</div>
-				<div class="elementor-element elementor-element-b3459d2 elementor-widget elementor-widget-pa-link-effects" data-id="b3459d2" data-element_type="widget" data-e-type="widget" data-widget_type="pa-link-effects.default">
-				<div class="elementor-widget-container">
-							<div class="pp-link-container">
-			<a href="<?php echo $base_url; ?>/contact-us/" class="pp-link pp-link-effect-2" >
-				<span >
-					Contact				</span>
-							</a>
-		</div>
-						</div>
-				</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-25 elementor-inner-column elementor-element elementor-element-1287918" data-id="1287918" data-element_type="column" data-e-type="column">
-			<div class="elementor-widget-wrap elementor-element-populated">
-						<div class="elementor-element elementor-element-85fa124 elementor-widget elementor-widget-heading" data-id="85fa124" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-					<h5 class="elementor-heading-title elementor-size-default">Useful Links</h5>				</div>
-				</div>
-				<div class="elementor-element elementor-element-ca197eb elementor-widget elementor-widget-pa-link-effects" data-id="ca197eb" data-element_type="widget" data-e-type="widget" data-widget_type="pa-link-effects.default">
-				<div class="elementor-widget-container">
-							<div class="pp-link-container">
-			<a href="<?php echo $base_url; ?>/projects/" class="pp-link pp-link-effect-2" >
-				<span >
-					Projects				</span>
-							</a>
-		</div>
-						</div>
-				</div>
-				<div class="elementor-element elementor-element-7e89506 elementor-widget elementor-widget-pa-link-effects" data-id="7e89506" data-element_type="widget" data-e-type="widget" data-widget_type="pa-link-effects.default">
-				<div class="elementor-widget-container">
-							<div class="pp-link-container">
-			<a href="<?php echo $base_url; ?>/certifications/" class="pp-link pp-link-effect-2" >
-				<span >
-					Certifications				</span>
-							</a>
-		</div>
-						</div>
-				</div>
-				<div class="elementor-element elementor-element-dd86d0d elementor-widget elementor-widget-pa-link-effects" data-id="dd86d0d" data-element_type="widget" data-e-type="widget" data-widget_type="pa-link-effects.default">
-				<div class="elementor-widget-container">
-							<div class="pp-link-container">
-			<a href="<?php echo $base_url; ?>/collaborations/" class="pp-link pp-link-effect-2" >
-				<span >
-					Collaborations				</span>
-							</a>
-		</div>
-						</div>
-				</div>
-					</div>
-		</div>
-					</div>
-		</section>
-				<div class="elementor-element elementor-element-a76f740 elementor-widget-divider--view-line elementor-widget elementor-widget-divider" data-id="a76f740" data-element_type="widget" data-e-type="widget" data-widget_type="divider.default">
-				<div class="elementor-widget-container">
-							<div class="elementor-divider">
-			<span class="elementor-divider-separator">
-						</span>
-		</div>
-						</div>
-				</div>
-				<div class="elementor-element elementor-element-ac7717a elementor-widget elementor-widget-copyright" data-id="ac7717a" data-element_type="widget" data-e-type="widget" data-settings="{&quot;align&quot;:&quot;center&quot;}" data-widget_type="copyright.default">
-				<div class="elementor-widget-container">
-							<div class="hfe-copyright-wrapper">
-							<a href="https://technocro.com">
-					<span>Copyright © 2026 Fescon | Developed By Techno Cro</span>
-				</a>
-					</div>
-						</div>
-				</div>
-					</div>
-		</div>
-					</div>
-		</section>
-				</div>
-					<script>
-				const lazyloadRunObserver = () => {
-					const lazyloadBackgrounds = document.querySelectorAll( `.e-con.e-parent:not(.e-lazyloaded)` );
-					const lazyloadBackgroundObserver = new IntersectionObserver( ( entries ) => {
-						entries.forEach( ( entry ) => {
-							if ( entry.isIntersecting ) {
-								let lazyloadBackground = entry.target;
-								if( lazyloadBackground ) {
-									lazyloadBackground.classList.add( 'e-lazyloaded' );
-								}
-								lazyloadBackgroundObserver.unobserve( entry.target );
-							}
-						});
-					}, { rootMargin: '200px 0px 200px 0px' } );
-					lazyloadBackgrounds.forEach( ( lazyloadBackground ) => {
-						lazyloadBackgroundObserver.observe( lazyloadBackground );
-					} );
-				};
-				const events = [
-					'DOMContentLoaded',
-					'elementor/lazyload/observe',
-				];
-				events.forEach( ( event ) => {
-					document.addEventListener( event, lazyloadRunObserver );
-				} );
-			</script>
-			<script id="fluentform-elementor-js-extra">
-var fluentformElementor = {"adminUrl":"https:\/\/fescon.com.pk\/wp-admin\/admin.php"};
-</script>
-<script src="<?php echo $base_url; ?>/assets/js/fluent-forms-elementor-widget.js" id="fluentform-elementor-js"></script>
-<script id="wp-block-template-skip-link-js-after">
-	( function() {
-		var skipLinkTarget = document.querySelector( 'main' ),
-			sibling,
-			skipLinkTargetID,
-			skipLink;
-
-		// Early exit if a skip-link target can't be located.
-		if ( ! skipLinkTarget ) {
-			return;
-		}
-
-		/*
-		 * Get the site wrapper.
-		 * The skip-link will be injected in the beginning of it.
-		 */
-		sibling = document.querySelector( '.wp-site-blocks' );
-
-		// Early exit if the root element was not found.
-		if ( ! sibling ) {
-			return;
-		}
-
-		// Get the skip-link target's ID, and generate one if it doesn't exist.
-		skipLinkTargetID = skipLinkTarget.id;
-		if ( ! skipLinkTargetID ) {
-			skipLinkTargetID = 'wp--skip-link--target';
-			skipLinkTarget.id = skipLinkTargetID;
-		}
-
-		// Create the skip link.
-		skipLink = document.createElement( 'a' );
-		skipLink.classList.add( 'skip-link', 'screen-reader-text' );
-		skipLink.href = '#' + skipLinkTargetID;
-		skipLink.innerHTML = 'Skip to content';
-
-		// Inject the skip link.
-		sibling.parentElement.insertBefore( skipLink, sibling );
-	}() );
-	
-</script>
-<script src="<?php echo $base_url; ?>/assets/js/hooks.min.js" id="wp-hooks-js"></script>
-<script src="<?php echo $base_url; ?>/assets/js/i18n.min.js" id="wp-i18n-js"></script>
-<script id="wp-i18n-js-after">
-wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
-</script>
-<script src="<?php echo $base_url; ?>/assets/js/swv-index.js" id="swv-js"></script>
-<script id="contact-form-7-js-before">
-var wpcf7 = {
-    "api": {
-        "root": "<?php echo $base_url; ?>/contact-handler.php?api=",
-        "namespace": "contact-form-7\/v1"
-    },
-    "cached": 1
-};
-</script>
-<script src="<?php echo $base_url; ?>/assets/js/wpcf7-index.js" id="contact-form-7-js"></script>
-<script src="<?php echo $base_url; ?>/assets/js/webpack.runtime.min.js" id="elementor-webpack-runtime-js"></script>
-<script src="<?php echo $base_url; ?>/assets/js/frontend-modules.min.js" id="elementor-frontend-modules-js"></script>
-<script src="<?php echo $base_url; ?>/assets/js/core.min.js" id="jquery-ui-core-js"></script>
-<script id="elementor-frontend-js-before">
-var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Share on Facebook","shareOnTwitter":"Share on Twitter","pinIt":"Pin it","download":"Download","downloadImage":"Download image","fullscreen":"Fullscreen","zoom":"Zoom","share":"Share","playVideo":"Play Video","previous":"Previous","next":"Next","close":"Close","a11yCarouselPrevSlideMessage":"Previous slide","a11yCarouselNextSlideMessage":"Next slide","a11yCarouselFirstSlideMessage":"This is the first slide","a11yCarouselLastSlideMessage":"This is the last slide","a11yCarouselPaginationBulletMessage":"Go to slide"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Mobile Portrait","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Landscape","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet Portrait","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Landscape","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}},"hasCustomBreakpoints":false},"version":"4.1.1","is_static":false,"experimentalFeatures":{"e_font_icon_svg":true,"additional_custom_breakpoints":true,"container":true,"nested-elements":true,"global_classes_should_enforce_capabilities":true,"e_variables":true,"e_opt_in_v4_page":true,"e_components":true,"e_interactions":true,"e_widget_creation":true,"import-export-customization":true},"urls":{"assets":"https:\/\/fescon.com.pk\/wp-content\/plugins\/elementor\/assets\/","ajaxurl":"<?php echo $base_url; ?>/contact-handler.php","uploadUrl":"https:\/\/fescon.com.pk\/wp-content\/uploads"},"nonces":{"floatingButtonsClickTracking":"2c3a984dd5","atomicFormsSendForm":"3da7fc4311"},"swiperClass":"swiper","settings":{"page":[],"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":728,"title":"Blogs%20%E2%80%93%20Fescon","excerpt":"","featuredImage":false}};
-</script>
-<script src="<?php echo $base_url; ?>/assets/js/frontend.min.js" id="elementor-frontend-js"></script>
-<script src="<?php echo $base_url; ?>/assets/js/frontend.js" id="hfe-frontend-js-js"></script>
-<script src="<?php echo $base_url; ?>/assets/js/swiper.min.js" id="swiper-js"></script>
-<script src="<?php echo $base_url; ?>/assets/js/mailcheck.min.js" id="mailcheck-js-js" defer data-wp-strategy="defer"></script>
-<script src="<?php echo $base_url; ?>/assets/js/jquery.email-autocomplete.min.js" id="autocomplete-email-js-js" defer data-wp-strategy="defer"></script>
-<script src="<?php echo $base_url; ?>/assets/js/intlTelInput.js" id="intl-tel-input-js-js" defer data-wp-strategy="defer"></script>
-<script id="mystickyelements-fronted-js-js-extra">
-var mystickyelements = {"ajaxurl":"<?php echo $base_url; ?>/contact-handler.php","ajax_nonce":"072a832a76","plugin_url":"https:\/\/fescon.com.pk\/wp-content\/plugins\/mystickyelements\/"};
-</script>
-<script src="<?php echo $base_url; ?>/assets/js/mystickyelements-fronted.min.js" id="mystickyelements-fronted-js-js" defer data-wp-strategy="defer"></script>
-            <div                 class="mystickyelements-fixed mystickyelements-position-right mystickyelements-position-screen-center mystickyelements-position-mobile-right mystickyelements-on-hover mystickyelements-size-small mystickyelements-mobile-size-small mystickyelements-entry-effect-slide-in mystickyelements-templates-roundad">
-				<div class="mystickyelement-lists-wrap">
-					<ul class="mystickyelements-lists mysticky">
-													<li class="mystickyelements-minimize ">
-								<span class="mystickyelements-minimize minimize-position-right minimize-position-mobile-right" style="background: #000000" >
-								&rarr;								</span>
-							</li>
-						
-						
-							<li id="mystickyelements-contact-form" class="mystickyelements-contact-form  element-desktop-on element-mobile-on"   data-tab-opt="hover" data-time-delay="0" >
-																<span class="mystickyelements-social-icon "
-									  style="background-color: #7761DF; color: #FFFFFF;"><i
-										class="far fa-envelope"></i>Contact Us</span>
-																<div class="element-contact-form" style="background-color: #ffffff">
-																		<div class="contact-form-heading" style="color: #7761DF;background-color:#ffffff">
-										Contact Form										<span href="#" class="element-contact-close"><i class="fas fa-times"></i></span>
-									</div>
-
-									<form id="stickyelements-form" class="stickyelements-form" action="<?php echo $base_url; ?>/sticky-handler.php" method="post" autocomplete="off" data-close-after="">
-																					<label>
-												<span class="sr-only">Name</span>
-												<input
-													class=""
-													type="text" id="contact-form-name" name="contact-form-name" value=""
-													placeholder="Name"   autocomplete="off"/>
-											</label>
-																					<label>
-												<span class="sr-only">Phone</span>
-												<input
-													class=" required"
-													type="tel" id="contact-form-phone" name="contact-form-phone" value="" oninput="this.value = this.value.replace(/[^0-9+]/g, '');"
-													placeholder="Phone*"  required  autocomplete="off" />
-											</label>
-											<input type="hidden" id="phone_formate" value="0">
-																					<label>
-												<span class="sr-only">Email</span>
-												<input
-													class="email  required"
-													type="email" id="contact-form-email" name="contact-form-email" value=""
-													placeholder="Email*"  required  autocomplete="off"/>
-											</label>
-																					<label>
-												<span class="sr-only">Message</span>
-												<textarea
-													class=""
-													id="contact-form-message" name="contact-form-message"
-													placeholder="Message" ></textarea>
-											</label>
-																				<p class="mse-form-success-message" id="mse-form-error" style="display:none;"></p>
-										<input id="stickyelements-submit-form" type="submit" name="contact-form-submit"
-											   value="Submit"
-											   style="background-color: #7761DF;color:#FFFFFF;"/>
-																				<input type="hidden" name="nonce" value="6ac3cebbdcd5517912173396ac3cebbdcd56">
-										<input type="hidden" name="form_id"
-											   value="9a134c854a">
-										<input type="hidden" id="stickyelements-page-link" name="stickyelements-page-link" value="<?php echo htmlspecialchars($_SERVER['REQUEST_URI'] ?? ''); ?>" />
-										
-									</form>
-								</div>
-							</li>
-														<li id="mystickyelements-social-whatsapp"
-									class="mystickyelements-social-icon-li mystickyelements- mystickyelements-social-whatsapp  element-desktop-on element-mobile-on">
-																			<style>
-																					</style>
-																				
-									<span class="mystickyelements-social-icon  social-whatsapp social-custom" data-tab-setting = 'hover' data-click = "0"data-mobile-behavior="disable" data-flyout="disable"
-										   style="background: #26D367" >
-										
-																					<a class="social-link-whatsapp" href="https://web.whatsapp.com/send?phone=+923008815488"   target="_blank" rel="noopener nofollow"  data-url="https://web.whatsapp.com/send?phone=+923008815488" data-tab-setting = 'hover'  data-mobile-behavior="disable" data-flyout="disable" title="WhatsApp">
-																					<i class="fab fa-whatsapp" ></i>
-																					</a>
-																			</span>									
-																	<span class="mystickyelements-social-text " style= "background: #26D367;" >
-																				<a class="social-link-whatsapp" href="https://web.whatsapp.com/send?phone=+923008815488"   target="_blank" rel="noopener nofollow"   data-tab-setting = 'hover' data-flyout="disable" title="WhatsApp"
-										data-url="https://web.whatsapp.com/send?phone=+923008815488"
-										
-										>
-																						WhatsApp																					</a>
-																		</span>
-																</li>
-															<li id="mystickyelements-social-linkedin"
-									class="mystickyelements-social-icon-li mystickyelements- mystickyelements-social-linkedin  element-desktop-on element-mobile-on">
-																			<style>
-																					</style>
-																				
-									<span class="mystickyelements-social-icon  social-linkedin social-custom" data-tab-setting = 'hover' data-click = "0"data-mobile-behavior="disable" data-flyout="disable"
-										   style="background: #0077b5" >
-										
-																					<a class="social-link-linkedin" href="http://linkedin.com"   data-url="http://linkedin.com" data-tab-setting = 'hover'  data-mobile-behavior="disable" data-flyout="disable" title="Linkedin">
-																					<i class="fab fa-linkedin-in" ></i>
-																					</a>
-																			</span>									
-																	<span class="mystickyelements-social-text " style= "background: #0077b5;" >
-																				<a class="social-link-linkedin" href="http://linkedin.com"    data-tab-setting = 'hover' data-flyout="disable" title="Linkedin"
-										data-url="http://linkedin.com"
-										
-										>
-																						Linkedin																					</a>
-																		</span>
-																</li>
-												</ul>					
-				</div>
+<!-- =========================================================
+     UNIFIED LIGHT SUBPAGE HERO BANNER
+========================================================= -->
+<section class="page-hero">
+    <div class="page-hero-bg" style="background-image: url('<?php echo asset_url('assets/images/DJI_0400-scaled.jpg'); ?>');"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="container">
+        <div class="page-hero-inner" data-reveal>
+            <div class="page-hero-badge">
+                <i class="fas fa-newspaper"></i> Technical Knowledge &amp; Insights
             </div>
-			
-<script src="<?php echo $base_url; ?>/assets/js/main.js"></script>
-</body>
-</html>
+            
+            <h1 class="page-hero-title">
+                Engineering <span class="highlight">Insights &amp; Articles</span>
+            </h1>
+            
+            <p class="page-hero-subtitle">
+                Explore in-depth technical articles, construction methodologies, high-voltage substation engineering case studies, and sustainable infrastructure developments curated by Fescon's engineering specialists.
+            </p>
+            
+            <div class="page-hero-breadcrumbs">
+                <a href="<?php echo $base_url; ?>/">Home</a>
+                <span class="sep">/</span>
+                <span class="current">Blogs &amp; Insights</span>
+                <span class="count-tag"><?php echo count($articles); ?> Published Articles</span>
+            </div>
+        </div>
+    </div>
+</section>
 
+<!-- =========================================================
+     FEATURED ARTICLE SPOTLIGHT (If Viewing a Specific Post)
+========================================================= -->
+<?php if ($active_article): ?>
+<section style="background: #ffffff; padding: 60px 0 30px; border-bottom: 1px solid var(--border-light);">
+    <div class="container">
+        <div style="max-width: 900px; margin: 0 auto;" data-reveal>
+            <a href="<?php echo $base_url; ?>/blogs/" class="btn btn-outline-dark" style="margin-bottom: 24px; display: inline-flex; align-items: center; gap: 8px;">
+                <i class="fas fa-arrow-left"></i> Back to All Articles
+            </a>
+            
+            <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 16px;">
+                <span style="background: rgba(198,40,40,0.12); color: var(--brand-red); font-size: 0.8rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; text-transform: uppercase;">
+                    <?php echo htmlspecialchars($active_article['category_badge']); ?>
+                </span>
+                <span style="color: #64748b; font-size: 0.88rem;">
+                    <i class="far fa-calendar-alt"></i> <?php echo htmlspecialchars($active_article['date']); ?>
+                </span>
+                <span style="color: #64748b; font-size: 0.88rem;">
+                    <i class="far fa-clock"></i> <?php echo htmlspecialchars($active_article['read_time']); ?>
+                </span>
+            </div>
 
-<!-- Page cached by LiteSpeed Cache 7.9.1 on 2026-10-05 16:22:19 -->
+            <h1 style="color: #0f172a; font-size: clamp(2rem, 3.5vw, 2.7rem); font-weight: 800; line-height: 1.25; margin: 0 0 20px;">
+                <?php echo htmlspecialchars($active_article['title']); ?>
+            </h1>
+
+            <div style="display: flex; align-items: center; gap: 14px; padding: 14px 0; border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); margin-bottom: 30px;">
+                <div style="width: 44px; height: 44px; border-radius: 50%; background: rgba(198,40,40,0.12); color: var(--brand-red); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+                    <i class="fas fa-hard-hat"></i>
+                </div>
+                <div>
+                    <div style="font-weight: 700; color: #0f172a; font-size: 0.95rem;"><?php echo htmlspecialchars($active_article['author']); ?></div>
+                    <div style="font-size: 0.82rem; color: #64748b;"><?php echo htmlspecialchars($active_article['author_role']); ?></div>
+                </div>
+            </div>
+
+            <!-- Featured Image -->
+            <div style="border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 35px; box-shadow: var(--shadow-card); border: 1px solid var(--border-light);">
+                <img src="<?php echo asset_url($active_article['image']); ?>" alt="<?php echo htmlspecialchars($active_article['title']); ?>" style="width: 100%; height: auto; max-height: 480px; object-fit: cover; display: block;">
+            </div>
+
+            <!-- Article Body Sections -->
+            <div class="article-content-body" style="font-size: 1.05rem; line-height: 1.85; color: #334155;">
+                <p style="font-size: 1.15rem; color: #1e293b; font-weight: 500; line-height: 1.75; margin-bottom: 30px; padding-left: 18px; border-left: 4px solid var(--brand-red);">
+                    <?php echo htmlspecialchars($active_article['summary']); ?>
+                </p>
+
+                <?php foreach ($active_article['sections'] as $sec): ?>
+                <div style="margin-bottom: 32px; background: var(--bg-light-alt); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 28px 24px;">
+                    <h3 style="color: #0f172a; font-size: 1.35rem; font-weight: 700; margin: 0 0 14px; display: flex; align-items: center; gap: 12px;">
+                        <span style="color: var(--brand-red); font-size: 1.2rem;"><i class="<?php echo htmlspecialchars($sec['icon']); ?>"></i></span>
+                        <?php echo htmlspecialchars($sec['title']); ?>
+                    </h3>
+                    <p style="color: #475569; font-size: 1rem; line-height: 1.8; margin: 0;">
+                        <?php echo htmlspecialchars($sec['content']); ?>
+                    </p>
+                </div>
+                <?php endforeach; ?>
+
+                <!-- Tags & Share -->
+                <div style="margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+                        <span style="color: #64748b; font-size: 0.88rem; font-weight: 600;"><i class="fas fa-tags text-red"></i> Tags:</span>
+                        <?php foreach ($active_article['tags'] as $t): ?>
+                        <span style="background: #ffffff; border: 1px solid var(--border-light); padding: 4px 12px; border-radius: 14px; font-size: 0.82rem; color: #334155; font-weight: 600;">
+                            #<?php echo htmlspecialchars($t); ?>
+                        </span>
+                        <?php endforeach; ?>
+                    </div>
+                    <div>
+                        <a href="<?php echo $base_url; ?>/contact-us.php" class="btn btn-primary" style="padding: 10px 20px;">
+                            <i class="fas fa-envelope"></i> Discuss Engineering Projects
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
+
+<!-- =========================================================
+     ALL ARTICLES EDITORIAL GRID (Clean Light Theme)
+========================================================= -->
+<section style="background: var(--bg-light-alt); padding: 80px 0 100px; position: relative;">
+    <div class="container">
+        
+        <div style="text-align: center; max-width: 760px; margin: 0 auto 50px;" data-reveal>
+            <div style="color: var(--brand-red); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 10px;">
+                Industry Publications
+            </div>
+            <h2 style="font-size: clamp(2rem, 3.2vw, 2.6rem); font-weight: 800; color: #0f172a; margin: 0 0 16px; line-height: 1.25;">
+                Latest Engineering &amp; <span class="highlight">Construction Insights</span>
+            </h2>
+            <p style="font-size: 1rem; color: #475569; line-height: 1.65; margin: 0;">
+                Read our engineering board's analysis on infrastructure developments, high-voltage substation protocols, and modern turnkey construction benchmarks.
+            </p>
+        </div>
+
+        <!-- Articles Grid -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 32px;">
+            <?php foreach ($articles as $art): ?>
+            <article class="blog-card" data-reveal style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-card); display: flex; flex-direction: column; transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.3s ease;">
+                
+                <!-- Media Thumbnail -->
+                <div style="position: relative; height: 230px; overflow: hidden; background: #e2e8f0;">
+                    <img src="<?php echo asset_url($art['image']); ?>" 
+                         alt="<?php echo htmlspecialchars($art['title']); ?>" 
+                         loading="lazy"
+                         style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease;"
+                         onmouseover="this.style.transform='scale(1.05)'"
+                         onmouseout="this.style.transform='scale(1)'">
+                    
+                    <div style="position: absolute; top: 16px; left: 16px; background: rgba(198,40,40,0.92); color: #ffffff; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; backdrop-filter: blur(4px);">
+                        <?php echo htmlspecialchars($art['category_badge']); ?>
+                    </div>
+
+                    <div style="position: absolute; bottom: 12px; right: 12px; background: rgba(15,23,42,0.85); color: #ffffff; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; backdrop-filter: blur(4px);">
+                        <i class="far fa-clock"></i> <?php echo htmlspecialchars($art['read_time']); ?>
+                    </div>
+                </div>
+
+                <!-- Content Body -->
+                <div style="padding: 26px 24px; display: flex; flex-direction: column; flex-grow: 1;">
+                    <div style="display: flex; gap: 12px; align-items: center; font-size: 0.82rem; color: #64748b; margin-bottom: 12px;">
+                        <span><i class="far fa-calendar-alt text-red"></i> <?php echo htmlspecialchars($art['date']); ?></span>
+                        <span>&bull;</span>
+                        <span><i class="fas fa-layer-group text-red"></i> <?php echo htmlspecialchars($art['category']); ?></span>
+                    </div>
+
+                    <h3 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin: 0 0 12px; line-height: 1.4;">
+                        <a href="<?php echo $base_url; ?>/blogs/?article=<?php echo urlencode($art['slug']); ?>" style="color: inherit; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--brand-red)'" onmouseout="this.style.color='#0f172a'">
+                            <?php echo htmlspecialchars($art['title']); ?>
+                        </a>
+                    </h3>
+
+                    <p style="color: #475569; font-size: 0.92rem; line-height: 1.65; margin: 0 0 20px; flex-grow: 1;">
+                        <?php echo htmlspecialchars($art['summary']); ?>
+                    </p>
+
+                    <div style="border-top: 1px solid var(--border-light); padding-top: 16px; display: flex; justify-content: space-between; align-items: center;">
+                        <div style="font-size: 0.82rem; color: #64748b; font-weight: 600;">
+                            By <strong style="color: #0f172a;"><?php echo htmlspecialchars($art['author']); ?></strong>
+                        </div>
+                        <a href="<?php echo $base_url; ?>/blogs/?article=<?php echo urlencode($art['slug']); ?>" style="color: var(--brand-red); font-weight: 700; font-size: 0.9rem; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </article>
+            <?php endforeach; ?>
+        </div>
+
+    </div>
+</section>
+
+<!-- =========================================================
+     CORPORATE CTA BANNER
+========================================================= -->
+<section style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); padding: 70px 0; color: #ffffff; text-align: center;">
+    <div class="container">
+        <div style="max-width: 760px; margin: 0 auto;" data-reveal>
+            <div style="color: var(--brand-red); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 10px;">
+                Partner With Us
+            </div>
+            <h2 style="font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; color: #ffffff; margin: 0 0 16px; line-height: 1.25;">
+                Looking for Accredited EPC &amp; Engineering Contractors?
+            </h2>
+            <p style="color: #94a3b8; font-size: 1rem; line-height: 1.7; margin: 0 0 28px;">
+                From preliminary design to commissioning of grid substations, power distribution networks, and heavy civil structures, Fescon delivers proven engineering excellence.
+            </p>
+            <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                <a href="<?php echo $base_url; ?>/contact-us.php" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i> Request Technical Consultation
+                </a>
+                <a href="<?php echo $base_url; ?>/services.php" class="btn btn-outline-white">
+                    <i class="fas fa-th-list"></i> Explore All Services
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<?php require_once __DIR__ . '/includes/modern-footer.php'; ?>
