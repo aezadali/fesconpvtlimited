@@ -12,7 +12,7 @@ require_once __DIR__ . '/includes/modern-header.php';
 ?>
 
 <section class="page-hero">
-    <div class="page-hero-bg" style="background-image: url('<?php echo asset_url('assets/images/DJI_0378-scaled.jpg'); ?>');"></div>
+    <div class="page-hero-bg" style="background-image: url('<?php echo asset_url('assets/images/cosumnes.jpg'); ?>');"></div>
     <div class="page-hero-overlay"></div>
     <div class="container">
         <div class="page-hero-inner" data-reveal>

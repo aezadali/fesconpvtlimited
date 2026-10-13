@@ -19,7 +19,7 @@ require_once __DIR__ . '/includes/modern-header.php';
      UNIFIED LIGHT SUBPAGE HERO BANNER (With Photo Background)
 ========================================================= -->
 <section class="page-hero">
-    <div class="page-hero-bg" style="background-image: url('<?php echo asset_url('assets/images/transformer.webp'); ?>');"></div>
+    <div class="page-hero-bg" style="background-image: url('<?php echo asset_url('assets/images/heroes/hero-services.jpg'); ?>');"></div>
     <div class="page-hero-overlay"></div>
     <div class="container">
         <div class="page-hero-inner" data-reveal>

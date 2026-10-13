@@ -71,7 +71,7 @@ $collaborations = [
 ?>
 
 <section class="page-hero">
-    <div class="page-hero-bg" style="background-image: url('<?php echo asset_url('assets/images/DJI_0400-scaled.jpg'); ?>');"></div>
+    <div class="page-hero-bg" style="background-image: url('<?php echo asset_url('assets/images/glowing-push-pin-illuminates-world-map-global-connections-digital-art-dark-theme-aerial-view-impactful-visualization-glowing-push-350841315.webp'); ?>');"></div>
     <div class="page-hero-overlay"></div>
     <div class="container">
         <div class="page-hero-inner" data-reveal>
