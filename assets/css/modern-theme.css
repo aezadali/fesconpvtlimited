@@ -334,7 +334,7 @@ button, input, textarea, select {
     display: flex;
     align-items: center;
     list-style: none;
-    gap: 4px;
+    gap: 2px;
 }
 
 .nav-item {
@@ -344,14 +344,15 @@ button, input, textarea, select {
 .nav-link {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 10px 14px;
+    gap: 5px;
+    padding: 8px 11px;
     color: var(--text-dark-headings);
-    font-size: 0.92rem;
+    font-size: 0.88rem;
     font-weight: 600;
     letter-spacing: 0.01em;
     border-radius: var(--radius-sm);
     transition: var(--transition-fast);
+    white-space: nowrap;
 }
 
 .nav-link:hover, .nav-item.active > .nav-link {
@@ -2304,7 +2305,15 @@ textarea.form-control {
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1200px) and (min-width: 1025px) {
+    .nav-link {
+        padding: 7px 8px;
+        font-size: 0.83rem;
+        gap: 3px;
+    }
+}
+
+@media (max-width: 1024px) {
     .nav-menu {
         position: fixed;
         top: 0;

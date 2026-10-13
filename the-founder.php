@@ -55,7 +55,7 @@ require_once __DIR__ . '/includes/modern-header.php';
                 <div style="position: relative; display: inline-block; max-width: 420px; width: 100%;">
                     <div style="position: absolute; inset: -12px; background: linear-gradient(135deg, rgba(198,40,40,0.15), rgba(15,23,42,0.06)); border-radius: var(--radius-xl); transform: rotate(-2deg); z-index: 0;"></div>
                     <div style="position: relative; z-index: 1; background: #ffffff; padding: 14px; border-radius: var(--radius-xl); box-shadow: var(--shadow-xl); border: 1px solid var(--border-light);">
-                        <img src="<?php echo asset_url('assets/images/ceo.jpg'); ?>" alt="Engr. Ehsan Ullah - Entrepreneur / CEO" style="width: 100%; height: auto; border-radius: calc(var(--radius-xl) - 6px); display: block; object-fit: cover;">
+                        <img src="<?php echo asset_url('assets/images/ceo-bio.png'); ?>" alt="Engr. Ehsan Ullah - Entrepreneur / CEO" style="width: 100%; height: auto; border-radius: calc(var(--radius-xl) - 6px); display: block; object-fit: cover;">
                         <div style="padding: 24px 16px 14px;">
                             <h3 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin: 0 0 6px;">ENGR. EHSAN ULLAH</h3>
                             <p style="font-size: 0.95rem; color: var(--brand-red); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 14px;">Entrepreneur / CEO</p>

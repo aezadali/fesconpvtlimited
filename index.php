@@ -122,7 +122,7 @@ require_once __DIR__ . '/includes/modern-header.php';
         <div class="about-grid">
             <div class="about-visual-column" data-reveal>
                 <div class="about-image-frame">
-                    <img src="<?php echo $base_url; ?>/assets/images/ceo.jpg" alt="Engr. Ehsan Ullah - Entrepreneur &amp; CEO" loading="lazy" style="object-position: center top;">
+                    <img src="<?php echo $base_url; ?>/assets/images/ceo-message.jpg" alt="Engr. Ehsan Ullah - Entrepreneur &amp; CEO" loading="lazy" style="object-position: center top;">
                 </div>
                 <div class="about-experience-badge">
                     <div class="years">15+</div>
