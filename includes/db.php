@@ -756,6 +756,47 @@ function get_service_by_id($id) {
     return $stmt->fetch() ?: null;
 }
 
+function get_service_features($slug) {
+    $features_map = [
+        'planning-and-designing' => [
+            'Structural & Electrical Load Calculations',
+            '3D CAD Modeling & Architectural Schematics',
+            'Grid Interconnection & Feasibility Studies'
+        ],
+        'epc-projects' => [
+            'End-to-End Procurement & Material Sourcing',
+            'Turnkey Substation & Plant Construction',
+            'Pre-Commissioning Testing & Full Handover'
+        ],
+        'energy-transmission-distribution' => [
+            '11kV to 500kV High-Voltage Transmission Lines',
+            'Grid Station Bay Erection & Transformer Cabling',
+            'Conductor Stringing, Tower Piling & Sagging'
+        ],
+        'operation-maintenance' => [
+            '24/7 Facility Monitoring & Emergency Restoration',
+            'Thermal Imaging, Dielectric & Protection Audits',
+            'Switchgear, Breaker & Transformer Overhauls'
+        ],
+        'mep-solutions' => [
+            'Industrial HVAC & Centralized Climate Systems',
+            'Fire Fighting, Hydrant & NFPA Alarm Networks',
+            'Heavy Power Distribution & Building Automation'
+        ],
+        'civil-works' => [
+            'Heavy Machine Foundations & Concrete Piling',
+            'Substation Control Buildings & Structural Sheds',
+            'Drainage Systems, Cable Trenches & Retaining Walls'
+        ]
+    ];
+
+    return $features_map[$slug] ?? [
+        'Turnkey Technical Engineering Execution',
+        'International IEEE / IEC Standards Compliance',
+        'Rigorous Quality & HSE Certified Protocols'
+    ];
+}
+
 function get_projects($filters = []) {
     $db = get_db();
     $sql = "SELECT p.*, c.name AS client_name, c.slug AS client_slug, c.logo_url AS client_logo,

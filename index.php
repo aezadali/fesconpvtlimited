@@ -203,15 +203,14 @@ require_once __DIR__ . '/includes/modern-header.php';
                         </p>
 
                         <ul class="service-card-features">
-                            <li class="service-card-feature-item">
-                                <i class="fas fa-check"></i> Turnkey Execution &amp; Testing
-                            </li>
-                            <li class="service-card-feature-item">
-                                <i class="fas fa-check"></i> International IEEE / IEC Standards
-                            </li>
-                            <li class="service-card-feature-item">
-                                <i class="fas fa-check"></i> Rigorous Quality &amp; HSE Compliance
-                            </li>
+                            <?php 
+                            $service_bullets = get_service_features($s['slug']);
+                            foreach ($service_bullets as $bullet): 
+                            ?>
+                                <li class="service-card-feature-item">
+                                    <i class="fas fa-check"></i> <?php echo htmlspecialchars($bullet); ?>
+                                </li>
+                            <?php endforeach; ?>
                         </ul>
 
                         <div>
