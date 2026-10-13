@@ -118,9 +118,9 @@
     padding-left: 24px !important;
 }
 
-/* General Link Hover */
-a:hover {
-    color: var(--brand-red-bright) !important;
+/* General Link Hover (excluding buttons) */
+a:not([class*="btn"]):not(.btn):not(.footer-download-btn):not(.social-circle-btn):not(.floating-whatsapp-btn):hover {
+    color: var(--brand-red-bright);
 }
 
 /* ==========================================================================
