@@ -10,11 +10,25 @@ function get_db() {
     static $pdo = null;
     if ($pdo === null) {
         $storageDir = __DIR__ . '/../storage';
-        if (!is_dir($storageDir)) {
+        $dbPath = $storageDir . '/database.sqlite';
+
+        // Support Vercel Serverless environment where project root is read-only
+        $isVercel = !empty($_ENV['VERCEL']) || !empty($_SERVER['VERCEL']) || getenv('VERCEL');
+        if ($isVercel || (file_exists($storageDir) && !is_writable($storageDir))) {
+            $tmpDir = sys_get_temp_dir() . '/fescon_storage';
+            if (!is_dir($tmpDir)) {
+                @mkdir($tmpDir, 0777, true);
+            }
+            $tmpDbPath = $tmpDir . '/database.sqlite';
+            if (!file_exists($tmpDbPath) && file_exists($dbPath)) {
+                @copy($dbPath, $tmpDbPath);
+            }
+            if (file_exists($tmpDbPath)) {
+                $dbPath = $tmpDbPath;
+            }
+        } elseif (!is_dir($storageDir)) {
             @mkdir($storageDir, 0755, true);
         }
-        $dbPath = $storageDir . '/database.sqlite';
-        $isNew = !file_exists($dbPath);
 
         try {
             $pdo = new PDO('sqlite:' . $dbPath);

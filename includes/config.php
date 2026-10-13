@@ -16,7 +16,10 @@ $currentDir = str_replace('\\', '/', __DIR__ . '/..');
 // Calculate relative path from DOCUMENT_ROOT to site directory
 $scriptName = str_replace('\\', '/', $_SERVER['SCRIPT_NAME'] ?? '');
 $scriptDir = dirname($scriptName);
-if ($scriptDir === '/' || $scriptDir === '\\') {
+// If running on Vercel serverless environment, base URL is always root
+if (!empty($_ENV['VERCEL']) || !empty($_SERVER['VERCEL']) || getenv('VERCEL')) {
+    $base_url = '';
+} else if ($scriptDir === '/' || $scriptDir === '\\') {
     $base_url = '';
 } else {
     // If inside a subfolder, e.g., /FesconPvtLimited or /FesconPvtLimited/about-us
@@ -28,7 +31,7 @@ if ($scriptDir === '/' || $scriptDir === '\\') {
         'epc-projects', 'energy-transmission-distribution', 'operation-maintenance',
         'mep-solutions', 'civil-works', 'projects', 'hse-policy', 'welfare-policy',
         'csr-policy', 'team', 'contact-us', 'careers', 'client-projects',
-        'project-detail', 'service-detail', 'admin'
+        'project-detail', 'service-detail', 'admin', 'api'
     ];
     if (!empty($parts) && in_array(end($parts), $knownPages)) {
         array_pop($parts);
