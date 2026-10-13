@@ -20,7 +20,7 @@ require_once __DIR__ . '/config.php';
                     <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-circle-btn" aria-label="LinkedIn">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
-                    <a href="https://wa.me/923008815488" target="_blank" rel="noopener noreferrer" class="social-circle-btn" aria-label="WhatsApp">
+                    <a href="https://wa.me/923041112766" target="_blank" rel="noopener noreferrer" class="social-circle-btn" aria-label="WhatsApp">
                         <i class="fab fa-whatsapp"></i>
                     </a>
                     <a href="mailto:info@fescon.com.pk" class="social-circle-btn" aria-label="Email Us">
@@ -65,7 +65,7 @@ require_once __DIR__ . '/config.php';
                 </div>
                 <div class="footer-contact-item">
                     <i class="fas fa-phone-alt"></i>
-                    <span><a href="tel:+923008815488" style="color:inherit;">+92 300 8815488</a></span>
+                    <span><a href="tel:+923041112766" style="color:inherit;">+92 304 1112766</a></span>
                 </div>
                 <div class="footer-contact-item">
                     <i class="fas fa-envelope"></i>
@@ -90,7 +90,7 @@ require_once __DIR__ . '/config.php';
 
 <!-- Floating Action Widgets -->
 <div class="floating-actions-container">
-    <a href="https://wa.me/923008815488" target="_blank" rel="noopener noreferrer" class="floating-whatsapp-btn" title="Chat on WhatsApp" aria-label="Chat on WhatsApp">
+    <a href="https://wa.me/923041112766" target="_blank" rel="noopener noreferrer" class="floating-whatsapp-btn" title="Chat on WhatsApp" aria-label="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
     <button class="scroll-top-btn" title="Scroll to top" aria-label="Scroll to top">

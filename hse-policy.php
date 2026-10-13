@@ -28,7 +28,7 @@ require_once __DIR__ . '/includes/modern-header.php';
             </h1>
             
             <p class="page-hero-subtitle">
-                At Fescon, zero-harm and occupational safety are foundational values. We maintain strict adherence to international OSHA, ISO 45001, and Pakistan Engineering Council (PEC) OSH-CSP standards across all high-voltage and civil construction project sites.
+                FESCON INTERNATIONAL LLC is committed to Health, Safety and Environmental excellence. We maintain a zero-harm approach, comply with applicable Oman/GCC regulations and international standards, manage risks proactively, protect the environment, and continuously improve our HSE performance.
             </p>
             
             <div class="page-hero-breadcrumbs">
@@ -37,7 +37,7 @@ require_once __DIR__ . '/includes/modern-header.php';
                 <a href="<?php echo $base_url; ?>/about-us/">Company</a>
                 <span class="sep">/</span>
                 <span class="current">HSE Policy</span>
-                <span class="count-tag">ISO 45001 &bull; ISO 14001 Certified</span>
+                <span class="count-tag">Corporate Policy &bull; ISO 45001 &bull; ISO 14001</span>
             </div>
         </div>
     </div>
@@ -52,12 +52,17 @@ require_once __DIR__ . '/includes/modern-header.php';
         <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-xl); padding: 48px 44px; box-shadow: var(--shadow-card);" data-reveal>
             
             <div style="border-bottom: 1px solid var(--border-light); padding-bottom: 24px; margin-bottom: 32px;">
-                <span class="section-tag"><i class="fas fa-file-contract"></i> Statutory Compliance Framework</span>
+                <span class="section-tag"><i class="fas fa-file-contract"></i> FESCON INTERNATIONAL LLC &bull; Corporate Policies</span>
                 <h2 style="font-size: 1.85rem; font-weight: 800; color: #0f172a; margin: 12px 0 10px;">
-                    Comprehensive HSE Operating Code
+                    Health, Safety &amp; Environmental (HSE) Policy
                 </h2>
-                <p style="font-size: 1.05rem; color: #475569; line-height: 1.7; margin: 0;">
-                    Health, Safety, and Environment (HSE) standards at Fescon are rigorously enforced to eliminate job-site accidents, safeguard workforce health, and protect ecological ecosystems. Our operating protocols strictly comply with <strong>OSHA (Occupational Safety and Health Administration)</strong>, <strong>ISO 45001</strong>, <strong>ISO 14001</strong>, and the <strong>Pakistan OSH-CSP Code of Practice</strong>.
+                <div style="background: rgba(198,40,40,0.06); border-left: 4px solid var(--brand-red); padding: 20px 24px; border-radius: 6px; margin: 18px 0 16px;">
+                    <p style="font-size: 1.05rem; color: #1e293b; line-height: 1.75; margin: 0; font-weight: 500;">
+                        "FESCON INTERNATIONAL LLC is committed to Health, Safety and Environmental excellence. We maintain a zero-harm approach, comply with applicable Oman/GCC regulations and international standards, manage risks proactively, protect the environment, and continuously improve our HSE performance."
+                    </p>
+                </div>
+                <p style="font-size: 0.98rem; color: #475569; line-height: 1.7; margin: 0;">
+                    Health, Safety, and Environment (HSE) standards across our corporate operations are rigorously enforced to eliminate job-site accidents, safeguard workforce health, and protect ecological ecosystems in accordance with Oman/GCC regulations, OSHA, ISO 45001, and ISO 14001 international standards.
                 </p>
             </div>
 

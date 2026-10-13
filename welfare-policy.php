@@ -25,7 +25,7 @@ require_once __DIR__ . '/includes/modern-header.php';
             </h1>
             
             <p class="page-hero-subtitle">
-                Fescon ensures fair remuneration, safe working conditions, comprehensive medical coverage, and professional human dignity for every member of our workforce across all construction camps and engineering offices.
+                FESCON INTERNATIONAL LLC is committed to the wellbeing, dignity and development of our employees. We provide a safe and respectful workplace, fair treatment, appropriate welfare facilities, training and development opportunities, and a workplace free from discrimination, harassment, forced labour and child labour.
             </p>
             
             <div class="page-hero-breadcrumbs">
@@ -34,6 +34,7 @@ require_once __DIR__ . '/includes/modern-header.php';
                 <a href="<?php echo $base_url; ?>/about-us/">Company</a>
                 <span class="sep">/</span>
                 <span class="current">Welfare Policy</span>
+                <span class="count-tag">Corporate Policy</span>
             </div>
         </div>
     </div>
@@ -45,44 +46,46 @@ require_once __DIR__ . '/includes/modern-header.php';
         <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-xl); padding: 48px 44px; box-shadow: var(--shadow-card);" data-reveal>
             
             <div style="border-bottom: 1px solid var(--border-light); padding-bottom: 24px; margin-bottom: 32px;">
-                <span class="section-tag"><i class="fas fa-users"></i> Human Dignity &amp; Fair Labor</span>
+                <span class="section-tag"><i class="fas fa-users"></i> FESCON INTERNATIONAL LLC &bull; Corporate Policies</span>
                 <h2 style="font-size: 1.85rem; font-weight: 800; color: #0f172a; margin: 12px 0 10px;">
-                    Workforce Well-Being Principles
+                    Workforce Well-Being &amp; Labor Welfare Policy
                 </h2>
-                <p style="font-size: 1.05rem; color: #475569; line-height: 1.7; margin: 0;">
-                    Our labor welfare framework strictly follows International Labor Organization (ILO) conventions and Pakistan Labor Laws, ensuring fair wages, non-discrimination, safe camp housing, and round-the-clock emergency support.
-                </p>
+                <div style="background: rgba(198,40,40,0.06); border-left: 4px solid var(--brand-red); padding: 20px 24px; border-radius: 6px; margin: 18px 0 16px;">
+                    <p style="font-size: 1.05rem; color: #1e293b; line-height: 1.75; margin: 0; font-weight: 500;">
+                        "FESCON INTERNATIONAL LLC is committed to the wellbeing, dignity and development of our employees. We provide a safe and respectful workplace, fair treatment, appropriate welfare facilities, training and development opportunities, and a workplace free from discrimination, harassment, forced labour and child labour."
+                    </p>
+                </div>
             </div>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
                 
                 <div style="background: var(--bg-light-alt); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 28px 24px;">
                     <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(198,40,40,0.12); color: var(--brand-red); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 16px;">
-                        <i class="fas fa-medkit"></i>
+                        <i class="fas fa-shield-alt"></i>
                     </div>
-                    <h3 style="font-size: 1.2rem; font-weight: 700; color: #0f172a; margin: 0 0 10px;">Comprehensive Health Insurance</h3>
+                    <h3 style="font-size: 1.2rem; font-weight: 700; color: #0f172a; margin: 0 0 10px;">Safe &amp; Respectful Workplace</h3>
                     <p style="font-size: 0.88rem; color: #64748b; line-height: 1.6; margin: 0;">
-                        Group hospitalization and accidental insurance coverage for all on-roll employees, engineers, and site technicians.
+                        Maintaining uncompromising standards of safety, dignity, and personal respect across all offices, operational sites, and field accommodation camps.
                     </p>
                 </div>
 
                 <div style="background: var(--bg-light-alt); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 28px 24px;">
                     <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(198,40,40,0.12); color: var(--brand-red); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 16px;">
-                        <i class="fas fa-campground"></i>
+                        <i class="fas fa-hand-holding-heart"></i>
                     </div>
-                    <h3 style="font-size: 1.2rem; font-weight: 700; color: #0f172a; margin: 0 0 10px;">Hygienic Living Quarters</h3>
+                    <h3 style="font-size: 1.2rem; font-weight: 700; color: #0f172a; margin: 0 0 10px;">Fair Treatment &amp; Welfare Facilities</h3>
                     <p style="font-size: 0.88rem; color: #64748b; line-height: 1.6; margin: 0;">
-                        Climate-controlled site accommodation camps with hygienic mess catering, filtered water plants, and recreational areas.
+                        Fair compensation, comprehensive healthcare, hygienic quarters, nutritious catering, filtered water, and appropriate resting amenities.
                     </p>
                 </div>
 
                 <div style="background: var(--bg-light-alt); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 28px 24px;">
                     <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(198,40,40,0.12); color: var(--brand-red); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 16px;">
-                        <i class="fas fa-money-check-alt"></i>
+                        <i class="fas fa-user-graduate"></i>
                     </div>
-                    <h3 style="font-size: 1.2rem; font-weight: 700; color: #0f172a; margin: 0 0 10px;">Fair Remuneration &amp; Bonuses</h3>
+                    <h3 style="font-size: 1.2rem; font-weight: 700; color: #0f172a; margin: 0 0 10px;">Training &amp; Development</h3>
                     <p style="font-size: 0.88rem; color: #64748b; line-height: 1.6; margin: 0;">
-                        Guaranteed minimum wage compliance, overtime compensation, project completion bonuses, and prompt monthly payroll.
+                        Continuous technical upskilling, safety certifications, leadership development, and clear career advancement pathways for all personnel.
                     </p>
                 </div>
 
@@ -90,9 +93,9 @@ require_once __DIR__ . '/includes/modern-header.php';
                     <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(198,40,40,0.12); color: var(--brand-red); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 16px;">
                         <i class="fas fa-balance-scale"></i>
                     </div>
-                    <h3 style="font-size: 1.2rem; font-weight: 700; color: #0f172a; margin: 0 0 10px;">Equal Opportunity &amp; Zero Harassment</h3>
+                    <h3 style="font-size: 1.2rem; font-weight: 700; color: #0f172a; margin: 0 0 10px;">Zero Discrimination &amp; Forced Labour</h3>
                     <p style="font-size: 0.88rem; color: #64748b; line-height: 1.6; margin: 0;">
-                        Zero tolerance for workplace discrimination, harassment, or forced labor with independent grievance redressal channels.
+                        Strict zero-tolerance policy against discrimination, harassment, forced labour, and child labour, supported by independent grievance channels.
                     </p>
                 </div>
 

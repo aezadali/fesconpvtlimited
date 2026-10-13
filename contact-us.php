@@ -80,10 +80,9 @@ require_once __DIR__ . '/includes/header.php';
                                 <i class="fas fa-phone-alt"></i>
                             </div>
                             <div>
-                                <h4 style="color: #0f172a; font-size: 1rem; margin: 0 0 4px; font-weight: 600;">Telephone Numbers</h4>
+                                <h4 style="color: #0f172a; font-size: 1rem; margin: 0 0 4px; font-weight: 600;">Telephone Number</h4>
                                 <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.5; margin: 0;">
-                                    <a href="tel:+923041112766" style="color: #cbd5e1; text-decoration: none;">+92 304 111 2766</a><br>
-                                    <a href="tel:+923008815488" style="color: #cbd5e1; text-decoration: none;">+92 300 881 5488</a>
+                                    <a href="tel:+923041112766" style="color: #cbd5e1; text-decoration: none;">+92 304 111 2766</a>
                                 </p>
                             </div>
                         </div>
@@ -119,7 +118,7 @@ require_once __DIR__ . '/includes/header.php';
 
                     <!-- WhatsApp Quick Action -->
                     <div style="margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px;">
-                        <a href="https://wa.me/923008815488" target="_blank" rel="noopener" style="display: flex; align-items: center; justify-content: center; gap: 10px; background: #25D366; color: #0f172a; padding: 12px 20px; border-radius: 8px; font-weight: 700; font-size: 0.92rem; text-decoration: none; transition: opacity 0.2s;">
+                        <a href="https://wa.me/923041112766" target="_blank" rel="noopener" style="display: flex; align-items: center; justify-content: center; gap: 10px; background: #25D366; color: #0f172a; padding: 12px 20px; border-radius: 8px; font-weight: 700; font-size: 0.92rem; text-decoration: none; transition: opacity 0.2s;">
                             <i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i>
                             <span>Chat on WhatsApp Directly</span>
                         </a>

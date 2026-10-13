@@ -58,7 +58,7 @@ function is_nav_active($pages, $current) {
                 <span class="top-bar-item"><i class="fas fa-clock"></i> Mon - Sat: 9:00 AM - 6:00 PM</span>
             </div>
             <div class="top-bar-right">
-                <span class="top-bar-item"><i class="fas fa-phone-alt"></i> <a href="tel:+923008815488">+92 300 8815488</a></span>
+                <span class="top-bar-item"><i class="fas fa-phone-alt"></i> <a href="tel:+923041112766">+92 304 1112766</a></span>
                 <span class="top-bar-item"><i class="fas fa-envelope"></i> <a href="mailto:info@fescon.com.pk">info@fescon.com.pk</a></span>
             </div>
         </div>

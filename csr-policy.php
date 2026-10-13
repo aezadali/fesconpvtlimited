@@ -25,7 +25,7 @@ require_once __DIR__ . '/includes/modern-header.php';
             </h1>
             
             <p class="page-hero-subtitle">
-                Fescon is committed to ethical engineering stewardship, local community development, clean environmental conservation, and human capital empowerment across all operating regions in Pakistan.
+                We believe in creating a positive and lasting impact on society. Our CSR priorities are Education, Health and Support for Widows, along with community development, skills development, environmental initiatives and support for vulnerable communities.
             </p>
             
             <div class="page-hero-breadcrumbs">
@@ -34,6 +34,7 @@ require_once __DIR__ . '/includes/modern-header.php';
                 <a href="<?php echo $base_url; ?>/about-us/">Company</a>
                 <span class="sep">/</span>
                 <span class="current">CSR Policy</span>
+                <span class="count-tag">Corporate Policy</span>
             </div>
         </div>
     </div>
@@ -45,44 +46,36 @@ require_once __DIR__ . '/includes/modern-header.php';
         <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-xl); padding: 48px 44px; box-shadow: var(--shadow-card);" data-reveal>
             
             <div style="border-bottom: 1px solid var(--border-light); padding-bottom: 24px; margin-bottom: 32px;">
-                <span class="section-tag"><i class="fas fa-hand-holding-heart"></i> Our Community Pledge</span>
+                <span class="section-tag"><i class="fas fa-hand-holding-heart"></i> Corporate Social Responsibility</span>
                 <h2 style="font-size: 1.85rem; font-weight: 800; color: #0f172a; margin: 12px 0 10px;">
-                    Sustainable Community Stewardship
+                    Our Social Impact Framework
                 </h2>
-                <p style="font-size: 1.05rem; color: #475569; line-height: 1.7; margin: 0;">
-                    We believe our engineering solutions should elevate not just power grids, but the socioeconomic fabric of the communities we build in. Our CSR initiatives focus on community health, technical education, youth employment, and ecological preservation.
-                </p>
+                <div style="background: rgba(198,40,40,0.06); border-left: 4px solid var(--brand-red); padding: 20px 24px; border-radius: 6px; margin: 18px 0 16px;">
+                    <p style="font-size: 1.05rem; color: #1e293b; line-height: 1.75; margin: 0; font-weight: 500;">
+                        "We believe in creating a positive and lasting impact on society. Our CSR priorities are Education, Health and Support for Widows, along with community development, skills development, environmental initiatives and support for vulnerable communities."
+                    </p>
+                </div>
             </div>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 36px;">
                 
                 <div style="background: var(--bg-light-alt); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 28px 24px;">
                     <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(198,40,40,0.12); color: var(--brand-red); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 16px;">
-                        <i class="fas fa-user-graduate"></i>
+                        <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <h3 style="font-size: 1.2rem; font-weight: 700; color: #0f172a; margin: 0 0 10px;">Technical Vocational Training</h3>
+                    <h3 style="font-size: 1.2rem; font-weight: 700; color: #0f172a; margin: 0 0 10px;">1. Education &amp; Skills Development</h3>
                     <p style="font-size: 0.88rem; color: #64748b; line-height: 1.6; margin: 0;">
-                        Sponsoring apprentice programs for local youth living near project sites, teaching certified electrical wiring, welding, and civil craftsmanship.
+                        Empowering youth through scholarships, technical vocational training, engineering apprenticeships, and modern classroom educational infrastructure.
                     </p>
                 </div>
 
                 <div style="background: var(--bg-light-alt); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 28px 24px;">
                     <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(198,40,40,0.12); color: var(--brand-red); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 16px;">
-                        <i class="fas fa-solar-panel"></i>
+                        <i class="fas fa-heartbeat"></i>
                     </div>
-                    <h3 style="font-size: 1.2rem; font-weight: 700; color: #0f172a; margin: 0 0 10px;">Clean Energy Initiatives</h3>
+                    <h3 style="font-size: 1.2rem; font-weight: 700; color: #0f172a; margin: 0 0 10px;">2. Health &amp; Medical Outreach</h3>
                     <p style="font-size: 0.88rem; color: #64748b; line-height: 1.6; margin: 0;">
-                        Providing off-grid solar kits to rural clinics and community schools along remote transmission line pathways in Punjab and KPK.
-                    </p>
-                </div>
-
-                <div style="background: var(--bg-light-alt); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 28px 24px;">
-                    <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(198,40,40,0.12); color: var(--brand-red); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 16px;">
-                        <i class="fas fa-tree"></i>
-                    </div>
-                    <h3 style="font-size: 1.2rem; font-weight: 700; color: #0f172a; margin: 0 0 10px;">Afforestation Drives</h3>
-                    <p style="font-size: 0.88rem; color: #64748b; line-height: 1.6; margin: 0;">
-                        Planting over 10,000 indigenous trees annually to offset carbon footprints and restore natural vegetative cover around substation compounds.
+                        Facilitating community medical camps, subsidizing primary health clinics, providing clean water installations, and supporting urgent healthcare needs.
                     </p>
                 </div>
 
@@ -90,9 +83,19 @@ require_once __DIR__ . '/includes/modern-header.php';
                     <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(198,40,40,0.12); color: var(--brand-red); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 16px;">
                         <i class="fas fa-hands-helping"></i>
                     </div>
-                    <h3 style="font-size: 1.2rem; font-weight: 700; color: #0f172a; margin: 0 0 10px;">Disaster Relief Support</h3>
+                    <h3 style="font-size: 1.2rem; font-weight: 700; color: #0f172a; margin: 0 0 10px;">3. Support for Widows &amp; Vulnerable Communities</h3>
                     <p style="font-size: 0.88rem; color: #64748b; line-height: 1.6; margin: 0;">
-                        Deploying heavy earthmoving machinery, mobile generators, and engineering crews during national emergencies and flood restorations.
+                        Providing dedicated monthly stipends, welfare aid, micro-enterprise support, and social safety nets for widows and underprivileged families.
+                    </p>
+                </div>
+
+                <div style="background: var(--bg-light-alt); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 28px 24px;">
+                    <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(198,40,40,0.12); color: var(--brand-red); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 16px;">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3 style="font-size: 1.2rem; font-weight: 700; color: #0f172a; margin: 0 0 10px;">4. Environmental Initiatives &amp; Community Development</h3>
+                    <p style="font-size: 0.88rem; color: #64748b; line-height: 1.6; margin: 0;">
+                        Driving extensive afforestation programs, renewable solar community kits, local infrastructure upgrades, and environmental conservation.
                     </p>
                 </div>
 

@@ -116,7 +116,7 @@ require_once __DIR__ . '/includes/modern-header.php';
             <!-- Visual Column with CEO Photo -->
             <div class="about-visual-column" data-reveal>
                 <div class="about-image-frame">
-                    <img src="<?php echo $base_url; ?>/assets/images/ceo-message.jpg" alt="Engr. Ehsan Ullah - Entrepreneur &amp; CEO" loading="lazy" style="object-position: center top;">
+                    <img src="<?php echo $base_url; ?>/assets/images/ceo-message.jpg" alt="Engr. Ehsan Ullah - CEO" loading="lazy" style="object-position: center top;">
                 </div>
                 <div class="about-experience-badge">
                     <div class="years">15+</div>
@@ -137,16 +137,16 @@ require_once __DIR__ . '/includes/modern-header.php';
                     </div>
                     <div>
                         <div style="font-size: 1.3rem; font-weight: 800; color: #0f172a; font-family: 'Cinzel', serif; letter-spacing: 0.02em;">ENGR. EHSAN ULLAH</div>
-                        <div style="font-size: 0.88rem; color: var(--brand-red); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;">Entrepreneur / CEO</div>
+                        <div style="font-size: 0.88rem; color: var(--brand-red); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;">CEO</div>
                     </div>
                 </div>
 
                 <div class="ceo-message-quote" style="background: var(--bg-light-alt); border-left: 4px solid var(--brand-red); padding: 26px 28px; border-radius: var(--radius-sm); margin-bottom: 22px;">
                     <p style="font-size: 1.02rem; color: #334155; line-height: 1.8; margin: 0 0 14px;">
-                        "Welcome to FESCON Oman. We are committed to delivering engineering excellence through innovative, reliable, and sustainable solutions across infrastructure, energy, industrial, building projects and Oil and Gas field. Our success is built on professionalism, quality, safety, and long-term partnerships."
+                        "Welcome to FESCON Pakistan. We are committed to delivering engineering excellence through innovative, reliable, and sustainable solutions across infrastructure, energy, industrial, building projects and Oil and Gas field. Our success is built on professionalism, quality, safety, and long-term partnerships."
                     </p>
                     <p style="font-size: 1.02rem; color: #334155; line-height: 1.8; margin: 0;">
-                        "With a highly skilled team and a client-focused approach, we strive to exceed expectations by delivering every project with precision, integrity, and technical expertise—contributing to Oman’s continued growth and development."
+                        "With a highly skilled team and a client-focused approach, we strive to exceed expectations by delivering every project with precision, integrity, and technical expertise—contributing to Pakistan’s continued growth and development."
                     </p>
                 </div>
 
