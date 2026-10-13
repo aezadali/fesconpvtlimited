@@ -8,7 +8,7 @@ require_once __DIR__ . '/config.php';
             <!-- Col 1: Brand & Credentials -->
             <div class="footer-brand-col">
                 <a href="<?php echo $base_url; ?>/" aria-label="Fescon Homepage" style="display: inline-block;">
-                    <img src="<?php echo $base_url; ?>/assets/images/logo.png" alt="Fescon (Pvt.) Ltd" class="footer-logo-img" style="max-width: 50%; width: 140px; height: auto; display: block; margin-bottom: 14px;">
+                    <img src="<?php echo $base_url; ?>/assets/images/logo.png" alt="Fescon (Pvt.) Ltd" class="footer-logo-img" style="max-width: 100%; width: 200px; height: auto; display: block; margin-bottom: 14px;">
                 </a>
                 <div style="margin-bottom: 18px;">
                     <a href="<?php echo $base_url; ?>/assets/docs/Fescon-Company-Profile.pdf" download="Fescon-Company-Profile.pdf" class="footer-download-btn" title="Download Official Company Profile (PDF)">

@@ -1467,8 +1467,8 @@ textarea.form-control {
 
 .footer-brand-logo,
 .footer-logo-img {
-    max-width: 50%;
-    width: 140px;
+    max-width: 100%;
+    width: 200px;
     height: auto;
     object-fit: contain;
     margin-bottom: 14px;
