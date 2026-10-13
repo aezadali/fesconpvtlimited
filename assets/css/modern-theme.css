@@ -1465,11 +1465,37 @@ textarea.form-control {
     margin-bottom: 60px;
 }
 
-.footer-brand-logo {
-    height: 48px;
-    width: auto;
+.footer-brand-logo,
+.footer-logo-img {
+    max-width: 50%;
+    width: 140px;
+    height: auto;
     object-fit: contain;
-    margin-bottom: 18px;
+    margin-bottom: 14px;
+    display: block;
+}
+
+.footer-download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(198, 40, 40, 0.16);
+    border: 1px solid rgba(220, 38, 38, 0.45);
+    color: #ffffff;
+    padding: 9px 18px;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+.footer-download-btn:hover {
+    background: var(--brand-red);
+    border-color: var(--brand-red);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(198, 40, 40, 0.35);
 }
 
 .footer-brand-desc {

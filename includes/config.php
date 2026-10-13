@@ -43,7 +43,7 @@ if (!empty($_ENV['VERCEL']) || !empty($_SERVER['VERCEL']) || getenv('VERCEL')) {
 $site_name = "Fescon (Pvt.) Ltd";
 $admin_email = "info@fescon.com.pk";
 $contact_phone = "+92 304 1112766";
-$contact_address = "Islamabad, Pakistan";
+$contact_address = "#1238, C Block, LDA Avenue 1, Lahore, Pakistan";
 
 // Helper for asset URLs
 if (!function_exists('asset_url')) {

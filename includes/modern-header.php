@@ -54,7 +54,7 @@ function is_nav_active($pages, $current) {
         <div class="container">
             <div class="top-bar-left">
                 <span class="top-badge-pec"><i class="fas fa-certificate"></i> PEC Licensed: Category C-A (No Limit)</span>
-                <span class="top-bar-item"><i class="fas fa-map-marker-alt"></i> Islamabad, Pakistan</span>
+                <span class="top-bar-item"><i class="fas fa-map-marker-alt"></i> #1238, C Block, LDA Avenue 1, Lahore</span>
                 <span class="top-bar-item"><i class="fas fa-clock"></i> Mon - Sat: 9:00 AM - 6:00 PM</span>
             </div>
             <div class="top-bar-right">

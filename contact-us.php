@@ -36,7 +36,7 @@ require_once __DIR__ . '/includes/header.php';
                 <a href="<?php echo $base_url; ?>/">Home</a>
                 <span class="sep">/</span>
                 <span class="current">Contact Us</span>
-                <span class="count-tag">Headquarters in Islamabad, Pakistan</span>
+                <span class="count-tag">Headquarters in Lahore, Pakistan</span>
             </div>
         </div>
     </div>
@@ -68,8 +68,8 @@ require_once __DIR__ . '/includes/header.php';
                             </div>
                             <div>
                                 <h4 style="color: #0f172a; font-size: 1rem; margin: 0 0 4px; font-weight: 600;">Corporate Office</h4>
-                                <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.5; margin: 0;">
-                                    Lahore, Punjab, Pakistan
+                                <p style="color: #475569; font-size: 0.92rem; line-height: 1.5; margin: 0;">
+                                    #1238, C Block, LDA Avenue 1, Lahore, Pakistan
                                 </p>
                             </div>
                         </div>
@@ -128,8 +128,8 @@ require_once __DIR__ . '/includes/header.php';
                 <!-- Google Maps Embed -->
                 <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05); height: 260px;">
                     <iframe loading="lazy"
-                            src="https://maps.google.com/maps?q=Lahore%2C%20Pakistan&t=m&z=13&output=embed&iwloc=near"
-                            title="Lahore, Pakistan Map"
+                            src="https://maps.google.com/maps?q=LDA%20Avenue%201%2C%20Lahore%2C%20Pakistan&t=m&z=14&output=embed&iwloc=near"
+                            title="LDA Avenue 1, Lahore Map"
                             style="width: 100%; height: 100%; border: 0;"
                             allowfullscreen=""></iframe>
                 </div>

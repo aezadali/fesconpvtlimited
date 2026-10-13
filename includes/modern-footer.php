@@ -7,9 +7,14 @@ require_once __DIR__ . '/config.php';
         <div class="footer-top-grid">
             <!-- Col 1: Brand & Credentials -->
             <div class="footer-brand-col">
-                <a href="<?php echo $base_url; ?>/" aria-label="Fescon Homepage">
-                    <img src="<?php echo $base_url; ?>/assets/images/logo.png" alt="Fescon (Pvt.) Ltd" class="footer-logo-img">
+                <a href="<?php echo $base_url; ?>/" aria-label="Fescon Homepage" style="display: inline-block;">
+                    <img src="<?php echo $base_url; ?>/assets/images/logo.png" alt="Fescon (Pvt.) Ltd" class="footer-logo-img" style="max-width: 50%; width: 140px; height: auto; display: block; margin-bottom: 14px;">
                 </a>
+                <div style="margin-bottom: 18px;">
+                    <a href="<?php echo $base_url; ?>/assets/docs/Fescon-Company-Profile.pdf" download="Fescon-Company-Profile.pdf" class="footer-download-btn" title="Download Official Company Profile (PDF)">
+                        <i class="fas fa-file-pdf" style="color: #ef4444;"></i> Download Company Profile
+                    </a>
+                </div>
                 <p class="footer-bio-text">
                     Fescon (Pvt.) Ltd is an accredited engineering, procurement, construction (EPC), and infrastructure development contractor specializing in high-voltage substations, power transmission, civil works, and integrated MEP solutions across Pakistan.
                 </p>
@@ -61,7 +66,7 @@ require_once __DIR__ . '/config.php';
                 <h4 class="footer-col-title">Head Office</h4>
                 <div class="footer-contact-item">
                     <i class="fas fa-map-marker-alt"></i>
-                    <span>Islamabad, Pakistan</span>
+                    <span>#1238, C Block, LDA Avenue 1, Lahore, Pakistan</span>
                 </div>
                 <div class="footer-contact-item">
                     <i class="fas fa-phone-alt"></i>

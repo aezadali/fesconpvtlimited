@@ -464,7 +464,7 @@ require_once __DIR__ . '/includes/modern-header.php';
                         </div>
                         <div class="contact-method-details">
                             <h5>Head Office Location</h5>
-                            <p>Islamabad, Pakistan</p>
+                            <p>#1238, C Block, LDA Avenue 1, Lahore, Pakistan</p>
                         </div>
                     </div>
                 </div>
