@@ -24,10 +24,6 @@ require_once __DIR__ . '/includes/modern-header.php';
                 Our Core Values &amp; <span class="highlight">Principles</span>
             </h1>
             
-            <p class="page-hero-subtitle">
-                Over 30 years of engineering integrity, safety compliance, and technological precision guiding every substation, transmission line, and civil infrastructure project we execute.
-            </p>
-            
             <div class="page-hero-breadcrumbs">
                 <a href="<?php echo $base_url; ?>/">Home</a>
                 <span class="sep">/</span>

@@ -57,10 +57,6 @@ require_once __DIR__ . '/includes/modern-header.php';
                 Picture Gallery &amp; <span class="highlight">Events</span>
             </h1>
             
-            <p class="page-hero-subtitle">
-                A visual chronicle of Fescon's engineering milestones, field operations, grid station construction progress, and team activities across project sites nationwide.
-            </p>
-            
             <div class="page-hero-breadcrumbs">
                 <a href="<?php echo $base_url; ?>/">Home</a>
                 <span class="sep">/</span>

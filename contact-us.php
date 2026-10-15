@@ -28,10 +28,6 @@ require_once __DIR__ . '/includes/header.php';
                 Connect With Our <span class="highlight">Engineering Office</span>
             </h1>
             
-            <p class="page-hero-subtitle">
-                Whether you are planning a utility substation interconnect, high-voltage transmission line expansion, or complex industrial MEP infrastructure, our technical estimators and project directors are ready to assist.
-            </p>
-            
             <div class="page-hero-breadcrumbs">
                 <a href="<?php echo $base_url; ?>/">Home</a>
                 <span class="sep">/</span>

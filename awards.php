@@ -38,10 +38,6 @@ require_once __DIR__ . '/includes/modern-header.php';
                 Awards &amp; <span class="highlight">Appreciation Certificates</span>
             </h1>
             
-            <p class="page-hero-subtitle">
-                Official registrations, international quality certifications, client appreciation letters, and industry recognitions that validate Fescon's engineering excellence and compliance standards.
-            </p>
-            
             <div class="page-hero-breadcrumbs">
                 <a href="<?php echo $base_url; ?>/">Home</a>
                 <span class="sep">/</span>

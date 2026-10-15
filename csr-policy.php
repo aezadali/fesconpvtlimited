@@ -24,10 +24,6 @@ require_once __DIR__ . '/includes/modern-header.php';
                 Corporate Social <span class="highlight">Responsibility (CSR)</span>
             </h1>
             
-            <p class="page-hero-subtitle">
-                We believe in creating a positive and lasting impact on society. Our CSR priorities are Education, Health and Support for Widows, along with community development, skills development, environmental initiatives and support for vulnerable communities.
-            </p>
-            
             <div class="page-hero-breadcrumbs">
                 <a href="<?php echo $base_url; ?>/">Home</a>
                 <span class="sep">/</span>

@@ -24,10 +24,6 @@ require_once __DIR__ . '/includes/modern-header.php';
                 Our Story &amp; <span class="highlight">Evolution</span>
             </h1>
             
-            <p class="page-hero-subtitle">
-                From specialized high-voltage consultancy to one of Pakistan's leading engineering, procurement, and construction (EPC) leaders for national grid infrastructure.
-            </p>
-            
             <div class="page-hero-breadcrumbs">
                 <a href="<?php echo $base_url; ?>/">Home</a>
                 <span class="sep">/</span>

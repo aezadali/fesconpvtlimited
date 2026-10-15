@@ -30,7 +30,7 @@ require_once __DIR__ . '/includes/modern-header.php';
     <div class="container">
         <div class="hero-content-wrapper" data-reveal>
             <div class="hero-badge">
-                <i class="fas fa-bolt"></i> PEC Category C-A (No Limit) &bull; 30+ Years Leadership
+                <i class="fas fa-bolt"></i> PEC Category C-A (No Limit) &bull; 15+ Years Leadership
             </div>
 
             <h1 class="hero-title">
@@ -58,7 +58,7 @@ require_once __DIR__ . '/includes/modern-header.php';
             <div class="hero-stats-grid">
                 <div class="hero-stat-card" data-reveal data-reveal-delay="100">
                     <div class="hero-stat-number">
-                        <span class="counter-val" data-target="30">30</span><span class="plus">+</span>
+                        <span class="counter-val" data-target="15">15</span><span class="plus">+</span>
                     </div>
                     <div class="hero-stat-label">Years of Proven Engineering Delivery</div>
                 </div>

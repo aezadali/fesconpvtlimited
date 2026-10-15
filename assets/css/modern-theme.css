@@ -2069,11 +2069,7 @@ textarea.form-control {
 }
 
 .page-hero-subtitle {
-    font-size: clamp(1rem, 1.2vw, 1.12rem);
-    color: var(--text-dark-secondary);
-    line-height: 1.7;
-    margin: 0 0 22px;
-    max-width: 740px;
+    display: none !important;
 }
 
 .page-hero-breadcrumbs {

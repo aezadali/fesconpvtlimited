@@ -31,10 +31,6 @@ require_once __DIR__ . '/includes/modern-header.php';
                 Engineering, Procurement &amp; <span class="highlight">Construction</span> Solutions
             </h1>
             
-            <p class="page-hero-subtitle">
-                Delivering high-reliability electrical power networks, grid stations, transmission line stringing, heavy industrial civil engineering, and specialized MEP systems engineered to international IEC and IEEE specifications.
-            </p>
-            
             <div class="page-hero-breadcrumbs">
                 <a href="<?php echo $base_url; ?>/">Home</a>
                 <span class="sep">/</span>

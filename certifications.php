@@ -61,10 +61,6 @@ require_once __DIR__ . '/includes/header.php';
                 Official Registrations &amp; <span class="highlight">Certifications</span>
             </h1>
             
-            <p class="page-hero-subtitle">
-                Fescon operates at the pinnacle of statutory standards, holding Pakistan Engineering Council Category C-A (No-Limit) licensing alongside ISO 9001, 14001, and 45001 international certifications.
-            </p>
-            
             <div class="page-hero-breadcrumbs">
                 <a href="<?php echo $base_url; ?>/">Home</a>
                 <span class="sep">/</span>

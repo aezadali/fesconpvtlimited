@@ -37,10 +37,6 @@ require_once __DIR__ . '/includes/header.php';
                 Power &amp; Energy <span class="highlight">Infrastructure</span> Portfolio
             </h1>
             
-            <p class="page-hero-subtitle">
-                Over 30 years of executing mission-critical 132/220/500kV grid stations, transmission line stringing, turnkey EPC facilities, and industrial MEP systems for Pakistan's leading power utilities.
-            </p>
-            
             <div class="page-hero-breadcrumbs">
                 <a href="<?php echo $base_url; ?>/">Home</a>
                 <span class="sep">/</span>

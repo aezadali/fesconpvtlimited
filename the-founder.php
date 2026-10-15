@@ -28,10 +28,6 @@ require_once __DIR__ . '/includes/modern-header.php';
                 The Founder &amp; <span class="highlight">CEO Bio</span>
             </h1>
             
-            <p class="page-hero-subtitle">
-                Visionary engineering leadership and international business development across energy, construction, and global trade.
-            </p>
-            
             <div class="page-hero-breadcrumbs">
                 <a href="<?php echo $base_url; ?>/">Home</a>
                 <span class="sep">/</span>

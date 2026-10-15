@@ -152,10 +152,6 @@ require_once __DIR__ . '/includes/modern-header.php';
                 Engineering <span class="highlight">Insights &amp; Articles</span>
             </h1>
             
-            <p class="page-hero-subtitle">
-                Explore in-depth technical articles, construction methodologies, high-voltage substation engineering case studies, and sustainable infrastructure developments curated by Fescon's engineering specialists.
-            </p>
-            
             <div class="page-hero-breadcrumbs">
                 <a href="<?php echo $base_url; ?>/">Home</a>
                 <span class="sep">/</span>

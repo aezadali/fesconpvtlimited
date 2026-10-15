@@ -83,10 +83,6 @@ $collaborations = [
                 Collaborations &amp; <span class="highlight">Partners</span>
             </h1>
             
-            <p class="page-hero-subtitle">
-                Trusted by Pakistan's premier public power authorities, distribution companies (DISCOs), and international EPC conglomerates.
-            </p>
-            
             <div class="page-hero-breadcrumbs">
                 <a href="<?php echo $base_url; ?>/">Home</a>
                 <span class="sep">/</span>
@@ -159,7 +155,7 @@ $collaborations = [
                     Built on Technical Integrity &amp; Guaranteed Performance
                 </h2>
                 <p style="font-size: 0.98rem; color: #475569; line-height: 1.75; margin: 0 0 18px;">
-                    Over 30 years of public utility contracting, FESCON has maintained an unblemished record of adherence to tender specifications, transparent billing, and rigorous factory acceptance testing (FAT) alongside client inspectors.
+                    Over 15 years of public utility contracting, FESCON has maintained an unblemished record of adherence to tender specifications, transparent billing, and rigorous factory acceptance testing (FAT) alongside client inspectors.
                 </p>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px;">
                     <div style="background: #ffffff; padding: 18px; border-radius: var(--radius-md); border: 1px solid var(--border-light);">

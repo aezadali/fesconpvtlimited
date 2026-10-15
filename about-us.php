@@ -31,15 +31,11 @@ require_once __DIR__ . '/includes/modern-header.php';
                 Engineering Tomorrow's <span class="highlight">Power Grid</span>
             </h1>
             
-            <p class="page-hero-subtitle">
-                Fescon (Pvt.) Ltd is a premier multidisciplinary engineering enterprise licensed under PEC Category C-A (No-Limit). We spearhead large-scale high-voltage transmission, EPC substation construction, and sustainable civil &amp; MEP infrastructure nationwide.
-            </p>
-            
             <div class="page-hero-breadcrumbs">
                 <a href="<?php echo $base_url; ?>/">Home</a>
                 <span class="sep">/</span>
                 <span class="current">About Us</span>
-                <span class="count-tag">30+ Years Operational Delivery</span>
+                <span class="count-tag">15+ Years Operational Delivery</span>
             </div>
         </div>
     </div>

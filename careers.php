@@ -28,10 +28,6 @@ require_once __DIR__ . '/includes/header.php';
                 Build Your Future in <span class="highlight">Power Infrastructure</span>
             </h1>
             
-            <p class="page-hero-subtitle">
-                At Fescon, our people are our greatest strength. We offer ambitious engineers and skilled technicians the opportunity to work on Pakistan's most critical grid interconnects and high-voltage transmission projects.
-            </p>
-            
             <div class="page-hero-breadcrumbs">
                 <a href="<?php echo $base_url; ?>/">Home</a>
                 <span class="sep">/</span>

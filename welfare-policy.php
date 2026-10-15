@@ -24,10 +24,6 @@ require_once __DIR__ . '/includes/modern-header.php';
                 Employee &amp; Labor <span class="highlight">Welfare Policy</span>
             </h1>
             
-            <p class="page-hero-subtitle">
-                FESCON INTERNATIONAL LLC is committed to the wellbeing, dignity and development of our employees. We provide a safe and respectful workplace, fair treatment, appropriate welfare facilities, training and development opportunities, and a workplace free from discrimination, harassment, forced labour and child labour.
-            </p>
-            
             <div class="page-hero-breadcrumbs">
                 <a href="<?php echo $base_url; ?>/">Home</a>
                 <span class="sep">/</span>

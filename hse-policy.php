@@ -27,10 +27,6 @@ require_once __DIR__ . '/includes/modern-header.php';
                 Health, Safety &amp; <span class="highlight">Environment (HSE)</span> Policy
             </h1>
             
-            <p class="page-hero-subtitle">
-                FESCON INTERNATIONAL LLC is committed to Health, Safety and Environmental excellence. We maintain a zero-harm approach, comply with applicable Oman/GCC regulations and international standards, manage risks proactively, protect the environment, and continuously improve our HSE performance.
-            </p>
-            
             <div class="page-hero-breadcrumbs">
                 <a href="<?php echo $base_url; ?>/">Home</a>
                 <span class="sep">/</span>

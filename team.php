@@ -33,10 +33,6 @@ require_once __DIR__ . '/includes/modern-header.php';
                 Executive Leadership &amp; <span class="highlight">Engineering Teams</span>
             </h1>
             
-            <p class="page-hero-subtitle">
-                Over 30 years of certified technical leadership across high-voltage power transmission, substation engineering, heavy civil infrastructure, and contract governance across Pakistan.
-            </p>
-            
             <div class="page-hero-breadcrumbs">
                 <a href="<?php echo $base_url; ?>/">Home</a>
                 <span class="sep">/</span>
