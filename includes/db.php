@@ -411,7 +411,7 @@ function init_database($pdo) {
                 'name' => 'Planning and Designing',
                 'slug' => 'planning-and-designing',
                 'icon_class' => 'fas fa-drafting-compass',
-                'image_url' => '<?php echo $base_url; ?>/assets/images/transformer.webp',
+                'image_url' => 'assets/images/service-planning-designing.jpg',
                 'short_description' => 'Innovative planning and designing for sustainable project success.',
                 'full_description' => 'With years of engineering experience, Fescon offers comprehensive planning and design services covering electrical, structural, civil, and environmental engineering. We develop full turnkey schematics, load calculations, grid integration studies, and architectural blueprints adhering to international IEEE, IEC, and PEC standards.',
                 'sort_order' => 1
@@ -420,7 +420,7 @@ function init_database($pdo) {
                 'name' => 'EPC Projects',
                 'slug' => 'epc-projects',
                 'icon_class' => 'fas fa-hard-hat',
-                'image_url' => '<?php echo $base_url; ?>/assets/images/DJI_0400-scaled.jpg',
+                'image_url' => 'assets/images/DJI_0400-scaled.jpg',
                 'short_description' => 'Turnkey Engineering, Procurement, and Construction delivery.',
                 'full_description' => 'Complete end-to-end EPC project management for industrial complexes, grid stations, transmission lines, and civil infrastructure. From material sourcing and procurement to site erection, testing, and commissioning, we deliver on time and within budget.',
                 'sort_order' => 2
@@ -429,7 +429,7 @@ function init_database($pdo) {
                 'name' => 'Energy Transmission & Distribution',
                 'slug' => 'energy-transmission-distribution',
                 'icon_class' => 'fas fa-bolt',
-                'image_url' => '<?php echo $base_url; ?>/assets/images/IMG_4737-scaled.jpg',
+                'image_url' => 'assets/images/IMG_4737-scaled.jpg',
                 'short_description' => 'High-voltage transmission lines, substations, and grid connectivity.',
                 'full_description' => 'Design, erection, stringing, and testing of 11kV, 132kV, 220kV, and 500kV transmission lines and substations. We build robust power transmission infrastructure ensuring minimal losses and uninterrupted grid stability.',
                 'sort_order' => 3
@@ -438,7 +438,7 @@ function init_database($pdo) {
                 'name' => 'Operation & Maintenance',
                 'slug' => 'operation-maintenance',
                 'icon_class' => 'fas fa-tools',
-                'image_url' => '<?php echo $base_url; ?>/assets/images/IMG_4615-scaled.jpg',
+                'image_url' => 'assets/images/service-operation-maintenance.jpg',
                 'short_description' => 'Proactive maintenance, testing, and 24/7 technical facility support.',
                 'full_description' => 'Comprehensive operation and lifecycle maintenance services for electrical systems, power transformers, switchgear, and civil assets. We ensure maximum uptime, regulatory compliance, and thermal/dielectric safety audits.',
                 'sort_order' => 4
@@ -447,7 +447,7 @@ function init_database($pdo) {
                 'name' => 'MEP Solutions',
                 'slug' => 'mep-solutions',
                 'icon_class' => 'fas fa-cogs',
-                'image_url' => '<?php echo $base_url; ?>/assets/images/MEP-engineering2.jpg',
+                'image_url' => 'assets/images/MEP-engineering2.jpg',
                 'short_description' => 'Mechanical, Electrical, and Plumbing engineering for commercial & industrial facilities.',
                 'full_description' => 'Integrated MEP engineering solutions including HVAC, electrical distribution, fire protection, plumbing systems, and smart building management for industrial plants, high-rises, and institutional facilities.',
                 'sort_order' => 5
@@ -456,7 +456,7 @@ function init_database($pdo) {
                 'name' => 'Civil Works',
                 'slug' => 'civil-works',
                 'icon_class' => 'fas fa-building',
-                'image_url' => '<?php echo $base_url; ?>/assets/images/civil-construction-work.webp',
+                'image_url' => 'assets/images/civil-construction-work.webp',
                 'short_description' => 'Foundation engineering, control buildings, towers, and heavy structural construction.',
                 'full_description' => 'Precision civil engineering works including equipment foundations for heavy transformers and turbines, transmission tower piles, control buildings, access roads, and stormwater drainage infrastructure.',
                 'sort_order' => 6

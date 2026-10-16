@@ -196,17 +196,6 @@ require_once __DIR__ . '/includes/modern-header.php';
                             <?php echo htmlspecialchars($s['short_description']); ?>
                         </p>
 
-                        <ul class="service-card-features">
-                            <?php 
-                            $service_bullets = get_service_features($s['slug']);
-                            foreach ($service_bullets as $bullet): 
-                            ?>
-                                <li class="service-card-feature-item">
-                                    <i class="fas fa-check"></i> <?php echo htmlspecialchars($bullet); ?>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
-
                         <div>
                             <a href="<?php echo $base_url; ?>/service-detail.php?service=<?php echo urlencode($s['slug']); ?>" class="service-card-link-btn">
                                 Explore Service <i class="fas fa-arrow-right"></i>

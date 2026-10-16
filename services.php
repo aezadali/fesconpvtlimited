@@ -98,19 +98,6 @@ require_once __DIR__ . '/includes/modern-header.php';
                         <?php echo htmlspecialchars($srv['short_description'] ?: substr(strip_tags($srv['full_description'] ?? ''), 0, 130) . '...'); ?>
                     </p>
 
-                    <!-- Service Capabilities Checklist -->
-                    <ul style="list-style: none; padding: 0; margin: 0 0 22px; display: flex; flex-direction: column; gap: 8px; border-top: 1px solid var(--border-light); padding-top: 14px;">
-                        <?php 
-                        $srv_bullets = get_service_features($srv['slug']);
-                        foreach ($srv_bullets as $bullet): 
-                        ?>
-                        <li style="font-size: 0.84rem; color: #334155; display: flex; align-items: center; gap: 8px;">
-                            <i class="fas fa-check-circle" style="color: var(--brand-red); font-size: 0.85rem;"></i>
-                            <span><?php echo htmlspecialchars($bullet); ?></span>
-                        </li>
-                        <?php endforeach; ?>
-                    </ul>
-
                     <!-- Action Link -->
                     <div style="border-top: 1px solid var(--border-light); padding-top: 18px; display: flex; align-items: center; justify-content: space-between;">
                         <a href="<?php echo $base_url; ?>/service-detail.php?service=<?php echo urlencode($srv['slug']); ?>" 

@@ -77,12 +77,9 @@ require_once __DIR__ . '/includes/modern-header.php';
             <div style="color: var(--brand-red); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 10px;">
                 Project Documentation
             </div>
-            <h2 style="font-size: clamp(2rem, 3.2vw, 2.6rem); font-weight: 800; color: #0f172a; margin: 0 0 16px; line-height: 1.25;">
+            <h2 style="font-size: clamp(2rem, 3.2vw, 2.6rem); font-weight: 800; color: #0f172a; margin: 0; line-height: 1.25;">
                 Events &amp; <span class="highlight">Photo Gallery</span>
             </h2>
-            <p style="font-size: 1rem; color: #475569; line-height: 1.65; margin: 0;">
-                Browse through our project events, site photography, and field engineering documentation organized by activity category.
-            </p>
         </div>
 
         <!-- Event Cards -->
