@@ -114,8 +114,8 @@ $collaborations = [
             <div style="background: var(--bg-light-alt); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 34px 28px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.25s ease, box-shadow 0.25s ease;" data-reveal>
                 <div>
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-                        <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: 12px; padding: 12px 20px; display: inline-flex; align-items: center; justify-content: center; height: 75px; min-width: 150px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
-                            <img src="<?php echo asset_url($partner['logo']); ?>" alt="<?php echo htmlspecialchars($partner['name']); ?>" style="max-height: 52px; max-width: 130px; object-fit: contain; display: block;">
+                        <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: 12px; padding: 10px 16px; display: inline-flex; align-items: center; justify-content: center; height: 95px; min-width: 155px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                            <img src="<?php echo asset_url($partner['logo']); ?>" alt="<?php echo htmlspecialchars($partner['name']); ?>" style="max-height: 78px; max-width: 140px; object-fit: contain; display: block;">
                         </div>
                         <span style="background: rgba(198,40,40,0.1); color: var(--brand-red); font-size: 0.75rem; font-weight: 700; padding: 5px 12px; border-radius: 16px;">
                             <?php echo htmlspecialchars($partner['badge']); ?>
@@ -125,11 +125,8 @@ $collaborations = [
                     <h3 style="font-size: 1.3rem; font-weight: 800; color: #0f172a; margin: 0 0 6px;">
                         <?php echo htmlspecialchars($partner['name']); ?>
                     </h3>
-                    <p style="font-size: 0.85rem; font-weight: 600; color: var(--brand-red); margin: 0 0 12px;">
+                    <p style="font-size: 0.88rem; font-weight: 600; color: var(--brand-red); margin: 0 0 24px;">
                         <?php echo htmlspecialchars($partner['title']); ?>
-                    </p>
-                    <p style="font-size: 0.92rem; color: #475569; line-height: 1.65; margin: 0 0 24px;">
-                        <?php echo htmlspecialchars($partner['desc']); ?>
                     </p>
                 </div>
 
@@ -141,59 +138,6 @@ $collaborations = [
                 </div>
             </div>
             <?php endforeach; ?>
-        </div>
-    </div>
-</section>
-
-<!-- Partnership Philosophy -->
-<section style="background: var(--bg-light-alt); padding: 80px 0 100px;">
-    <div class="container">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; align-items: center;">
-            <div data-reveal>
-                <span style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--brand-red); display: block; margin-bottom: 10px;">Why Partners Trust FESCON</span>
-                <h2 style="font-size: clamp(1.8rem, 2.8vw, 2.4rem); font-weight: 800; color: #0f172a; line-height: 1.25; margin: 0 0 20px;">
-                    Built on Technical Integrity &amp; Guaranteed Performance
-                </h2>
-                <p style="font-size: 0.98rem; color: #475569; line-height: 1.75; margin: 0 0 18px;">
-                    Over 15 years of public utility contracting, FESCON has maintained an unblemished record of adherence to tender specifications, transparent billing, and rigorous factory acceptance testing (FAT) alongside client inspectors.
-                </p>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px;">
-                    <div style="background: #ffffff; padding: 18px; border-radius: var(--radius-md); border: 1px solid var(--border-light);">
-                        <div style="font-size: 1.6rem; font-weight: 800; color: var(--brand-red);">100%</div>
-                        <div style="font-size: 0.85rem; color: #64748b; font-weight: 600;">Prequalification Compliance</div>
-                    </div>
-                    <div style="background: #ffffff; padding: 18px; border-radius: var(--radius-md); border: 1px solid var(--border-light);">
-                        <div style="font-size: 1.6rem; font-weight: 800; color: #0f172a;">Zero</div>
-                        <div style="font-size: 0.85rem; color: #64748b; font-weight: 600;">Contractual Penalties</div>
-                    </div>
-                </div>
-            </div>
-
-            <div style="display: grid; gap: 20px;" data-reveal>
-                <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 26px 24px; box-shadow: var(--shadow-card);">
-                    <div style="display: flex; gap: 18px; align-items: flex-start;">
-                        <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(198,40,40,0.12); color: var(--brand-red); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
-                            <i class="fas fa-microchip"></i>
-                        </div>
-                        <div>
-                            <h4 style="font-size: 1.15rem; font-weight: 700; color: #0f172a; margin: 0 0 6px;">Joint EPC Ventures</h4>
-                            <p style="font-size: 0.88rem; color: #475569; line-height: 1.6; margin: 0;">Collaborating with multinational equipment manufacturers for GIS switchgear, power transformers, and SCADA automation.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 26px 24px; box-shadow: var(--shadow-card);">
-                    <div style="display: flex; gap: 18px; align-items: flex-start;">
-                        <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(198,40,40,0.12); color: var(--brand-red); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
-                            <i class="fas fa-file-contract"></i>
-                        </div>
-                        <div>
-                            <h4 style="font-size: 1.15rem; font-weight: 700; color: #0f172a; margin: 0 0 6px;">PEC "No Limit" Enlistment</h4>
-                            <p style="font-size: 0.88rem; color: #475569; line-height: 1.6; margin: 0;">Authorized to bid and execute mega infrastructure works without financial or technical ceiling limitations.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </section>
