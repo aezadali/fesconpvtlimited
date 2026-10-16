@@ -113,10 +113,14 @@ require_once __DIR__ . '/includes/modern-header.php';
             <div class="about-visual-column" data-reveal>
                 <div class="about-image-frame">
                     <img src="<?php echo $base_url; ?>/assets/images/ceo-message.jpg" alt="Engr. Ehsan Ullah - CEO" loading="lazy" style="object-position: center top;">
+                    <div class="about-experience-badge">
+                        <div class="years">15+</div>
+                        <div class="text">Years of Executive Leadership</div>
+                    </div>
                 </div>
-                <div class="about-experience-badge">
-                    <div class="years">15+</div>
-                    <div class="text">Years of Executive Leadership</div>
+                <div class="ceo-photo-caption">
+                    <h3 class="ceo-photo-caption-name">ENGR. EHSAN ULLAH</h3>
+                    <p class="ceo-photo-caption-title">CEO</p>
                 </div>
             </div>
 
@@ -126,16 +130,6 @@ require_once __DIR__ . '/includes/modern-header.php';
                 <h2 class="section-title" style="margin-bottom: 20px;">
                     CEO <span class="highlight">Message</span>
                 </h2>
-                
-                <div class="ceo-signature-intro" style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border-light);">
-                    <div style="width: 48px; height: 48px; border-radius: 50%; background: rgba(198,40,40,0.12); color: var(--brand-red); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0;">
-                        <i class="fas fa-user-tie"></i>
-                    </div>
-                    <div>
-                        <div style="font-size: 1.3rem; font-weight: 800; color: #0f172a; font-family: 'Cinzel', serif; letter-spacing: 0.02em;">ENGR. EHSAN ULLAH</div>
-                        <div style="font-size: 0.88rem; color: var(--brand-red); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;">CEO</div>
-                    </div>
-                </div>
 
                 <div class="ceo-message-quote" style="background: var(--bg-light-alt); border-left: 4px solid var(--brand-red); padding: 26px 28px; border-radius: var(--radius-sm); margin-bottom: 22px;">
                     <p style="font-size: 1.02rem; color: #334155; line-height: 1.8; margin: 0 0 14px;">

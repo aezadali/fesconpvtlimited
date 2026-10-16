@@ -723,31 +723,58 @@ button, input, textarea, select {
 
 .about-experience-badge {
     position: absolute;
-    bottom: -24px;
-    right: 30px;
-    background: #0f172a;
+    bottom: 16px;
+    right: 16px;
+    background: rgba(15, 23, 42, 0.94);
+    backdrop-filter: blur(8px);
     color: var(--text-white);
-    padding: 24px 28px;
-    border-radius: var(--radius-md);
-    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.2);
-    border: 2px solid var(--brand-red);
+    padding: 10px 16px;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+    border: 1.5px solid var(--brand-red);
     z-index: 5;
+    text-align: center;
 }
 
 .about-experience-badge .years {
-    font-size: 2.4rem;
+    font-size: 1.35rem;
     font-weight: 800;
     color: #ff6b6b;
     line-height: 1;
 }
 
 .about-experience-badge .text {
-    font-size: 0.86rem;
+    font-size: 0.65rem;
     color: #e2e8f0;
-    font-weight: 600;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 3px;
+    line-height: 1.25;
+}
+
+.ceo-photo-caption {
+    margin-top: 14px;
+    text-align: center;
+}
+
+.ceo-photo-caption-name {
+    font-size: clamp(1.25rem, 1.8vw, 1.5rem);
+    font-weight: 800;
+    color: var(--text-dark-headings);
+    letter-spacing: -0.02em;
+    margin: 0 0 4px;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+.ceo-photo-caption-title {
+    font-size: 0.88rem;
+    color: var(--brand-red);
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    margin-top: 4px;
+    margin: 0;
 }
 
 .about-content-column {

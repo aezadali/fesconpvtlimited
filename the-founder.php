@@ -56,7 +56,7 @@ require_once __DIR__ . '/includes/modern-header.php';
                             <h3 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin: 0 0 6px;">ENGR. EHSAN ULLAH</h3>
                             <p style="font-size: 0.95rem; color: var(--brand-red); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 14px;">Entrepreneur / CEO</p>
                             <div style="display: flex; flex-direction: column; gap: 8px; align-items: center; justify-content: center;">
-                                <span style="background: var(--bg-light-alt); border: 1px solid var(--border-light); padding: 5px 14px; border-radius: 20px; font-size: 0.8rem; color: #475569; font-weight: 600;">MSc in Electrical Engineering (Power)</span>
+                                <span style="background: var(--bg-light-alt); border: 1px solid var(--border-light); padding: 5px 14px; border-radius: 20px; font-size: 0.8rem; color: #475569; font-weight: 600;">MSc in Electrical Engineering</span>
                                 <span style="background: var(--bg-light-alt); border: 1px solid var(--border-light); padding: 5px 14px; border-radius: 20px; font-size: 0.8rem; color: #475569; font-weight: 600;">15+ Years Multidisciplinary Leadership</span>
                             </div>
                         </div>
@@ -70,7 +70,7 @@ require_once __DIR__ . '/includes/modern-header.php';
                     <i class="fas fa-id-card"></i> Executive Biography
                 </div>
                 
-                <h2 style="font-size: clamp(2rem, 3vw, 2.6rem); font-weight: 800; color: #0f172a; line-height: 1.2; margin: 0 0 6px; font-family: 'Cinzel', serif;">
+                <h2 style="font-size: clamp(2rem, 3vw, 2.6rem); font-weight: 800; color: #0f172a; line-height: 1.2; margin: 0 0 6px; letter-spacing: -0.02em;">
                     ENGR. EHSAN ULLAH
                 </h2>
                 
@@ -81,7 +81,7 @@ require_once __DIR__ . '/includes/modern-header.php';
                 <!-- Bio Paragraphs -->
                 <div style="font-size: 1.02rem; color: #334155; line-height: 1.85; display: flex; flex-direction: column; gap: 16px; margin-bottom: 28px;">
                     <p style="margin: 0;">
-                        Engr. Ehsan Ullah Laang is an engineer, entrepreneur and business leader with 15+ years of experience in engineering, construction, manufacturing, agriculture, foods, furniture and business development. He holds MSc in Electrical Engineering (Power).
+                        Engr. Ehsan Ullah Laang is an engineer, entrepreneur and business leader with 15+ years of experience in engineering, construction, manufacturing, agriculture, foods, furniture and business development. He holds MSc in Electrical Engineering.
                     </p>
                     <p style="margin: 0;">
                         As Founder and CEO, he leads a diversified business portfolio across Oman, Türkiye, Pakistan and Qatar, with interests in engineering, construction, manufacturing, foods &amp; beverage, agriculture, real estate and trading.
