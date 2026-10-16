@@ -3,9 +3,8 @@
  * Manage Picture Gallery & Events - Fescon Admin
  * Full CRUD: List, Reorder, Delete
  */
-$admin_page_title = 'Gallery & Events Management';
-$active_tab = 'gallery';
-require_once __DIR__ . '/includes/header.php';
+require_once __DIR__ . '/auth.php';
+require_admin_login();
 
 $db = get_db();
 
@@ -48,6 +47,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         exit;
     }
 }
+
+$admin_page_title = 'Gallery & Events Management';
+$active_tab = 'gallery';
+require_once __DIR__ . '/includes/header.php';
 
 $events = get_all_gallery_events(false);
 ?>
@@ -133,7 +136,7 @@ $events = get_all_gallery_events(false);
                                         <a href="<?php echo $base_url; ?>/admin/gallery-form.php?id=<?php echo $e['id']; ?>" class="btn-admin btn-admin-secondary" style="padding: 5px 10px; font-size: 12px;" title="Edit Event">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <button type="button" class="btn-admin btn-admin-danger" style="padding: 5px 10px; font-size: 12px;" onclick="confirmDelete(<?php echo $e['id']; ?>, '<?php echo htmlspecialchars(addslashes($e['title'])); ?>')" title="Delete Event">
+                                        <button type="button" class="btn-admin btn-admin-danger" style="padding: 5px 10px; font-size: 12px;" onclick="deleteGalleryEvent(<?php echo $e['id']; ?>, '<?php echo htmlspecialchars(addslashes($e['title']), ENT_QUOTES); ?>')" title="Delete Event">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </div>
@@ -173,12 +176,12 @@ $events = get_all_gallery_events(false);
 </form>
 
 <script>
-function confirmDelete(id, title) {
+window.deleteGalleryEvent = function(id, title) {
     if (confirm('Are you sure you want to delete "' + title + '" and all its photos? This action cannot be undone.')) {
         document.getElementById('deleteId').value = id;
         document.getElementById('deleteForm').submit();
     }
-}
+};
 </script>
 
 <?php require_once __DIR__ . '/includes/footer.php'; ?>

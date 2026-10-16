@@ -2,11 +2,11 @@
 /**
  * Admin Profile & Password Settings - Fescon Admin
  */
-$admin_page_title = 'Admin Profile & Security';
-$active_tab = 'profile';
-require_once __DIR__ . '/includes/header.php';
+require_once __DIR__ . '/auth.php';
+require_admin_login();
 
 $db = get_db();
+$current_admin = get_current_admin();
 $admin_id = $current_admin['id'];
 $errors = [];
 
@@ -53,6 +53,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $userStmt = $db->prepare("SELECT * FROM users WHERE id = ?");
 $userStmt->execute([$admin_id]);
 $user = $userStmt->fetch();
+
+$admin_page_title = 'Admin Profile & Security';
+$active_tab = 'profile';
+require_once __DIR__ . '/includes/header.php';
 ?>
 
 <div class="admin-card" style="max-width: 650px; margin: 0 auto;">

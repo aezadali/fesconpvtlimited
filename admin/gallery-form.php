@@ -25,6 +25,18 @@ $active_tab = 'gallery';
 
 $errors = [];
 
+// Handle Delete Event
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'delete') {
+    verify_csrf();
+    if ($is_edit) {
+        $stmt = $db->prepare("DELETE FROM gallery_events WHERE id = ?");
+        $stmt->execute([$id]);
+        set_flash_message('success', 'Gallery event removed successfully.');
+        header("Location: " . $base_url . "/admin/gallery.php");
+        exit;
+    }
+}
+
 // Handle POST save
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     verify_csrf();
@@ -115,12 +127,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($errors)) {
         if ($is_edit) {
-            $stmt = $db->prepare("UPDATE gallery_events SET title = ?, category = ?, event_date = ?, location = ?, description = ?, cover_image = ?, images = ?, sort_order = ?, is_active = ? WHERE id = ?");
-            $stmt->execute([$title, $category, $event_date, $location, $description, $cover_image, $images_json, $sort_order, $is_active, $id]);
+            $stmt = $db->prepare("UPDATE gallery_events SET title = ?, category = ?, event_date = ?, location = ?, description = ?, cover_image = ?, image_url = ?, images = ?, sort_order = ?, is_active = ? WHERE id = ?");
+            $stmt->execute([$title, $category, $event_date, $location, $description, $cover_image, $cover_image, $images_json, $sort_order, $is_active, $id]);
             set_flash_message('success', 'Gallery event updated successfully.');
         } else {
-            $stmt = $db->prepare("INSERT INTO gallery_events (title, category, event_date, location, description, cover_image, images, sort_order, is_active) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$title, $category, $event_date, $location, $description, $cover_image, $images_json, $sort_order, $is_active]);
+            $stmt = $db->prepare("INSERT INTO gallery_events (title, category, event_date, location, description, cover_image, image_url, images, sort_order, is_active) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$title, $category, $event_date, $location, $description, $cover_image, $cover_image, $images_json, $sort_order, $is_active]);
             set_flash_message('success', 'New gallery event created successfully.');
         }
         header("Location: " . $base_url . "/admin/gallery.php");
@@ -271,13 +283,29 @@ $categories = ['EPC Projects', 'Transmission', 'Planning', 'Civil Works', 'Elect
             </div>
         </div>
 
-        <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #e2e8f0; display: flex; gap: 12px; justify-content: flex-end;">
-            <a href="<?php echo $base_url; ?>/admin/gallery.php" class="btn-admin btn-admin-secondary">Cancel</a>
-            <button type="submit" class="btn-admin btn-admin-primary">
-                <i class="fas fa-save"></i> <?php echo $is_edit ? 'Update Gallery Event' : 'Save & Publish Event'; ?>
-            </button>
+        <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #e2e8f0; display: flex; gap: 12px; justify-content: space-between; align-items: center;">
+            <div>
+                <?php if ($is_edit): ?>
+                    <button type="button" class="btn-admin btn-admin-danger" onclick="if(confirm('Are you sure you want to delete this event and all its photos?')) { document.getElementById('formDeleteAction').submit(); }">
+                        <i class="fas fa-trash-alt"></i> Delete Event
+                    </button>
+                <?php endif; ?>
+            </div>
+            <div style="display: flex; gap: 12px;">
+                <a href="<?php echo $base_url; ?>/admin/gallery.php" class="btn-admin btn-admin-secondary">Cancel</a>
+                <button type="submit" class="btn-admin btn-admin-primary">
+                    <i class="fas fa-save"></i> <?php echo $is_edit ? 'Update Gallery Event' : 'Save & Publish Event'; ?>
+                </button>
+            </div>
         </div>
     </form>
 </div>
+
+<?php if ($is_edit): ?>
+<form id="formDeleteAction" method="POST" action="" style="display: none;">
+    <input type="hidden" name="csrf_token" value="<?php echo csrf_token(); ?>">
+    <input type="hidden" name="action" value="delete">
+</form>
+<?php endif; ?>
 
 <?php require_once __DIR__ . '/includes/footer.php'; ?>

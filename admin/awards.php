@@ -3,9 +3,8 @@
  * Manage Awards & Appreciation Certificates - Fescon Admin
  * Full CRUD: List, Reorder, Delete, Status Toggle
  */
-$admin_page_title = 'Awards & Certificates Management';
-$active_tab = 'awards';
-require_once __DIR__ . '/includes/header.php';
+require_once __DIR__ . '/auth.php';
+require_admin_login();
 
 $db = get_db();
 
@@ -48,6 +47,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         exit;
     }
 }
+
+$admin_page_title = 'Awards & Certificates Management';
+$active_tab = 'awards';
+require_once __DIR__ . '/includes/header.php';
 
 $awards = get_all_awards(false);
 ?>
@@ -126,7 +129,7 @@ $awards = get_all_awards(false);
                                         <a href="<?php echo $base_url; ?>/admin/award-form.php?id=<?php echo $a['id']; ?>" class="btn-admin btn-admin-secondary" style="padding: 5px 10px; font-size: 12px;" title="Edit Certificate">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <button type="button" class="btn-admin btn-admin-danger" style="padding: 5px 10px; font-size: 12px;" onclick="confirmDelete(<?php echo $a['id']; ?>, '<?php echo htmlspecialchars(addslashes($a['title'])); ?>')" title="Delete Certificate">
+                                        <button type="button" class="btn-admin btn-admin-danger" style="padding: 5px 10px; font-size: 12px;" onclick="deleteAward(<?php echo $a['id']; ?>, '<?php echo htmlspecialchars(addslashes($a['title']), ENT_QUOTES); ?>')" title="Delete Certificate">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </div>
@@ -166,12 +169,12 @@ $awards = get_all_awards(false);
 </form>
 
 <script>
-function confirmDelete(id, title) {
+window.deleteAward = function(id, title) {
     if (confirm('Are you sure you want to delete "' + title + '"? This action cannot be undone.')) {
         document.getElementById('deleteId').value = id;
         document.getElementById('deleteForm').submit();
     }
-}
+};
 </script>
 
 <?php require_once __DIR__ . '/includes/footer.php'; ?>

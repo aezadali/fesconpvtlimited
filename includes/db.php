@@ -163,6 +163,35 @@ function init_database($pdo) {
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )");
 
+    // Auto-migrate missing columns for existing SQLite databases
+    $existingCols = [];
+    $colStmt = $pdo->query("PRAGMA table_info(gallery_events)");
+    if ($colStmt) {
+        foreach ($colStmt->fetchAll() as $col) {
+            $existingCols[] = $col['name'];
+        }
+    }
+    if (!empty($existingCols)) {
+        if (!in_array('location', $existingCols)) {
+            $pdo->exec("ALTER TABLE gallery_events ADD COLUMN location TEXT");
+        }
+        if (!in_array('description', $existingCols)) {
+            $pdo->exec("ALTER TABLE gallery_events ADD COLUMN description TEXT");
+            if (in_array('short_description', $existingCols)) {
+                $pdo->exec("UPDATE gallery_events SET description = short_description WHERE description IS NULL OR description = ''");
+            }
+        }
+        if (!in_array('cover_image', $existingCols)) {
+            $pdo->exec("ALTER TABLE gallery_events ADD COLUMN cover_image TEXT");
+            if (in_array('image_url', $existingCols)) {
+                $pdo->exec("UPDATE gallery_events SET cover_image = image_url WHERE cover_image IS NULL OR cover_image = ''");
+            }
+        }
+        if (!in_array('images', $existingCols)) {
+            $pdo->exec("ALTER TABLE gallery_events ADD COLUMN images TEXT");
+        }
+    }
+
     // Seed default Gallery Events if empty
     $checkEvents = $pdo->query("SELECT COUNT(*) FROM gallery_events")->fetchColumn();
     if ($checkEvents == 0) {
@@ -259,9 +288,9 @@ function init_database($pdo) {
             ]
         ];
 
-        $insEvent = $pdo->prepare("INSERT INTO gallery_events (title, category, event_date, location, description, cover_image, images, sort_order) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $insEvent = $pdo->prepare("INSERT INTO gallery_events (title, category, event_date, location, description, cover_image, image_url, images, sort_order) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
         foreach ($defaultEvents as $de) {
-            $insEvent->execute([$de['title'], $de['category'], $de['event_date'], $de['location'], $de['description'], $de['cover_image'], $de['images'], $de['sort_order']]);
+            $insEvent->execute([$de['title'], $de['category'], $de['event_date'], $de['location'], $de['description'], $de['cover_image'], $de['cover_image'], $de['images'], $de['sort_order']]);
         }
     }
 

@@ -2,9 +2,8 @@
 /**
  * Manage Inquiries - Fescon Admin
  */
-$admin_page_title = 'Inquiries & Contact Submissions';
-$active_tab = 'inquiries';
-require_once __DIR__ . '/includes/header.php';
+require_once __DIR__ . '/auth.php';
+require_admin_login();
 
 $db = get_db();
 
@@ -30,6 +29,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         exit;
     }
 }
+
+$admin_page_title = 'Inquiries & Contact Submissions';
+$active_tab = 'inquiries';
+require_once __DIR__ . '/includes/header.php';
 
 $status_filter = trim($_GET['status'] ?? '');
 $sql = "SELECT * FROM inquiries WHERE 1=1 ";

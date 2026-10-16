@@ -2,9 +2,8 @@
 /**
  * Manage Projects - Fescon Admin
  */
-$admin_page_title = 'Manage Projects';
-$active_tab = 'projects';
-require_once __DIR__ . '/includes/header.php';
+require_once __DIR__ . '/auth.php';
+require_admin_login();
 
 $db = get_db();
 
@@ -20,6 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         exit;
     }
 }
+
+$admin_page_title = 'Manage Projects';
+$active_tab = 'projects';
+require_once __DIR__ . '/includes/header.php';
 
 // Filters
 $service_filter = trim($_GET['service'] ?? '');
