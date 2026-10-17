@@ -5,19 +5,26 @@
  * Resolving Vercel Hobby plan 12-function limit and fixing Content-Type headers.
  */
 
-// Buffer output so headers and redirects operate smoothly without premature output
-ob_start();
+// Enable error reporting to surface any runtime issues
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
 
-// Base directory (project root) - dirname avoids realpath failure on serverless
+// Base directory detection with fallback
 $rootDir = dirname(__DIR__);
-chdir($rootDir);
+if (is_file($rootDir . '/index.php')) {
+    chdir($rootDir);
+} elseif (is_file(__DIR__ . '/index.php')) {
+    $rootDir = __DIR__;
+    chdir($rootDir);
+}
 
 // Ensure session files use writable /tmp in serverless environment
 if (session_status() === PHP_SESSION_NONE) {
     @ini_set('session.save_path', sys_get_temp_dir());
 }
 
-// Default Content-Type header to ensure browser renders HTML instead of downloading file
+// Default Content-Type header
 if (!headers_sent()) {
     header('Content-Type: text/html; charset=UTF-8');
 }
@@ -29,7 +36,7 @@ try {
         echo "PHP VERSION: " . PHP_VERSION . "\n";
         echo "ROOT DIR: " . $rootDir . "\n";
         echo "DIR EXISTS: " . (is_dir($rootDir) ? 'YES' : 'NO') . "\n";
-        echo "INDEX EXISTS: " . (file_exists($rootDir . '/index.php') ? 'YES' : 'NO') . "\n";
+        echo "INDEX EXISTS: " . (is_file($rootDir . '/index.php') ? 'YES' : 'NO') . "\n";
         echo "INCLUDES EXISTS: " . (is_dir($rootDir . '/includes') ? 'YES' : 'NO') . "\n";
         echo "STORAGE EXISTS: " . (is_dir($rootDir . '/storage') ? 'YES' : 'NO') . "\n";
         echo "FILES IN ROOT: " . json_encode(@scandir($rootDir)) . "\n";
@@ -108,7 +115,11 @@ try {
 
     // 7. Route not found: serve homepage with 404
     http_response_code(404);
-    require $rootDir . '/index.php';
+    if (is_file($rootDir . '/index.php')) {
+        require $rootDir . '/index.php';
+    } else {
+        echo "404 Not Found";
+    }
     exit;
 
 } catch (Throwable $e) {
@@ -124,9 +135,7 @@ try {
     echo 'a{display:inline-block;background:#0d9488;color:#fff;text-decoration:none;font-weight:600;padding:10px 20px;border-radius:6px;font-size:14px;}</style></head>';
     echo '<body><div class="card"><h1>Fescon (Pvt.) Ltd</h1><p>The requested page is temporarily initializing. Please refresh or return to the homepage.</p>';
     echo '<a href="/">Return to Homepage</a>';
-    if (!empty($_GET['debug'])) {
-        echo '<pre style="text-align:left;background:#0b1329;padding:14px;border-radius:6px;margin-top:20px;overflow:auto;font-size:12px;color:#fca5a5;">' . htmlspecialchars($e->getMessage() . "\n" . $e->getTraceAsString()) . '</pre>';
-    }
+    echo '<pre style="text-align:left;background:#0b1329;padding:14px;border-radius:6px;margin-top:20px;overflow:auto;font-size:12px;color:#fca5a5;">' . htmlspecialchars($e->getMessage() . "\n" . $e->getTraceAsString()) . '</pre>';
     echo '</div></body></html>';
     exit;
 }

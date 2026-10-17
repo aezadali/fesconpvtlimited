@@ -3,9 +3,10 @@
  * Configuration & Global Setup for Fescon (Pvt.) Ltd Website
  */
 
-// Error reporting (can be disabled in production)
+// Error reporting
 error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
-ini_set('display_errors', '0');
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
 
 // Base URL Auto-Detection
 $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443)) ? "https://" : "http://";
