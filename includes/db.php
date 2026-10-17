@@ -29,14 +29,14 @@ function get_db() {
 
         if ($isVercel) {
             $tmpDbPath = sys_get_temp_dir() . '/fescon_database.sqlite';
-            $needCopy = !file_exists($tmpDbPath);
+            $needCopy = !file_exists($tmpDbPath) || filesize($tmpDbPath) === 0;
             if (!$needCopy && file_exists($dbPath)) {
                 if (@filemtime($dbPath) > @filemtime($tmpDbPath)) {
                     $needCopy = true;
                 }
             }
             if ($needCopy) {
-                if (file_exists($dbPath)) {
+                if (file_exists($dbPath) && filesize($dbPath) > 0) {
                     @copy($dbPath, $tmpDbPath);
                 } else {
                     @touch($tmpDbPath);
