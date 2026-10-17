@@ -84,7 +84,7 @@ require_once __DIR__ . '/includes/modern-header.php';
                         Engr. Ehsan Ullah Laang is an engineer, entrepreneur and business leader with 15+ years of experience in engineering, construction, manufacturing, agriculture, foods, furniture and business development. He holds MSc in Electrical Engineering.
                     </p>
                     <p style="margin: 0;">
-                        As Founder and CEO, he leads a diversified business portfolio across Oman, Türkiye, Pakistan and Qatar, with interests in engineering, construction, manufacturing, foods &amp; beverage, agriculture, real estate and trading.
+                        As Founder and CEO, he leads a diversified business portfolio across Pakistan, Oman, Türkiye and Qatar, with interests in engineering, construction, manufacturing, foods &amp; beverage, agriculture, real estate and trading.
                     </p>
                     <p style="margin: 0;">
                         His focus is on building professionally managed businesses, developing international partnerships and creating sustainable long-term growth.
@@ -98,13 +98,13 @@ require_once __DIR__ . '/includes/modern-header.php';
                     </div>
                     <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 14px;">
                         <span style="background: #ffffff; border: 1px solid var(--border-light); padding: 6px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: 700; color: #0f172a; box-shadow: var(--shadow-sm); display: inline-flex; align-items: center; gap: 6px;">
+                            <span>🇵🇰</span> Pakistan
+                        </span>
+                        <span style="background: #ffffff; border: 1px solid var(--border-light); padding: 6px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: 700; color: #0f172a; box-shadow: var(--shadow-sm); display: inline-flex; align-items: center; gap: 6px;">
                             <span>🇴🇲</span> Oman
                         </span>
                         <span style="background: #ffffff; border: 1px solid var(--border-light); padding: 6px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: 700; color: #0f172a; box-shadow: var(--shadow-sm); display: inline-flex; align-items: center; gap: 6px;">
                             <span>🇹🇷</span> Türkiye
-                        </span>
-                        <span style="background: #ffffff; border: 1px solid var(--border-light); padding: 6px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: 700; color: #0f172a; box-shadow: var(--shadow-sm); display: inline-flex; align-items: center; gap: 6px;">
-                            <span>🇵🇰</span> Pakistan
                         </span>
                         <span style="background: #ffffff; border: 1px solid var(--border-light); padding: 6px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: 700; color: #0f172a; box-shadow: var(--shadow-sm); display: inline-flex; align-items: center; gap: 6px;">
                             <span>🇶🇦</span> Qatar
@@ -185,7 +185,7 @@ require_once __DIR__ . '/includes/modern-header.php';
             <div style="max-width: 650px;">
                 <span style="display: inline-block; font-size: 0.8rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--brand-red); margin-bottom: 8px;">Executive Office</span>
                 <h2 style="font-size: clamp(1.6rem, 2.5vw, 2.2rem); font-weight: 800; color: #ffffff; margin: 0 0 10px;">Connect With the CEO Office</h2>
-                <p style="font-size: 0.95rem; color: #cbd5e1; margin: 0; line-height: 1.6;">For corporate partnerships, joint ventures, and international business inquiries across Oman, Türkiye, Pakistan, and Qatar.</p>
+                <p style="font-size: 0.95rem; color: #cbd5e1; margin: 0; line-height: 1.6;">For corporate partnerships, joint ventures, and international business inquiries across Pakistan, Oman, Türkiye, and Qatar.</p>
             </div>
             <div>
                 <a href="<?php echo $base_url; ?>/contact-us/" class="btn btn-primary" style="padding: 14px 32px; font-size: 1rem;">
