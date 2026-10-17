@@ -18,6 +18,8 @@ $unread_count = $db->query("SELECT COUNT(*) FROM inquiries WHERE is_read = 0")->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($admin_page_title ?? 'Dashboard'); ?> | Fescon Admin</title>
+    <link rel="icon" type="image/png" href="<?php echo $base_url; ?>/assets/images/cropped-con-32x32.png" sizes="32x32">
+    <link rel="shortcut icon" href="<?php echo $base_url; ?>/favicon.ico">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

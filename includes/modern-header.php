@@ -20,10 +20,16 @@ function is_nav_active($pages, $current) {
     <title><?php echo htmlspecialchars($page_title); ?></title>
     <meta name="description" content="Fescon (Pvt.) Ltd is a premier engineering, power transmission, high-voltage substation, civil works, and turnkey EPC contractor in Pakistan, registered with the Pakistan Engineering Council (PEC) Category C-A.">
     
-    <!-- Favicons -->
-    <link rel="icon" href="<?php echo $base_url; ?>/assets/images/cropped-con-32x32.png" sizes="32x32">
-    <link rel="icon" href="<?php echo $base_url; ?>/assets/images/cropped-con-192x192.png" sizes="192x192">
-    <link rel="apple-touch-icon" href="<?php echo $base_url; ?>/assets/images/cropped-con-180x180.png">
+    <!-- Favicons (Browser Tab, Google Search, iOS, Android, Windows) -->
+    <link rel="icon" type="image/png" href="<?php echo $base_url; ?>/assets/images/cropped-con-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="<?php echo $base_url; ?>/assets/images/cropped-con-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="<?php echo $base_url; ?>/assets/images/cropped-con-270x270.png" sizes="270x270">
+    <link rel="shortcut icon" href="<?php echo $base_url; ?>/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo $base_url; ?>/assets/images/cropped-con-180x180.png">
+    <link rel="manifest" href="<?php echo $base_url; ?>/site.webmanifest">
+    <meta name="msapplication-TileImage" content="<?php echo $base_url; ?>/assets/images/cropped-con-270x270.png">
+    <meta name="msapplication-TileColor" content="#c72c41">
+    <meta name="theme-color" content="#c72c41">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
