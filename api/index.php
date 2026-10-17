@@ -23,6 +23,19 @@ if (!headers_sent()) {
 }
 
 try {
+    // Diagnostics endpoint for debugging Vercel deployment environment
+    if (isset($_GET['diag'])) {
+        header('Content-Type: text/plain; charset=UTF-8');
+        echo "PHP VERSION: " . PHP_VERSION . "\n";
+        echo "ROOT DIR: " . $rootDir . "\n";
+        echo "DIR EXISTS: " . (is_dir($rootDir) ? 'YES' : 'NO') . "\n";
+        echo "INDEX EXISTS: " . (file_exists($rootDir . '/index.php') ? 'YES' : 'NO') . "\n";
+        echo "INCLUDES EXISTS: " . (is_dir($rootDir . '/includes') ? 'YES' : 'NO') . "\n";
+        echo "STORAGE EXISTS: " . (is_dir($rootDir . '/storage') ? 'YES' : 'NO') . "\n";
+        echo "FILES IN ROOT: " . json_encode(@scandir($rootDir)) . "\n";
+        exit;
+    }
+
     // Parse request path
     $requestUri = $_SERVER['REQUEST_URI'] ?? '/';
     $parsedPath = parse_url($requestUri, PHP_URL_PATH);
@@ -30,7 +43,11 @@ try {
 
     // 1. Homepage
     if ($path === '' || $path === 'index' || $path === 'index.php') {
-        require $rootDir . '/index.php';
+        if (is_file($rootDir . '/index.php')) {
+            require $rootDir . '/index.php';
+        } else {
+            throw new Exception("Application entry file 'index.php' was not found in: " . $rootDir);
+        }
         exit;
     }
 
