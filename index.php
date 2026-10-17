@@ -23,7 +23,7 @@ require_once __DIR__ . '/includes/modern-header.php';
 
 <!-- 1. CINEMATIC PARALLAX HERO SECTION -->
 <section class="hero-section" id="hero">
-    <div class="hero-parallax-bg" aria-hidden="true" style="background-image: url('<?php echo asset_url('assets/images/heroes/hero-home.jpg'); ?>');"></div>
+    <div class="hero-parallax-bg" aria-hidden="true"></div>
     <div class="hero-overlay-gradient" aria-hidden="true"></div>
     <div class="hero-grid-mesh" aria-hidden="true"></div>
 

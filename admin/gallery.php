@@ -136,7 +136,7 @@ $events = get_all_gallery_events(false);
                                         <a href="<?php echo $base_url; ?>/admin/gallery-form.php?id=<?php echo $e['id']; ?>" class="btn-admin btn-admin-secondary" style="padding: 5px 10px; font-size: 12px;" title="Edit Event">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <button type="button" class="btn-admin btn-admin-danger" style="padding: 5px 10px; font-size: 12px;" onclick="deleteGalleryEvent(<?php echo $e['id']; ?>, '<?php echo htmlspecialchars(addslashes($e['title']), ENT_QUOTES); ?>')" title="Delete Event">
+                                        <button type="button" class="btn-admin btn-admin-danger btn-delete-gallery-event" style="padding: 5px 10px; font-size: 12px;" data-id="<?php echo $e['id']; ?>" data-title="<?php echo htmlspecialchars($e['title'], ENT_QUOTES, 'UTF-8'); ?>" onclick="triggerDeleteEvent(<?php echo $e['id']; ?>, '<?php echo htmlspecialchars(addslashes($e['title']), ENT_QUOTES); ?>')" title="Delete Event">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </div>
@@ -176,12 +176,30 @@ $events = get_all_gallery_events(false);
 </form>
 
 <script>
-window.deleteGalleryEvent = function(id, title) {
-    if (confirm('Are you sure you want to delete "' + title + '" and all its photos? This action cannot be undone.')) {
-        document.getElementById('deleteId').value = id;
-        document.getElementById('deleteForm').submit();
+function triggerDeleteEvent(id, title) {
+    if (confirm('Are you sure you want to delete "' + (title || 'this event') + '" and all its photos? This action cannot be undone.')) {
+        var input = document.getElementById('deleteId');
+        var form = document.getElementById('deleteForm');
+        if (input && form) {
+            input.value = id;
+            form.submit();
+        }
     }
-};
+}
+window.deleteGalleryEvent = triggerDeleteEvent;
+
+document.addEventListener('DOMContentLoaded', function() {
+    var buttons = document.querySelectorAll('.btn-delete-gallery-event');
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var id = this.getAttribute('data-id');
+            var title = this.getAttribute('data-title');
+            triggerDeleteEvent(id, title);
+        });
+    }
+});
 </script>
 
 <?php require_once __DIR__ . '/includes/footer.php'; ?>

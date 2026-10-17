@@ -452,26 +452,24 @@ button, input, textarea, select {
 
 .hero-parallax-bg {
     position: absolute;
-    top: -25%;
+    top: -20%;
     left: 0;
     width: 100%;
-    height: 150%;
-    background-image: url('../images/heroes/hero-home.jpg');
+    height: 140%;
+    background-image: url('../images/DJI_0378-scaled.jpg');
     background-size: cover;
-    background-position: center 35%;
-    background-repeat: no-repeat;
-    filter: brightness(0.68) contrast(1.08) saturate(1.15);
+    background-position: center;
+    filter: brightness(0.52) contrast(1.1);
     will-change: transform;
-    transform: translate3d(0, 0, 0);
     z-index: 1;
 }
 
 .hero-overlay-gradient {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 70% 30%, rgba(198, 40, 40, 0.15) 0%, transparent 65%),
-                linear-gradient(to right, rgba(11, 15, 23, 0.88) 0%, rgba(11, 15, 23, 0.65) 55%, rgba(11, 15, 23, 0.35) 100%),
-                linear-gradient(to bottom, rgba(11, 15, 23, 0.25) 0%, rgba(11, 15, 23, 0.85) 100%);
+    background: radial-gradient(circle at 75% 25%, rgba(198, 40, 40, 0.18) 0%, transparent 60%),
+                linear-gradient(to right, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.6) 60%, rgba(15, 23, 42, 0.35) 100%),
+                linear-gradient(to bottom, rgba(15, 23, 42, 0.2) 0%, rgba(15, 23, 42, 0.8) 100%);
     z-index: 2;
 }
 

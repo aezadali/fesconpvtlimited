@@ -9,34 +9,60 @@ require_once __DIR__ . '/config.php';
 function get_db() {
     static $pdo = null;
     if ($pdo === null) {
-        $storageDir = __DIR__ . '/../storage';
+        $storageDir = dirname(__DIR__) . '/storage';
         $dbPath = $storageDir . '/database.sqlite';
 
         // Support Vercel Serverless environment where project root is read-only
-        $isVercel = !empty($_ENV['VERCEL']) || !empty($_SERVER['VERCEL']) || getenv('VERCEL');
-        if ($isVercel || (file_exists($storageDir) && !is_writable($storageDir))) {
-            $tmpDir = sys_get_temp_dir() . '/fescon_storage';
-            if (!is_dir($tmpDir)) {
-                @mkdir($tmpDir, 0777, true);
+        $isVercel = (
+            !empty($_ENV['VERCEL']) ||
+            !empty($_SERVER['VERCEL']) ||
+            getenv('VERCEL') !== false ||
+            !empty($_ENV['NOW_REGION']) ||
+            !empty($_SERVER['NOW_REGION']) ||
+            getenv('NOW_REGION') !== false ||
+            !empty($_ENV['AWS_LAMBDA_FUNCTION_NAME']) ||
+            getenv('AWS_LAMBDA_FUNCTION_NAME') !== false ||
+            strpos(__DIR__, '/var/task') !== false ||
+            !is_writable(dirname(__DIR__)) ||
+            (file_exists($storageDir) && !is_writable($storageDir))
+        );
+
+        if ($isVercel) {
+            $tmpDbPath = sys_get_temp_dir() . '/fescon_database.sqlite';
+            $needCopy = !file_exists($tmpDbPath);
+            if (!$needCopy && file_exists($dbPath)) {
+                if (@filemtime($dbPath) > @filemtime($tmpDbPath)) {
+                    $needCopy = true;
+                }
             }
-            $tmpDbPath = $tmpDir . '/database.sqlite';
-            if (!file_exists($tmpDbPath) && file_exists($dbPath)) {
-                @copy($dbPath, $tmpDbPath);
+            if ($needCopy) {
+                if (file_exists($dbPath)) {
+                    @copy($dbPath, $tmpDbPath);
+                } else {
+                    @touch($tmpDbPath);
+                }
+                @chmod($tmpDbPath, 0666);
             }
-            if (file_exists($tmpDbPath)) {
-                $dbPath = $tmpDbPath;
+            $dbPath = $tmpDbPath;
+        } else {
+            if (!is_dir($storageDir)) {
+                @mkdir($storageDir, 0755, true);
             }
-        } elseif (!is_dir($storageDir)) {
-            @mkdir($storageDir, 0755, true);
         }
 
         try {
             $pdo = new PDO('sqlite:' . $dbPath);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+            $pdo->exec('PRAGMA busy_timeout = 5000;');
 
             init_database($pdo);
         } catch (PDOException $e) {
+            error_log('Database Connection Error: ' . $e->getMessage());
+            // Graceful fallback display instead of uncaught exception crash
+            if (!headers_sent()) {
+                http_response_code(500);
+            }
             die('Database Connection Error: ' . htmlspecialchars($e->getMessage()));
         }
     }
@@ -54,6 +80,23 @@ function init_database($pdo) {
         role TEXT DEFAULT 'admin',
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )");
+
+    // Seed default admin user (admin / admin123) if none exists
+    try {
+        $checkUser = $pdo->query("SELECT COUNT(*) FROM users")->fetchColumn();
+        if ($checkUser == 0) {
+            $stmt = $pdo->prepare("INSERT INTO users (username, password_hash, name, email, role) VALUES (?, ?, ?, ?, ?)");
+            $stmt->execute([
+                'admin',
+                password_hash('admin123', PASSWORD_DEFAULT),
+                'Fescon Administrator',
+                'admin@fescon.com.pk',
+                'admin'
+            ]);
+        }
+    } catch (Exception $e) {
+        error_log('Admin user seed error: ' . $e->getMessage());
+    }
 
     // 2. Clients / Partners table (for Logo Slider & Collaborations)
     $pdo->exec("CREATE TABLE IF NOT EXISTS clients (
@@ -163,38 +206,70 @@ function init_database($pdo) {
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )");
 
-    // Auto-migrate missing columns for existing SQLite databases
-    $existingCols = [];
-    $colStmt = $pdo->query("PRAGMA table_info(gallery_events)");
-    if ($colStmt) {
-        foreach ($colStmt->fetchAll() as $col) {
-            $existingCols[] = $col['name'];
-        }
-    }
-    if (!empty($existingCols)) {
-        if (!in_array('location', $existingCols)) {
-            $pdo->exec("ALTER TABLE gallery_events ADD COLUMN location TEXT");
-        }
-        if (!in_array('description', $existingCols)) {
-            $pdo->exec("ALTER TABLE gallery_events ADD COLUMN description TEXT");
-            if (in_array('short_description', $existingCols)) {
-                $pdo->exec("UPDATE gallery_events SET description = short_description WHERE description IS NULL OR description = ''");
+    // 9. System Migrations / Seed Tracking Table
+    $pdo->exec("CREATE TABLE IF NOT EXISTS system_migrations (
+        migration_key TEXT PRIMARY KEY,
+        executed_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )");
+
+    // Auto-migrate missing columns for existing SQLite databases safely
+    try {
+        $existingCols = [];
+        $colStmt = $pdo->query("PRAGMA table_info(gallery_events)");
+        if ($colStmt) {
+            foreach ($colStmt->fetchAll() as $col) {
+                $existingCols[] = $col['name'];
             }
         }
-        if (!in_array('cover_image', $existingCols)) {
-            $pdo->exec("ALTER TABLE gallery_events ADD COLUMN cover_image TEXT");
-            if (in_array('image_url', $existingCols)) {
-                $pdo->exec("UPDATE gallery_events SET cover_image = image_url WHERE cover_image IS NULL OR cover_image = ''");
+        if (!empty($existingCols)) {
+            if (!in_array('location', $existingCols)) {
+                try { $pdo->exec("ALTER TABLE gallery_events ADD COLUMN location TEXT"); } catch (Exception $e) {}
+            }
+            if (!in_array('description', $existingCols)) {
+                try { $pdo->exec("ALTER TABLE gallery_events ADD COLUMN description TEXT"); } catch (Exception $e) {}
+                if (in_array('short_description', $existingCols)) {
+                    try { $pdo->exec("UPDATE gallery_events SET description = short_description WHERE description IS NULL OR description = ''"); } catch (Exception $e) {}
+                }
+            }
+            if (!in_array('cover_image', $existingCols)) {
+                try { $pdo->exec("ALTER TABLE gallery_events ADD COLUMN cover_image TEXT"); } catch (Exception $e) {}
+                if (in_array('image_url', $existingCols)) {
+                    try { $pdo->exec("UPDATE gallery_events SET cover_image = image_url WHERE cover_image IS NULL OR cover_image = ''"); } catch (Exception $e) {}
+                }
+            }
+            if (!in_array('images', $existingCols)) {
+                try { $pdo->exec("ALTER TABLE gallery_events ADD COLUMN images TEXT"); } catch (Exception $e) {}
             }
         }
-        if (!in_array('images', $existingCols)) {
-            $pdo->exec("ALTER TABLE gallery_events ADD COLUMN images TEXT");
-        }
+    } catch (Exception $e) {
+        // Safe fallback
     }
 
-    // Seed default Gallery Events if empty
-    $checkEvents = $pdo->query("SELECT COUNT(*) FROM gallery_events")->fetchColumn();
-    if ($checkEvents == 0) {
+    // Check if initial content seeding has already occurred once
+    $isSeeded = 0;
+    try {
+        $isSeeded = (int)$pdo->query("SELECT COUNT(*) FROM system_migrations WHERE migration_key = 'initial_seed_completed'")->fetchColumn();
+        if (!$isSeeded) {
+            // If the database already has any records in content tables, mark as seeded so user deletions are not reverted!
+            $hasExistingContent = (
+                (int)$pdo->query("SELECT COUNT(*) FROM gallery_events")->fetchColumn() > 0 ||
+                (int)$pdo->query("SELECT COUNT(*) FROM awards")->fetchColumn() > 0 ||
+                (int)$pdo->query("SELECT COUNT(*) FROM clients")->fetchColumn() > 0 ||
+                (int)$pdo->query("SELECT COUNT(*) FROM services")->fetchColumn() > 0 ||
+                (int)$pdo->query("SELECT COUNT(*) FROM projects")->fetchColumn() > 0 ||
+                (int)$pdo->query("SELECT COUNT(*) FROM team_members")->fetchColumn() > 0
+            );
+            if ($hasExistingContent) {
+                $pdo->exec("INSERT OR IGNORE INTO system_migrations (migration_key) VALUES ('initial_seed_completed')");
+                $isSeeded = 1;
+            }
+        }
+    } catch (Exception $e) {
+        $isSeeded = 1; // Safeguard against reseeding on error
+    }
+
+    if (!$isSeeded) {
+        // Seed default Gallery Events
         $defaultEvents = [
             [
                 'title' => 'Grid Station Construction & Commissioning',
@@ -292,11 +367,8 @@ function init_database($pdo) {
         foreach ($defaultEvents as $de) {
             $insEvent->execute([$de['title'], $de['category'], $de['event_date'], $de['location'], $de['description'], $de['cover_image'], $de['cover_image'], $de['images'], $de['sort_order']]);
         }
-    }
 
-    // Seed default Awards if empty
-    $checkAwards = $pdo->query("SELECT COUNT(*) FROM awards")->fetchColumn();
-    if ($checkAwards == 0) {
+        // Seed default Awards
         $defaultAwards = [
             [
                 'title' => 'Pakistan Engineering Council (PEC) License',
@@ -349,24 +421,8 @@ function init_database($pdo) {
         foreach ($defaultAwards as $da) {
             $insAward->execute([$da['title'], $da['category'], $da['year'], $da['issuer'], $da['image_url'], $da['description'], $da['sort_order']]);
         }
-    }
 
-    // Seed default admin user (admin / admin123)
-    $checkUser = $pdo->query("SELECT COUNT(*) FROM users")->fetchColumn();
-    if ($checkUser == 0) {
-        $stmt = $pdo->prepare("INSERT INTO users (username, password_hash, name, email, role) VALUES (?, ?, ?, ?, ?)");
-        $stmt->execute([
-            'admin',
-            password_hash('admin123', PASSWORD_DEFAULT),
-            'Fescon Administrator',
-            'admin@fescon.com.pk',
-            'admin'
-        ]);
-    }
-
-    // Seed default Clients (the 7 logos in the slider)
-    $checkClients = $pdo->query("SELECT COUNT(*) FROM clients")->fetchColumn();
-    if ($checkClients == 0) {
+        // Seed default Clients (the 7 logos in the slider)
         $defaultClients = [
             [
                 'name' => 'WAPDA (Water & Power Development Authority)',
@@ -430,11 +486,8 @@ function init_database($pdo) {
         foreach ($defaultClients as $c) {
             $stmt->execute([$c['name'], $c['slug'], $c['logo_url'], $c['website_url'], $c['description'], $c['sort_order']]);
         }
-    }
 
-    // Seed Services
-    $checkServices = $pdo->query("SELECT COUNT(*) FROM services")->fetchColumn();
-    if ($checkServices == 0) {
+        // Seed Services
         $defaultServices = [
             [
                 'name' => 'Planning and Designing',
@@ -496,11 +549,8 @@ function init_database($pdo) {
         foreach ($defaultServices as $s) {
             $stmt->execute([$s['name'], $s['slug'], $s['icon_class'], $s['image_url'], $s['short_description'], $s['full_description'], $s['sort_order']]);
         }
-    }
 
-    // Seed Default Projects
-    $checkProjects = $pdo->query("SELECT COUNT(*) FROM projects")->fetchColumn();
-    if ($checkProjects == 0) {
+        // Seed Default Projects
         $defaultProjects = [
             [
                 'title' => '220kV Grid Station Turnkey Augmentation',
@@ -636,11 +686,8 @@ function init_database($pdo) {
                 $p['featured']
             ]);
         }
-    }
 
-    // Seed Default Team Members
-    $checkTeam = $pdo->query("SELECT COUNT(*) FROM team_members")->fetchColumn();
-    if ($checkTeam == 0) {
+        // Seed Default Team Members
         $defaultTeam = [
             [
                 'name' => 'Engr. Ehsan Ullah',
@@ -746,6 +793,11 @@ function init_database($pdo) {
                 $t['sort_order']
             ]);
         }
+
+        // Mark initial seeding as completed so future deletions remain permanent
+        try {
+            $pdo->exec("INSERT OR IGNORE INTO system_migrations (migration_key) VALUES ('initial_seed_completed')");
+        } catch (Exception $e) {}
     }
 }
 
