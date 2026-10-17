@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/assets/(.*)", "destination": "/assets/$1" },
+    { "source": "/contact-handler(.php)?", "destination": "/api/contact-handler" },
+    { "source": "/careers-handler(.php)?", "destination": "/api/careers-handler" },
+    { "source": "/sticky-handler(.php)?", "destination": "/api/sticky-handler" },
+    { "source": "/index.php", "destination": "/index.html" },
+    { "source": "/:slug.php", "destination": "/:slug.html" }
+  ]
+}

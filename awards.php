@@ -98,8 +98,9 @@ require_once __DIR__ . '/includes/modern-header.php';
             <div class="award-card" data-reveal style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-card); display: flex; flex-direction: column; transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.3s ease;">
                 
                 <!-- Certificate Preview Image -->
-                <div style="position: relative; height: 320px; overflow: hidden; background: #ffffff; padding: 16px; display: flex; align-items: center; justify-content: center; cursor: pointer; border-bottom: 1px solid var(--border-light);" onclick="openAwardModal('<?php echo asset_url($award['image']); ?>', '<?php echo htmlspecialchars($award['title'], ENT_QUOTES); ?>')">
-                    <img src="<?php echo asset_url($award['image']); ?>" 
+                <?php $awardImg = $award['image_url'] ?? $award['image'] ?? 'assets/images/cer.png'; ?>
+                <div style="position: relative; height: 320px; overflow: hidden; background: #ffffff; padding: 16px; display: flex; align-items: center; justify-content: center; cursor: pointer; border-bottom: 1px solid var(--border-light);" onclick="openAwardModal('<?php echo asset_url($awardImg); ?>', '<?php echo htmlspecialchars($award['title'], ENT_QUOTES); ?>')">
+                    <img src="<?php echo asset_url($awardImg); ?>" 
                          alt="<?php echo htmlspecialchars($award['title']); ?>" 
                          loading="lazy"
                          style="max-width: 100%; max-height: 100%; object-fit: contain; transition: transform 0.4s ease;"
