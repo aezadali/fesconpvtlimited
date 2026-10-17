@@ -9,23 +9,32 @@
     document.addEventListener('DOMContentLoaded', function() {
 
         // -------------------------------------------------------------
-        // 1. Cinematic Parallax Scrolling Engine (60fps requestAnimationFrame)
+        // 1. Cinematic Parallax Scrolling Engine (fesconinternational.com parity)
         // -------------------------------------------------------------
-        const heroBg = document.querySelector('.hero-parallax-bg');
+        const parallaxHeroSections = document.querySelectorAll('.hero-section');
         const projectsBg = document.querySelector('.parallax-projects-bg');
         const header = document.querySelector('.site-header');
         const scrollTopBtn = document.querySelector('.scroll-top-btn');
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
         let lastScrollY = window.pageYOffset;
         let ticking = false;
 
         function updateParallax() {
             const scrollY = lastScrollY;
+            const windowHeight = window.innerHeight;
+            const isMobile = window.innerWidth <= 768;
 
-            // Parallax on hero background
-            if (heroBg && scrollY < window.innerHeight * 1.5) {
-                const heroOffset = scrollY * 0.38;
-                heroBg.style.transform = `translate3d(0, ${heroOffset}px, 0)`;
+            // Parallax on hero section (Exact fesconinternational.com calculation)
+            if (!prefersReducedMotion.matches && !isMobile && parallaxHeroSections.length > 0) {
+                parallaxHeroSections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top < windowHeight && rect.bottom > 0) {
+                        const speed = 0.35;
+                        const yPos = -(rect.top * speed);
+                        section.style.backgroundPositionY = `calc(50% + ${yPos}px)`;
+                    }
+                });
             }
 
             // Parallax on project section background
@@ -33,8 +42,8 @@
                 const projectsSection = projectsBg.closest('.parallax-projects-section');
                 if (projectsSection) {
                     const rect = projectsSection.getBoundingClientRect();
-                    if (rect.top < window.innerHeight && rect.bottom > 0) {
-                        const relativeScroll = (window.innerHeight - rect.top) * 0.18;
+                    if (rect.top < windowHeight && rect.bottom > 0) {
+                        const relativeScroll = (windowHeight - rect.top) * 0.18;
                         projectsBg.style.transform = `translate3d(0, ${relativeScroll}px, 0)`;
                     }
                 }
@@ -70,6 +79,15 @@
         }
 
         window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', () => {
+            if (window.innerWidth <= 768) {
+                parallaxHeroSections.forEach(section => {
+                    section.style.backgroundPositionY = '';
+                });
+            } else {
+                updateParallax();
+            }
+        });
         updateParallax(); // Initial positioning
 
         // Scroll to top click
