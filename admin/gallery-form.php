@@ -82,7 +82,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $filename = 'gallery_cover_' . time() . '_' . rand(100, 999) . '.' . $ext;
                 $dest = $upload_dir . '/' . $filename;
                 if (move_uploaded_file($file['tmp_name'], $dest)) {
-                    $cover_image = 'assets/images/' . $filename;
+                    if (sanitize_uploaded_image($dest, $ext)) {
+                        $cover_image = 'assets/images/' . $filename;
+                    } else {
+                        $errors[] = "Cover image failed verification.";
+                    }
                 }
             } else {
                 $errors[] = "Cover image format not supported. Use JPG, PNG, or WebP.";
@@ -106,7 +110,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $filename = 'event_' . time() . '_' . rand(1000, 9999) . '.' . $ext;
                     $dest = $upload_dir . '/' . $filename;
                     if (move_uploaded_file($_FILES['photo_files']['tmp_name'][$k], $dest)) {
-                        $existing_images[] = 'assets/images/' . $filename;
+                        if (sanitize_uploaded_image($dest, $ext)) {
+                            $existing_images[] = 'assets/images/' . $filename;
+                        }
                     }
                 }
             }

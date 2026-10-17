@@ -58,7 +58,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $filename = time() . '_' . preg_replace('/[^a-zA-Z0-9_-]/', '', pathinfo($file['name'], PATHINFO_FILENAME)) . '.' . $ext;
                 $dest = $upload_dir . '/' . $filename;
                 if (move_uploaded_file($file['tmp_name'], $dest)) {
-                    $image_url = $base_url . '/assets/images/' . $filename;
+                    if (sanitize_uploaded_image($dest, $ext)) {
+                        $image_url = $base_url . '/assets/images/' . $filename;
+                    } else {
+                        $errors[] = "Uploaded project image failed verification.";
+                    }
                 }
             } else {
                 $errors[] = "Invalid image file format. Allowed: JPG, PNG, WEBP, GIF.";

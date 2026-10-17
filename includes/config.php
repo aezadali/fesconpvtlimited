@@ -3,10 +3,11 @@
  * Configuration & Global Setup for Fescon (Pvt.) Ltd Website
  */
 
-// Error reporting
+// Error reporting: Log errors securely without displaying sensitive internals to visitors
 error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
+ini_set('display_errors', '0');
+ini_set('display_startup_errors', '0');
+ini_set('log_errors', '1');
 
 // Base URL Auto-Detection
 $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443)) ? "https://" : "http://";
@@ -17,10 +18,7 @@ $currentDir = str_replace('\\', '/', __DIR__ . '/..');
 // Calculate relative path from DOCUMENT_ROOT to site directory
 $scriptName = str_replace('\\', '/', $_SERVER['SCRIPT_NAME'] ?? '');
 $scriptDir = dirname($scriptName);
-// If running on Vercel serverless environment, base URL is always root
-if (!empty($_ENV['VERCEL']) || !empty($_SERVER['VERCEL']) || getenv('VERCEL')) {
-    $base_url = '';
-} else if ($scriptDir === '/' || $scriptDir === '\\') {
+if ($scriptDir === '/' || $scriptDir === '\\') {
     $base_url = '';
 } else {
     // If inside a subfolder, e.g., /FesconPvtLimited or /FesconPvtLimited/about-us

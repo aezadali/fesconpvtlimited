@@ -10,12 +10,16 @@ header('Content-Type: application/json; charset=utf-8');
 
 $is_ajax = !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest' || isset($_POST['_wpcf7']);
 
-$name = trim($_POST['your-name'] ?? $_POST['name'] ?? '');
-$email = filter_var(trim($_POST['your-email'] ?? $_POST['email'] ?? ''), FILTER_SANITIZE_EMAIL);
-$subject = trim($_POST['your-subject'] ?? $_POST['subject'] ?? 'Website Inquiry');
-$message = trim($_POST['your-message'] ?? $_POST['message'] ?? '');
+// Strip newlines to prevent email header injection
+function sanitize_header_val($str) {
+    return trim(str_replace(["\r", "\n", "%0a", "%0d"], '', (string)$str));
+}
 
-$phone = trim($_POST['your-phone'] ?? $_POST['phone'] ?? '');
+$name = sanitize_header_val($_POST['your-name'] ?? $_POST['name'] ?? '');
+$email = sanitize_header_val(filter_var(trim($_POST['your-email'] ?? $_POST['email'] ?? ''), FILTER_SANITIZE_EMAIL));
+$subject = sanitize_header_val($_POST['your-subject'] ?? $_POST['subject'] ?? 'Website Inquiry');
+$message = trim($_POST['your-message'] ?? $_POST['message'] ?? '');
+$phone = sanitize_header_val($_POST['your-phone'] ?? $_POST['phone'] ?? '');
 
 if (empty($name) || empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
     http_response_code(400);
@@ -27,7 +31,7 @@ if (empty($name) || empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL))
     exit;
 }
 
-$to = $admin_email ?? 'info@fescon.com.pk';
+$to = sanitize_header_val($admin_email ?? 'info@fescon.com.pk');
 $email_subject = "New Contact Form Inquiry: " . $subject;
 $email_body = "You have received a new inquiry from the Fescon website:\n\n" .
               "Name: " . $name . "\n" .
@@ -37,7 +41,8 @@ $email_body = "You have received a new inquiry from the Fescon website:\n\n" .
               "Date: " . date('Y-m-d H:i:s') . "\n\n" .
               "Message:\n" . $message . "\n";
 
-$headers = "From: webmaster@" . ($_SERVER['SERVER_NAME'] ?? 'fescon.com.pk') . "\r\n" .
+$server_host = sanitize_header_val($_SERVER['SERVER_NAME'] ?? 'fescon.com.pk');
+$headers = "From: webmaster@" . $server_host . "\r\n" .
            "Reply-To: " . $email . "\r\n" .
            "X-Mailer: PHP/" . phpversion();
 

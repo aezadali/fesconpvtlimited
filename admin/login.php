@@ -10,35 +10,66 @@ if (is_admin_logged_in()) {
 }
 
 $error = '';
+$max_attempts = 5;
+$lockout_time = 900; // 15 minutes
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = trim($_POST['username'] ?? '');
-    $password = $_POST['password'] ?? '';
+// Check lockout
+if (!empty($_SESSION['login_lockout']) && time() < $_SESSION['login_lockout']) {
+    $remaining = ceil(($_SESSION['login_lockout'] - time()) / 60);
+    $error = "Too many failed login attempts. Please try again in {$remaining} minute(s).";
+} elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Reset lockout if expired
+    if (!empty($_SESSION['login_lockout']) && time() >= $_SESSION['login_lockout']) {
+        unset($_SESSION['login_lockout'], $_SESSION['login_attempts']);
+    }
 
-    if (empty($username) || empty($password)) {
-        $error = "Please enter both username and password.";
+    $token = $_POST['csrf_token'] ?? '';
+    if (empty($token) || empty($_SESSION['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $token)) {
+        $error = "Security validation expired. Please refresh the page and try again.";
     } else {
-        try {
-            $db = get_db();
-            $stmt = $db->prepare("SELECT * FROM users WHERE username = ? LIMIT 1");
-            $stmt->execute([$username]);
-            $user = $stmt->fetch();
+        $username = trim($_POST['username'] ?? '');
+        $password = $_POST['password'] ?? '';
 
-            if ($user && password_verify($password, $user['password_hash'])) {
-                // Login successful
-                $_SESSION['fescon_admin_logged_in'] = true;
-                $_SESSION['fescon_admin_id'] = $user['id'];
-                $_SESSION['fescon_admin_username'] = $user['username'];
-                $_SESSION['fescon_admin_name'] = $user['name'];
-                $_SESSION['fescon_admin_email'] = $user['email'];
+        if (empty($username) || empty($password)) {
+            $error = "Please enter both username and password.";
+        } else {
+            try {
+                $db = get_db();
+                $stmt = $db->prepare("SELECT * FROM users WHERE username = ? LIMIT 1");
+                $stmt->execute([$username]);
+                $user = $stmt->fetch();
 
-                header("Location: " . $base_url . "/admin/index.php");
-                exit;
-            } else {
-                $error = "Invalid username or password.";
+                if ($user && password_verify($password, $user['password_hash'])) {
+                    // Reset attempt counters
+                    unset($_SESSION['login_attempts'], $_SESSION['login_lockout']);
+
+                    // Regenerate session ID to prevent session fixation
+                    session_regenerate_id(true);
+
+                    // Login successful
+                    $_SESSION['fescon_admin_logged_in'] = true;
+                    $_SESSION['fescon_admin_id'] = $user['id'];
+                    $_SESSION['fescon_admin_username'] = $user['username'];
+                    $_SESSION['fescon_admin_name'] = $user['name'];
+                    $_SESSION['fescon_admin_email'] = $user['email'];
+                    $_SESSION['fescon_last_activity'] = time();
+
+                    header("Location: " . $base_url . "/admin/index.php");
+                    exit;
+                } else {
+                    $_SESSION['login_attempts'] = ($_SESSION['login_attempts'] ?? 0) + 1;
+                    if ($_SESSION['login_attempts'] >= $max_attempts) {
+                        $_SESSION['login_lockout'] = time() + $lockout_time;
+                        $error = "Too many failed login attempts. Account locked for 15 minutes.";
+                    } else {
+                        $remaining = $max_attempts - $_SESSION['login_attempts'];
+                        $error = "Invalid username or password. ({$remaining} attempt(s) remaining)";
+                    }
+                }
+            } catch (Exception $e) {
+                error_log("Authentication system error: " . $e->getMessage());
+                $error = "Unable to process login at this time. Please try again later.";
             }
-        } catch (Exception $e) {
-            $error = "Authentication system error: " . $e->getMessage();
         }
     }
 }
@@ -96,22 +127,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .login-body-content {
             padding: 30px;
         }
-        .login-credentials-hint {
-            background: #f8fafc;
-            border: 1px dashed #cbd5e1;
-            border-radius: 6px;
-            padding: 12px 14px;
-            font-size: 12.5px;
-            color: #475569;
-            margin-top: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .login-credentials-hint i {
-            color: var(--admin-primary);
-            font-size: 16px;
-        }
     </style>
 </head>
 <body class="login-body">
@@ -134,14 +149,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endif; ?>
 
         <form method="POST" action="">
+            <input type="hidden" name="csrf_token" value="<?php echo csrf_token(); ?>">
+
             <div class="form-group">
                 <label for="username"><i class="fas fa-user"></i> Username</label>
-                <input type="text" id="username" name="username" class="form-control" placeholder="Enter admin username" value="<?php echo htmlspecialchars($_POST['username'] ?? ''); ?>" required autofocus>
+                <input type="text" id="username" name="username" class="form-control" placeholder="Enter admin username" value="<?php echo htmlspecialchars($_POST['username'] ?? ''); ?>" required autofocus autocomplete="username">
             </div>
 
             <div class="form-group">
                 <label for="password"><i class="fas fa-lock"></i> Password</label>
-                <input type="password" id="password" name="password" class="form-control" placeholder="Enter admin password" required>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Enter admin password" required autocomplete="current-password">
             </div>
 
             <button type="submit" class="btn-admin btn-admin-primary" style="width: 100%; justify-content: center; padding: 12px; font-size: 15px; margin-top: 10px;">
@@ -149,15 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </button>
         </form>
 
-        <div class="login-credentials-hint">
-            <i class="fas fa-key"></i>
-            <div>
-                <strong>Default Credentials:</strong><br>
-                Username: <code>admin</code> &bull; Password: <code>admin123</code>
-            </div>
-        </div>
-
-        <div style="text-align: center; margin-top: 20px; font-size: 13px;">
+        <div style="text-align: center; margin-top: 25px; font-size: 13px;">
             <a href="<?php echo $base_url; ?>/" style="color: #64748b; text-decoration: none;">
                 <i class="fas fa-arrow-left"></i> Return to Fescon Website
             </a>

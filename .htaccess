@@ -1,24 +1,66 @@
+# ==============================================================================
+# Fescon (Pvt.) Ltd - Production Apache & cPanel Configuration
+# Security Hardening, Clean URLs & Asset Caching
+# ==============================================================================
+
+# 1. Disable Directory Index Browsing
+Options -Indexes -MultiViews
+
+# 2. Default Index Handler
+DirectoryIndex index.php index.html
+
+# 3. Security Headers
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# 4. Block Sensitive Files, Databases & Hidden Dotfiles
+<FilesMatch "(\.(bak|config|sql|sqlite|sqlite3|db|ini|log|sh|env|git.*|md)|composer\.(json|lock)|package(-lock)?\.json)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# Prevent viewing hidden files (files beginning with a dot)
+<FilesMatch "^\.">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# 5. URL Rewriting & Routing
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /
 
-    # If directory or real file, serve directly
+    # Block direct HTTP requests to storage, includes, and system directories
+    RewriteRule ^(storage|includes|tools)/ - [F,L]
+
+    # Serve existing files and directories directly
     RewriteCond %{REQUEST_FILENAME} -f [OR]
     RewriteCond %{REQUEST_FILENAME} -d
     RewriteRule ^ - [L]
 
-    # Map clean URL to corresponding .php file (e.g. /about-us -> /about-us.php, /admin/projects -> /admin/projects.php)
-    RewriteCond %{DOCUMENT_ROOT}/$1.php -f [OR]
+    # Map clean URLs to .php files (e.g. /about-us -> /about-us.php)
+    RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}.php -f [OR]
     RewriteCond %{REQUEST_FILENAME}.php -f
     RewriteRule ^([a-zA-Z0-9_/-]+)/?$ $1.php [L,QSA]
 
-    # Fallback to index.php if route does not exist
+    # Fallback non-existent paths to index.php
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^ index.php [L,QSA]
 </IfModule>
 
-# Caching for assets
+# 6. Performance Caching for Static Assets
 <IfModule mod_expires.c>
     ExpiresActive On
     ExpiresByType text/css "access plus 1 month"

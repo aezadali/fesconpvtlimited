@@ -48,7 +48,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $filename = 'client_' . time() . '.' . $ext;
                 $dest = $upload_dir . '/' . $filename;
                 if (move_uploaded_file($file['tmp_name'], $dest)) {
-                    $logo_url = $base_url . '/assets/images/' . $filename;
+                    if (sanitize_uploaded_image($dest, $ext)) {
+                        $logo_url = $base_url . '/assets/images/' . $filename;
+                    } else {
+                        $errors[] = "Uploaded file failed image verification.";
+                    }
                 }
             } else {
                 $errors[] = "Invalid logo file format. Allowed: PNG, JPG, WEBP, SVG.";

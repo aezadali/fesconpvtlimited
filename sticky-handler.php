@@ -7,11 +7,16 @@ require_once __DIR__ . '/includes/db.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
-$name = trim($_POST['contact-form-name'] ?? '');
-$phone = trim($_POST['contact-form-phone'] ?? '');
-$email = filter_var(trim($_POST['contact-form-email'] ?? ''), FILTER_SANITIZE_EMAIL);
+// Strip newlines to prevent email header injection
+function sanitize_header_val($str) {
+    return trim(str_replace(["\r", "\n", "%0a", "%0d"], '', (string)$str));
+}
+
+$name = sanitize_header_val($_POST['contact-form-name'] ?? '');
+$phone = sanitize_header_val($_POST['contact-form-phone'] ?? '');
+$email = sanitize_header_val(filter_var(trim($_POST['contact-form-email'] ?? ''), FILTER_SANITIZE_EMAIL));
 $message = trim($_POST['contact-form-message'] ?? '');
-$page = trim($_POST['stickyelements-page-link'] ?? '');
+$page = sanitize_header_val($_POST['stickyelements-page-link'] ?? '');
 
 if (empty($phone) || empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
     echo json_encode([
@@ -21,7 +26,7 @@ if (empty($phone) || empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)
     exit;
 }
 
-$to = $admin_email ?? 'info@fescon.com.pk';
+$to = sanitize_header_val($admin_email ?? 'info@fescon.com.pk');
 $email_subject = "Quick Inquiry from Sticky Widget: " . ($name ?: $phone);
 $email_body = "New inquiry via Fescon Sticky Elements widget:\n\n" .
               "Name: " . $name . "\n" .
@@ -31,7 +36,8 @@ $email_body = "New inquiry via Fescon Sticky Elements widget:\n\n" .
               "Date: " . date('Y-m-d H:i:s') . "\n\n" .
               "Message:\n" . $message . "\n";
 
-$headers = "From: webmaster@" . ($_SERVER['SERVER_NAME'] ?? 'fescon.com.pk') . "\r\n" .
+$server_host = sanitize_header_val($_SERVER['SERVER_NAME'] ?? 'fescon.com.pk');
+$headers = "From: webmaster@" . $server_host . "\r\n" .
            "Reply-To: " . $email . "\r\n" .
            "X-Mailer: PHP/" . phpversion();
 

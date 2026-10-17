@@ -52,7 +52,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $filename = 'cert_' . time() . '_' . rand(100, 999) . '.' . $ext;
                 $dest = $upload_dir . '/' . $filename;
                 if (move_uploaded_file($file['tmp_name'], $dest)) {
-                    $image_url = 'assets/images/' . $filename;
+                    if (sanitize_uploaded_image($dest, $ext)) {
+                        $image_url = 'assets/images/' . $filename;
+                    } else {
+                        $errors[] = "Uploaded file failed image verification.";
+                    }
                 }
             } else {
                 $errors[] = "Certificate image format not supported. Allowed: PNG, JPG, WebP.";

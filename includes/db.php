@@ -81,14 +81,14 @@ function init_database($pdo) {
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )");
 
-    // Seed default admin user (admin / admin123) if none exists
+    // Seed default admin user (fesconadmin) if none exists
     try {
         $checkUser = $pdo->query("SELECT COUNT(*) FROM users")->fetchColumn();
         if ($checkUser == 0) {
             $stmt = $pdo->prepare("INSERT INTO users (username, password_hash, name, email, role) VALUES (?, ?, ?, ?, ?)");
             $stmt->execute([
-                'admin',
-                password_hash('admin123', PASSWORD_DEFAULT),
+                'fesconadmin',
+                password_hash('Fesconpvtltd2026@', PASSWORD_DEFAULT),
                 'Fescon Administrator',
                 'admin@fescon.com.pk',
                 'admin'
